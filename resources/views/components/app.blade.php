@@ -67,7 +67,11 @@
         <!--  BEGIN CONTENT AREA  -->
         <div id="content" class="main-content">
 
-            <x-main></x-main>
+            <div class="container">
+                <div class="container">
+                    {{ $slot }}
+                </div>
+            </div>
 
             <!--  BEGIN FOOTER  -->
             <x-footer></x-footer>
