@@ -13,7 +13,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->foreignIdFor(AgentCategory::class, 'user_category')->after('password');
+            $table->foreignIdFor(AgentCategory::class, 'user_category')->after('password')->nullable();
         });
     }
 
