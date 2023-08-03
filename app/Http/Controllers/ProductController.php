@@ -14,6 +14,11 @@ class ProductController extends Controller
         return view('pages.products.list', ['products' => $products]);
     }
 
+    public function show(Product $product)
+    {
+        return view('pages.products.detail', ['product' => $product]);
+    }
+
     public function create()
     {
         return view('pages.products.add');
@@ -51,7 +56,13 @@ class ProductController extends Controller
         //     $formFields['picture'] = $request->file('picture')->store('pictures', 'public');
         // }
 
-        $product->update($formFields);
+        $product->update([
+            'brand' => $formFields['brand'],
+            'product_type' => $formFields['type'],
+            'image' => isset($formFields['image']) ? $formFields['image'] : null,
+            'color' => $formFields['color'],
+            'price' => $formFields['price']
+        ]);
 
         return redirect('/products');
     }

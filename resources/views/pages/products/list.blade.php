@@ -54,7 +54,8 @@
                                                 </a>
 
                                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuLink1">
-                                                    <a class="dropdown-item" href="javascript:void(0);">View</a>
+                                                    <a class="dropdown-item"
+                                                        href="/product/{{ $product->id }}/details">View</a>
                                                     <a class="dropdown-item"
                                                         href="/product/{{ $product->id }}/edit">Edit</a>
                                                     <form action="/delete-product/{{ $product->id }}" method="POST">
