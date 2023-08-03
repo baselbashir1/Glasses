@@ -3,7 +3,7 @@
     <x-slot:pageTitle>Edit Product</x-slot>
 
         <div class="row mb-4 layout-spacing layout-top-spacing">
-            <form method="POST" action="/add-product" enctype="multipart/form-data">
+            <form method="POST" action="/edit-product/{{ $product->id }}" enctype="multipart/form-data">
                 @csrf
                 <div class="col-xxl-9 col-xl-12 col-lg-12 col-md-12 col-sm-12">
                     <div class="widget-content widget-content-area ecommerce-create-section">
@@ -21,7 +21,8 @@
                             <div class="col-sm-12">
                                 <label for="type">Type</label>
                                 <select name="type" class="form-control">
-                                    <option selected disabled>{{ $product->productType->type }}</option>
+                                    <option value="{{ $product->productType->id }}" selected>
+                                        {{ $product->productType->type }}</option>
                                     <?php $productTypes = \App\Models\ProductType::all(); ?>
                                     @foreach ($productTypes as $productType)
                                         <option value="{{ $productType->id }}">{{ $productType->type }}</option>
@@ -45,7 +46,8 @@
                         <div class="row mb-4">
                             <div class="col-sm-12">
                                 <label for="color">Color</label>
-                                <input type="text" name="color" class="form-control" value="{{ $product->color }}">
+                                <input type="text" name="color" class="form-control"
+                                    value="{{ $product->color }}">
                             </div>
                             @error('color')
                                 <p class="mt-2">{{ $message }}</p>
