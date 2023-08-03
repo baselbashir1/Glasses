@@ -11,5 +11,5 @@ class Dossier extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['user_id', 'phone'];
+    protected $fillable = ['agent_id'];
 }

@@ -1,7 +1,9 @@
 <?php
 
+use App\Models\Agent;
 use App\Models\ProductType;
 use App\Models\AgentCategory;
+use App\Models\Dossier;
 use App\Models\PaymentStatus;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
@@ -23,6 +25,8 @@ return new class extends Migration
             $table->decimal('remaining_amount', 10, 2);
             $table->boolean('product_received');
             $table->foreignIdFor(PaymentStatus::class, 'payment_status');
+            $table->foreignIdFor(Agent::class, 'agent_id');
+            $table->foreignIdFor(Dossier::class, 'dossier_id');
             $table->timestamp('purchased_at')->nullable();
             $table->timestamps();
         });

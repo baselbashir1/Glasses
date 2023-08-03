@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\User;
+use App\Models\Agent;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
@@ -14,8 +14,7 @@ return new class extends Migration
     {
         Schema::create('dossiers', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(User::class, 'user_id');
-            $table->string('phone');
+            $table->foreignIdFor(Agent::class, 'agent_id');
             $table->timestamps();
         });
     }
