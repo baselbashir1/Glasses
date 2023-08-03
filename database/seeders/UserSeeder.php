@@ -19,7 +19,6 @@ class UserSeeder extends Seeder
             'email' => 'baselbashir@gmail.com',
             'email_verified_at' => now(),
             'password' => bcrypt('12345678'),
-            'user_category' => 1,
             'created_at' => now()
         ]);
     }

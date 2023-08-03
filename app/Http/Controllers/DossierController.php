@@ -2,9 +2,61 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\DossierRequest;
+use App\Models\Dossier;
 use Illuminate\Http\Request;
 
 class DossierController extends Controller
 {
-    //
+    public function index()
+    {
+        $dossiers = Dossier::all();
+        return view('pages.dossiers.list', ['dossiers' => $dossiers]);
+    }
+
+    public function show(Dossier $dossier)
+    {
+        return view('pages.dossiers.detail', ['dossier' => $dossier]);
+    }
+
+    public function create()
+    {
+        return view('pages.dossiers.add');
+    }
+
+    public function store(DossierRequest $request)
+    {
+        $formFields = $request->validated();
+
+        Dossier::create([
+            'user_id' => $formFields['user'],
+            'phone' => $formFields['phone']
+        ]);
+
+        return redirect('/dossiers');
+    }
+
+    public function edit(Dossier $dossier)
+    {
+        return view('pages.dossiers.edit', ['dossier' => $dossier]);
+    }
+
+    public function update(DossierRequest $request, Dossier $dossier)
+    {
+        $formFields = $request->validated();
+
+        $dossier->update([
+            'user_id' => $formFields['user'],
+            'phone' => $formFields['phone']
+        ]);
+
+        return redirect('/dossiers');
+    }
+
+    public function destroy(Dossier $dossier)
+    {
+        $dossier->delete();
+
+        return redirect('/dossiers');
+    }
 }
