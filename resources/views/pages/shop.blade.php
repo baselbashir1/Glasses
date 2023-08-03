@@ -5,7 +5,7 @@
         <div class="row layout-top-spacing">
 
             <div class="col-xl-2 col-lg-3 col-md-3 col-sm-3 mb-4 ms-auto">
-                <select class="form-select form-select" aria-label="Default select example">
+                <select class="form-select" aria-label="Default select example">
                     <option selected="">All Category</option>
                     <option value="3">Apperal</option>
                     <option value="1">Electronics</option>
@@ -16,7 +16,7 @@
             </div>
 
             <div class="col-xl-2 col-lg-3 col-md-3 col-sm-3 mb-4">
-                <select class="form-select form-select" aria-label="Default select example">
+                <select class="form-select" aria-label="Default select example">
                     <option selected="">Sort By</option>
                     <option value="1">Low to High Price</option>
                     <option value="2">Most Viewed</option>
@@ -28,34 +28,36 @@
         </div>
 
         <div class="row">
-            @foreach ($products as $product)
-                <div class="col-xxl-2 col-xl-3 col-lg-3 col-md-4 col-sm-6 mb-4">
-                    <a class="card style-6" href="/app/ecommerce/detail">
-                        <span class="badge badge-primary">NEW</span>
-                        <img src="{{ Vite::asset('resources/images/product-3.jpg') }}" class="card-img-top"
-                            alt="...">
-                        <div class="card-footer">
-                            <div class="row">
-                                <div class="col-12 mb-4">
-                                    <b>{{ $product->productType->type }}</b>
-                                </div>
-                                <div class="col-3">
-                                    <div class="badge--group">
-                                        <div class="badge badge-primary badge-dot"></div>
-                                        <div class="badge badge-danger badge-dot"></div>
-                                        <div class="badge badge-info badge-dot"></div>
+            @unless (count((array) $products) == 0)
+                @foreach ($products as $product)
+                    <div class="col-xxl-2 col-xl-3 col-lg-3 col-md-4 col-sm-6 mb-4">
+                        <a class="card style-6" href="/app/ecommerce/detail">
+                            <span class="badge badge-primary">NEW</span>
+                            <img src="{{ asset('src/assets/img/product-3.jpg') }}" class="card-img-top" alt="...">
+                            <div class="card-footer">
+                                <div class="row">
+                                    <div class="col-12 mb-4">
+                                        <b>{{ $product->productType->type }}</b>
                                     </div>
-                                </div>
-                                <div class="col-9 text-end">
-                                    <div class="pricing d-flex justify-content-end">
-                                        <p class="text-success mb-0">${{ $product->price }}</p>
+                                    <div class="col-3">
+                                        <div class="badge--group">
+                                            <div class="badge badge-primary badge-dot"></div>
+                                            <div class="badge badge-danger badge-dot"></div>
+                                            <div class="badge badge-info badge-dot"></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-9 text-end">
+                                        <div class="pricing d-flex justify-content-end">
+                                            <p class="text-success mb-0">${{ $product->price }}</p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </a>
-                </div>
-            @endforeach
-
+                        </a>
+                    </div>
+                @endforeach
+            @else
+                <div class="container"></div>
+            @endunless
         </div>
 </x-app>

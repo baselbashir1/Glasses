@@ -13,13 +13,11 @@ class AgentCategorySeeder extends Seeder
      */
     public function run(): void
     {
-        AgentCategory::create([
-            'category' => 'VIP',
-            'created_at' => now()
-        ]);
-        AgentCategory::create([
-            'category' => 'Normal',
-            'created_at' => now()
-        ]);
+        $categories = [
+            ['category' => 'VIP', 'created_at' => now(), 'updated_at' => now()],
+            ['category' => 'Normal', 'created_at' => now(), 'updated_at' => now()]
+        ];
+
+        AgentCategory::insert($categories);
     }
 }

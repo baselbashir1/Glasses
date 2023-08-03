@@ -51,17 +51,17 @@
     <!--  END LOADER -->
 
     <!--  BEGIN NAVBAR  -->
-    <x-header></x-header>
+    <x-header />
     <!--  END NAVBAR  -->
 
     <!--  BEGIN MAIN CONTAINER  -->
-    <div class="main-container " id="container">
+    <div class="main-container" id="container">
 
         <div class="overlay"></div>
         <div class="search-overlay"></div>
 
         <!--  BEGIN SIDEBAR  -->
-        <x-sidebar></x-sidebar>
+        <x-sidebar />
         <!--  END SIDEBAR  -->
 
         <!--  BEGIN CONTENT AREA  -->
@@ -74,7 +74,7 @@
             </div>
 
             <!--  BEGIN FOOTER  -->
-            <x-footer></x-footer>
+            <x-footer />
             <!--  END FOOTER  -->
 
         </div>

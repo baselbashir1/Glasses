@@ -13,17 +13,12 @@ class ProductTypeSeeder extends Seeder
      */
     public function run(): void
     {
-        ProductType::create([
-            'type' => 'Medical Glasses',
-            'created_at' => now()
-        ]);
-        ProductType::create([
-            'type' => 'Sunglasses',
-            'created_at' => now()
-        ]);
-        ProductType::create([
-            'type' => 'Lenses',
-            'created_at' => now()
-        ]);
+        $types = [
+            ['type' => 'Medical Glasses', 'created_at' => now(), 'updated_at' => now()],
+            ['type' => 'Sunglasses', 'created_at' => now(), 'updated_at' => now()],
+            ['type' => 'Lenses', 'created_at' => now(), 'updated_at' => now()]
+        ];
+
+        ProductType::insert($types);
     }
 }

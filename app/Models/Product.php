@@ -10,7 +10,7 @@ class Product extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['product_type', 'image', 'price', 'is_received'];
+    protected $fillable = ['brand', 'product_type', 'image', 'color', 'price'];
 
     public function productType(): HasOne
     {

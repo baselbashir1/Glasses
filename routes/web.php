@@ -15,11 +15,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('pages.shop');
-})->middleware('auth');
-
-Route::get('/shop', [ProductController::class, 'index'])->middleware('auth');
+Route::middleware('auth')->group(function () {
+    Route::get('/', [ProductController::class, 'index']);
+    Route::get('/add', [ProductController::class, 'create']);
+});
 
 Route::get('/dashboard', function () {
     return view('dashboard');

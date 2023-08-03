@@ -12,4 +12,9 @@ class ProductController extends Controller
         $products = Product::all();
         return view('pages.shop', ['products' => $products]);
     }
+
+    public function create()
+    {
+        return view('pages.add');
+    }
 }
