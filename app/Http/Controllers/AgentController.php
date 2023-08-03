@@ -31,4 +31,28 @@ class AgentController extends Controller
 
         return redirect('/agents');
     }
+
+    public function edit(Agent $agent)
+    {
+        return view('pages.agents.edit', ['agent' => $agent]);
+    }
+
+    public function update(AgentRequest $request, Agent $agent)
+    {
+        $formFields = $request->validated();
+
+        $agent->update([
+            'name' => $formFields['name'],
+            'phone' => $formFields['phone'],
+            'agent_category' => $formFields['category']
+        ]);
+
+        return redirect('/agents');
+    }
+
+    public function destroy(Agent $agent)
+    {
+        $agent->delete();
+        return redirect('/agents');
+    }
 }

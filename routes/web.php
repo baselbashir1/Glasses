@@ -30,12 +30,11 @@ Route::middleware('auth')->group(function () {
 
 
     Route::get('/agents', [AgentController::class, 'index']);
-    // Route::get('/agent/{agent}/details', [AgentController::class, 'show']);
     Route::get('/agent/add', [AgentController::class, 'create']);
     Route::post('/add-agent', [AgentController::class, 'store']);
-    // Route::get('/agent/{agent}/edit', [AgentController::class, 'edit']);
-    // Route::post('/edit-agent/{agent}', [AgentController::class, 'update']);
-    // Route::post('/delete-agent/{agent}', [AgentController::class, 'destroy']);
+    Route::get('/agent/{agent}/edit', [AgentController::class, 'edit']);
+    Route::post('/edit-agent/{agent}', [AgentController::class, 'update']);
+    Route::post('/delete-agent/{agent}', [AgentController::class, 'destroy']);
 
 
     // Route::get('/dossiers', [DossierController::class, 'index']);

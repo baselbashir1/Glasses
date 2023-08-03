@@ -14,6 +14,6 @@ class Agent extends Model
 
     public function agentCategory(): HasOne
     {
-        return $this->hasOne(AgentCategory::class, 'id');
+        return $this->hasOne(AgentCategory::class, 'id', 'agent_category');
     }
 }
