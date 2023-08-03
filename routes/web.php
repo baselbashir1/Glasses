@@ -17,7 +17,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth')->group(function () {
     Route::get('/', [ProductController::class, 'index']);
-    Route::get('/add', [ProductController::class, 'create']);
+    Route::get('/products', [ProductController::class, 'index']);
+    Route::get('/product/add', [ProductController::class, 'create']);
+    Route::post('/add-product', [ProductController::class, 'store']);
+    Route::get('/product/{product}/edit', [ProductController::class, 'edit']);
+    Route::post('/edit-product/{product}', [ProductController::class, 'update']);
 });
 
 Route::get('/dashboard', function () {

@@ -142,10 +142,10 @@
                         <a href="./app-ecommerce-product.html"> Product </a>
                     </li>
                     <li>
-                        <a href="./app-ecommerce-product-list.html"> List </a>
+                        <a href="/products"> List </a>
                     </li>
                     <li>
-                        <a href="./app-ecommerce-product-add.html"> Create </a>
+                        <a href="/product/add"> Create </a>
                     </li>
                     <li>
                         <a href="./app-ecommerce-product-edit.html"> Edit </a>
