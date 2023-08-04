@@ -9,35 +9,29 @@
                     <div class="widget-content widget-content-area ecommerce-create-section">
                         <div class="row mb-4">
                             <div class="col-sm-12">
-                                <label for="user">User</label>
-                                <?php $users = \App\Models\User::all(); ?>
-                                <select name="user" class="form-control">
-                                    <option value="{{ $dossier->user->id }}" selected>
-                                        {{ $dossier->user->name }}</option>
-                                    @foreach ($users as $user)
-                                        <option value="{{ $user->id }}">{{ $user->name }}</option>
-                                    @endforeach
-                                </select>
+                                <label for="phone">Agent Name</label>
+                                <div class="form-control w-50">{{ $dossier->agent->name }}</div>
                             </div>
-                            @error('user')
-                                <p class="mt-2">{{ $message }}</p>
-                            @enderror
                         </div>
                         <div class="row mb-4">
                             <div class="col-sm-12">
                                 <label for="phone">Phone Number</label>
-                                <input type="text" name="phone" class="form-control">
+                                <div class="form-control w-50">{{ $dossier->agent->phone }}</div>
                             </div>
-                            @error('phone')
-                                <p class="mt-2">{{ $message }}</p>
-                            @enderror
+                        </div>
+                        <div class="row mb-4">
+                            <div class="col-sm-12">
+                                <label for="phone">Phone Number</label>
+                                <input type="checkbox">
+                                <div class="form-control w-50">{{ $dossier->agent->phone }}</div>
+                            </div>
                         </div>
                         <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 mt-4">
-                            <div class="widget-content widget-content-area ecommerce-create-section">
-                                <div class="col-sm-12">
-                                    <button type="submit" class="btn btn-success w-100">Update Dossier</button>
-                                </div>
+                            {{-- <div class="widget-content widget-content-area ecommerce-create-section"> --}}
+                            <div class="col-sm-12">
+                                <button type="submit" class="btn btn-success w-100">Update Dossier</button>
                             </div>
+                            {{-- </div> --}}
                         </div>
                     </div>
                 </div>

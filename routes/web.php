@@ -5,6 +5,7 @@ use App\Http\Controllers\DossierController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -46,6 +47,14 @@ Route::middleware('auth')->group(function () {
     Route::post('/edit-dossier/{dossier}', [DossierController::class, 'update']);
     Route::post('/delete-dossier/{dossier}', [DossierController::class, 'destroy']);
     Route::get('/get-phone-number/{id}', [DossierController::class, 'getPhoneNumber']);
+
+    Route::get('/users', [UserController::class, 'index']);
+    Route::get('/user/{user}/details', [UserController::class, 'show']);
+    Route::get('/user/add', [UserController::class, 'create']);
+    Route::post('/add-user', [UserController::class, 'store']);
+    Route::get('/user/{user}/edit', [UserController::class, 'edit']);
+    Route::post('/edit-user/{user}', [UserController::class, 'update']);
+    Route::post('/delete-user/{user}', [UserController::class, 'destroy']);
 });
 
 Route::get('/dashboard', function () {

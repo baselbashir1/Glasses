@@ -34,9 +34,16 @@
                         </div>
                         <div class="row mb-4">
                             <div class="col-sm-12">
-                                <label for="image">Image</label>
-                                <img src="{{ $product->image }}" alt="{{ $product->image }}">
-                                <input type="file" name="image" class="form-control">
+                                <div class="row">
+                                    <label for="image">Image</label>
+                                    <div class="text-center">
+                                        <img src="{{ Vite::asset('public/storage/' . $product->image) }}"
+                                            class="card-img-top" alt="..." style="width: 250px; height: 250px;">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="container mt-2 mb-2">
+                                <input type="file" name="image" class="form-control" value="{{ $product->image }}">
                             </div>
                             @error('image')
                                 <p class="mt-2">{{ $message }}</p>

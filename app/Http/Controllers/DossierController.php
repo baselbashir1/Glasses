@@ -37,10 +37,11 @@ class DossierController extends Controller
         return redirect('/dossiers');
     }
 
-    // public function edit(Dossier $dossier)
-    // {
-    //     return view('pages.dossiers.edit', ['dossier' => $dossier]);
-    // }
+    public function edit(Dossier $dossier)
+    {
+        $agents = Agent::all();
+        return view('pages.dossiers.edit', ['dossier' => $dossier, 'agents' => $agents]);
+    }
 
     // public function update(DossierRequest $request, Dossier $dossier)
     // {

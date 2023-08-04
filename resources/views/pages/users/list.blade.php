@@ -1,11 +1,11 @@
 <x-base-layout>
 
-    <x-slot:pageTitle>Products</x-slot>
+    <x-slot:pageTitle>Users</x-slot>
 
         <div class="row layout-top-spacing">
             <div class="col-xl-12 col-lg-6">
-                <a href="/product/add" class="btn btn-primary w-100 btn-lg mb-4">
-                    <span class="btn-text-inner">Add Product</span>
+                <a href="/user/add" class="btn btn-primary w-100 btn-lg mb-4">
+                    <span class="btn-text-inner">Add User</span>
                 </a>
             </div>
         </div>
@@ -18,32 +18,32 @@
                         <thead>
                             <tr>
                                 <th class="checkbox-column"></th>
-                                <th>Brand</th>
-                                <th>Product Type</th>
-                                <th>Image</th>
-                                <th>Color</th>
-                                <th>Price</th>
+                                <th>Name</th>
+                                <th>Phone</th>
+                                <th>Email</th>
+                                <th>Password</th>
+                                <th>Picture</th>
                                 <th class="no-content text-center">Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @unless ((array) count($products) == 0)
-                                @foreach ($products as $product)
+                            @unless ((array) count($users) == 0)
+                                @foreach ($users as $user)
                                     <tr>
-                                        <td>{{ $product->id }}</td>
-                                        <td>{{ $product->brand }}</td>
-                                        <td>{{ $product->productType->type }}</td>
+                                        <td>{{ $user->id }}</td>
+                                        <td>{{ $user->name }}</td>
+                                        <td>{{ $user->phone }}</td>
+                                        <td>{{ $user->email }}</td>
+                                        <td>{{ substr($user->password, 0, 15) }}</td>
                                         <td>
                                             <div class="d-flex justify-content-left align-items-center">
                                                 <div class="avatar  me-3">
-                                                    <img src="{{ Vite::asset('public/storage/' . $product->image) }}"
+                                                    <img src="{{ Vite::asset('public/storage/' . $user->image) }}"
                                                         alt="Avatar" width="64" height="64"
                                                         style="border-radius: 20px">
                                                 </div>
                                             </div>
                                         </td>
-                                        <td><span class="badge badge-danger">{{ $product->color }}</span></td>
-                                        <td>${{ $product->price }}</td>
                                         <td class="text-center">
                                             <div class="dropdown">
                                                 <a class="dropdown-toggle" href="#" role="button"
@@ -61,10 +61,9 @@
 
                                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuLink1">
                                                     <a class="dropdown-item"
-                                                        href="/product/{{ $product->id }}/details">View</a>
-                                                    <a class="dropdown-item"
-                                                        href="/product/{{ $product->id }}/edit">Edit</a>
-                                                    <form action="/delete-product/{{ $product->id }}" method="POST">
+                                                        href="/user/{{ $user->id }}/details">View</a>
+                                                    <a class="dropdown-item" href="/user/{{ $user->id }}/edit">Edit</a>
+                                                    <form action="/delete-user/{{ $user->id }}" method="POST">
                                                         @csrf
                                                         <button type="submit">Delete</button>
                                                     </form>
@@ -74,7 +73,7 @@
                                     </tr>
                                 @endforeach
                             @else
-                                No Products Avaliables
+                                No Users
                             @endunless
                         </tbody>
                     </table>

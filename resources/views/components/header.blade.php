@@ -280,7 +280,9 @@
                     data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <div class="avatar-container">
                         <div class="avatar avatar-sm avatar-indicators avatar-online">
-                            <img alt="avatar" src="../src/assets/img/profile-30.png" class="rounded-circle">
+                            <img alt="avatar"
+                                src="{{ Auth::user()->image ? Vite::asset('public/storage/' . Auth::user()->image) : Vite::asset('public/src/assets/img/profile-3.jpeg') }}"
+                                class="rounded-circle">
                         </div>
                     </div>
                 </a>

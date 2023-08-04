@@ -43,6 +43,7 @@ export default defineConfig({
                 'public/src/plugins/src/filepond/filepondPluginFileValidateSize.min.js',
                 'public/src/plugins/src/tagify/tagify.min.js',
                 'public/src/assets/js/apps/blog-create.js',
+
             ],
             refresh: true,
         }),

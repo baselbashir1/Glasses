@@ -30,9 +30,9 @@ class ProductController extends Controller
     {
         $formFields = $request->validated();
 
-        // if ($request->hasFile('picture')) {
-        //     $formFields['picture'] = $request->file('picture')->store('pictures', 'public');
-        // }
+        if ($request->hasFile('image')) {
+            $formFields['image'] = $request->file('image')->store('images', 'public');
+        }
 
         Product::create([
             'brand' => $formFields['brand'],
@@ -55,14 +55,14 @@ class ProductController extends Controller
     {
         $formFields = $request->validated();
 
-        // if ($request->hasFile('picture')) {
-        //     $formFields['picture'] = $request->file('picture')->store('pictures', 'public');
-        // }
+        if ($request->hasFile('image')) {
+            $formFields['image'] = $request->file('image')->store('images', 'public');
+        }
 
         $product->update([
             'brand' => $formFields['brand'],
             'product_type' => $formFields['type'],
-            'image' => isset($formFields['image']) ? $formFields['image'] : null,
+            'image' => isset($formFields['image']) ? $formFields['image'] : $product->image,
             'color' => $formFields['color'],
             'price' => $formFields['price']
         ]);
