@@ -10,7 +10,7 @@
                         <div class="row mb-4">
                             <div class="col-sm-12">
                                 <label for="agent">Agent</label>
-                                <select name="agent" class="form-control">
+                                <select name="agent" class="form-control" id="agentCategory">
                                     <option selected disabled>Choose Agent</option>
                                     @foreach ($agents as $agnet)
                                         <option value="{{ $agnet->id }}">{{ $agnet->name }}</option>
@@ -24,8 +24,9 @@
                         <div class="row mb-4">
                             <div class="col-sm-12">
                                 <label for="phone">Phone Number</label>
-                                <input type="text" class="form-control" placeholder="Show Phone Number Here"
-                                    disabled>
+                                {{-- <input type="text" class="form-control" placeholder="Show Phone Number Here"
+                                    id="phoneNumber"> --}}
+                                <div id="phoneNumber" class="form-control">Phone Number</div>
                             </div>
                             @error('phone')
                                 <p class="mt-2">{{ $message }}</p>
@@ -43,6 +44,24 @@
             </form>
         </div>
 
-        <script></script>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const agentCategory = document.getElementById('agentCategory');
+                const phoneNumber = document.getElementById('phoneNumber');
+
+                agentCategory.addEventListener('change', function() {
+                    const selectedId = agentCategory.value;
+
+                    fetch(`/get-phone-number/${selectedId}`)
+                        .then(response => response.text())
+                        .then(phone => {
+                            phoneNumber.innerHTML = '<div>' + phone + '</div>';
+                            // phoneNumber.value = phone;
+                        })
+                        .catch(error => console.error(error));
+                });
+            });
+        </script>
+
         <!--  END CUSTOM SCRIPTS FILE  -->
 </x-base-layout>

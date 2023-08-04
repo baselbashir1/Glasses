@@ -22,7 +22,6 @@
                                 <label for="type">Type</label>
                                 <select name="type" class="form-control">
                                     <option selected disabled>Product Type</option>
-                                    <?php $productTypes = \App\Models\ProductType::all(); ?>
                                     @foreach ($productTypes as $productType)
                                         <option value="{{ $productType->id }}">{{ $productType->type }}</option>
                                     @endforeach

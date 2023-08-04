@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ProductRequest;
 use App\Models\Product;
+use App\Models\ProductType;
 use Illuminate\Http\Request;
+use App\Http\Requests\ProductRequest;
 
 class ProductController extends Controller
 {
@@ -21,7 +22,8 @@ class ProductController extends Controller
 
     public function create()
     {
-        return view('pages.products.add');
+        $productTypes = ProductType::all();
+        return view('pages.products.add', ['productTypes' => $productTypes]);
     }
 
     public function store(ProductRequest $request)
@@ -45,7 +47,8 @@ class ProductController extends Controller
 
     public function edit(Product $product)
     {
-        return view('pages.products.edit', ['product' => $product]);
+        $productTypes = ProductType::all();
+        return view('pages.products.edit', ['product' => $product, 'productTypes' => $productTypes]);
     }
 
     public function update(ProductRequest $request, Product $product)

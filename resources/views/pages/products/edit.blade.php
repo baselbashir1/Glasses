@@ -21,9 +21,8 @@
                             <div class="col-sm-12">
                                 <label for="type">Type</label>
                                 <select name="type" class="form-control">
-                                    <option value="{{ $product->productType->id }}" selected>
+                                    <option value="{{ $product->productType->id }}" selected hidden>
                                         {{ $product->productType->type }}</option>
-                                    <?php $productTypes = \App\Models\ProductType::all(); ?>
                                     @foreach ($productTypes as $productType)
                                         <option value="{{ $productType->id }}">{{ $productType->type }}</option>
                                     @endforeach

@@ -60,4 +60,10 @@ class DossierController extends Controller
 
         return redirect('/dossiers');
     }
+
+    public function getPhoneNumber($id)
+    {
+        $agent = Agent::findOrFail($id);
+        return (string) $agent->phone;
+    }
 }

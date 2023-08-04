@@ -45,6 +45,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/dossier/{dossier}/edit', [DossierController::class, 'edit']);
     Route::post('/edit-dossier/{dossier}', [DossierController::class, 'update']);
     Route::post('/delete-dossier/{dossier}', [DossierController::class, 'destroy']);
+    Route::get('/get-phone-number/{id}', [DossierController::class, 'getPhoneNumber']);
 });
 
 Route::get('/dashboard', function () {
