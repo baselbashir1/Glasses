@@ -1,4 +1,4 @@
-<x-app>
+<x-base-layout>
 
     <x-slot:pageTitle>Add Agent</x-slot>
 
@@ -54,4 +54,4 @@
 
 
         <!--  END CUSTOM SCRIPTS FILE  -->
-</x-app>
+</x-base-layout>

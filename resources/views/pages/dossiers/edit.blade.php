@@ -1,4 +1,4 @@
-<x-app>
+<x-base-layout>
 
     <x-slot:pageTitle>Edit Dossier</x-slot>
 
@@ -46,4 +46,4 @@
 
 
         <!--  END CUSTOM SCRIPTS FILE  -->
-</x-app>
+</x-base-layout>

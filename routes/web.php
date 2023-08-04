@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AgentController;
 use App\Http\Controllers\DossierController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -18,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::middleware('auth')->group(function () {
-    // Route::get('/', [DossierController::class, 'index']);
+    Route::get('/', [HomeController::class, 'index']);
 
     Route::get('/products', [ProductController::class, 'index']);
     Route::get('/product/{product}/details', [ProductController::class, 'show']);
@@ -36,7 +37,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/edit-agent/{agent}', [AgentController::class, 'update']);
     Route::post('/delete-agent/{agent}', [AgentController::class, 'destroy']);
 
-    
+
     Route::get('/dossiers', [DossierController::class, 'index']);
     Route::get('/dossier/{dossier}/details', [DossierController::class, 'show']);
     Route::get('/dossier/add', [DossierController::class, 'create']);

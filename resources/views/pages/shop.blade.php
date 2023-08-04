@@ -1,4 +1,4 @@
-<x-app>
+<x-base-layout>
 
     <x-slot:pageTitle>shop</x-slot>
 
@@ -28,8 +28,8 @@
         </div>
 
         <div class="row">
-            @unless (count((array) $products) == 0)
-                @foreach ($products as $product)
+            @unless (count((array) $dossiers) == 0)
+                @foreach ($dossiers as $dossier)
                     <div class="col-xxl-2 col-xl-3 col-lg-3 col-md-4 col-sm-6 mb-4">
                         <a class="card style-6" href="/app/ecommerce/detail">
                             <span class="badge badge-primary">NEW</span>
@@ -37,7 +37,7 @@
                             <div class="card-footer">
                                 <div class="row">
                                     <div class="col-12 mb-4">
-                                        <b>{{ $product->productType->type }}</b>
+                                        <b>{{ $dossier->created_at }}</b>
                                     </div>
                                     <div class="col-3">
                                         <div class="badge--group">
@@ -48,7 +48,7 @@
                                     </div>
                                     <div class="col-9 text-end">
                                         <div class="pricing d-flex justify-content-end">
-                                            <p class="text-success mb-0">${{ $product->price }}</p>
+                                            <p class="text-success mb-0">${{ $dossier->created_at }}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -60,4 +60,4 @@
                 <div class="container"></div>
             @endunless
         </div>
-</x-app>
+</x-base-layout>

@@ -1,4 +1,4 @@
-<x-app>
+<x-base-layout>
 
     <x-slot:pageTitle>Edit Agent</x-slot>
 
@@ -52,4 +52,4 @@
             </form>
         </div>
         <!--  END CUSTOM SCRIPTS FILE  -->
-</x-app>
+</x-base-layout>

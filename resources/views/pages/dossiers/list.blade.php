@@ -1,4 +1,4 @@
-<x-app>
+<x-base-layout>
 
     <x-slot:pageTitle>Dossiers</x-slot>
 
@@ -67,4 +67,4 @@
                 </div>
             </div>
         </div>
-</x-app>
+</x-base-layout>

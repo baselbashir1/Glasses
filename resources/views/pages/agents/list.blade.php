@@ -1,4 +1,4 @@
-<x-app>
+<x-base-layout>
 
     <x-slot:pageTitle>Agents</x-slot>
 
@@ -71,4 +71,4 @@
         </div>
 
 
-</x-app>
+</x-base-layout>

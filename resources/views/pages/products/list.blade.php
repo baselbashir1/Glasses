@@ -1,4 +1,4 @@
-<x-app>
+<x-base-layout>
 
     <x-slot:pageTitle>Products</x-slot>
 
@@ -86,4 +86,4 @@
         </div>
 
 
-</x-app>
+</x-base-layout>

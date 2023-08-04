@@ -1,4 +1,4 @@
-<x-app>
+<x-base-layout>
 
     <x-slot:pageTitle>Edit Product</x-slot>
 
@@ -98,4 +98,4 @@
 
 
         <!--  END CUSTOM SCRIPTS FILE  -->
-</x-app>
+</x-base-layout>
