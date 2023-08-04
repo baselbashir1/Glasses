@@ -118,16 +118,10 @@
                 </a>
                 <ul class="collapse submenu list-unstyled" id="invoice" data-bs-parent="#accordionExample">
                     <li>
-                        <a href="./app-invoice-list.html"> List </a>
+                        <a href="/invoices"> List </a>
                     </li>
                     <li>
-                        <a href="./app-invoice-preview.html"> Preview </a>
-                    </li>
-                    <li>
-                        <a href="./app-invoice-add.html"> Add </a>
-                    </li>
-                    <li>
-                        <a href="./app-invoice-edit.html"> Edit </a>
+                        <a href="/invoice/add"> Create </a>
                     </li>
                 </ul>
             </li>
@@ -154,29 +148,12 @@
                 </a>
                 <ul class="collapse submenu list-unstyled" id="ecommerce" data-bs-parent="#accordionExample">
                     <li>
-                        <a href="./app-ecommerce-product-shop.html"> Shop </a>
-                    </li>
-                    <li>
-                        <a href="./app-ecommerce-product.html"> Product </a>
-                    </li>
-                    <li>
                         <a href="/products"> List </a>
                     </li>
                     <li>
                         <a href="/product/add"> Create </a>
                     </li>
-                    <li>
-                        <a href="./app-ecommerce-product-edit.html"> Edit </a>
-                    </li>
                 </ul>
-            </li>
-
-            <li class="menu menu-heading">
-                <div class="heading"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                        stroke-linecap="round" stroke-linejoin="round" class="feather feather-minus">
-                        <line x1="5" y1="12" x2="19" y2="12"></line>
-                    </svg><span>USER AND PAGES</span></div>
             </li>
 
             <li class="menu">
@@ -202,10 +179,10 @@
                 </a>
                 <ul class="collapse submenu list-unstyled" id="users" data-bs-parent="#accordionExample">
                     <li>
-                        <a href="./user-profile.html"> Profile </a>
+                        <a href="/users"> List </a>
                     </li>
                     <li>
-                        <a href="./user-account-settings.html"> Account Settings </a>
+                        <a href="/user/add"> Create </a>
                     </li>
                 </ul>
             </li>
