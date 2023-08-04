@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\DossierRequest;
+use App\Models\Agent;
 use App\Models\Dossier;
 use Illuminate\Http\Request;
 
@@ -21,7 +22,8 @@ class DossierController extends Controller
 
     public function create()
     {
-        return view('pages.dossiers.add');
+        $agents = Agent::all();
+        return view('pages.dossiers.add', ['agents' => $agents]);
     }
 
     public function store(DossierRequest $request)
@@ -29,29 +31,28 @@ class DossierController extends Controller
         $formFields = $request->validated();
 
         Dossier::create([
-            'user_id' => $formFields['user'],
-            'phone' => $formFields['phone']
+            'agent_id' => $formFields['agent']
         ]);
 
         return redirect('/dossiers');
     }
 
-    public function edit(Dossier $dossier)
-    {
-        return view('pages.dossiers.edit', ['dossier' => $dossier]);
-    }
+    // public function edit(Dossier $dossier)
+    // {
+    //     return view('pages.dossiers.edit', ['dossier' => $dossier]);
+    // }
 
-    public function update(DossierRequest $request, Dossier $dossier)
-    {
-        $formFields = $request->validated();
+    // public function update(DossierRequest $request, Dossier $dossier)
+    // {
+    //     $formFields = $request->validated();
 
-        $dossier->update([
-            'user_id' => $formFields['user'],
-            'phone' => $formFields['phone']
-        ]);
+    //     $dossier->update([
+    //         'user_id' => $formFields['user'],
+    //         'phone' => $formFields['phone']
+    //     ]);
 
-        return redirect('/dossiers');
-    }
+    //     return redirect('/dossiers');
+    // }
 
     public function destroy(Dossier $dossier)
     {

@@ -7,13 +7,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
     <title>{{ $pageTitle }}</title>
     <link rel="icon" type="image/x-icon" href="{{ asset('src/assets/img/favicon.ico') }}" />
-    <link href="{{ asset('layouts/collapsible-menu/css/dark/loader.css') }}" rel="stylesheet" type="text/css" />
-    <script src="{{ asset('layouts/collapsible-menu/loader.js') }}"></script>
+    <link href="{{ asset('layouts/modern-dark-menu/css/dark/loader.css') }}" rel="stylesheet" type="text/css" />
+    <script src="{{ asset('layouts/modern-dark-menu/loader.js') }}"></script>
     <!-- BEGIN GLOBAL MANDATORY STYLES -->
     <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700" rel="stylesheet">
     <link href="{{ asset('src/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset('layouts/collapsible-menu/css/light/plugins.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset('layouts/collapsible-menu/css/dark/plugins.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('layouts/modern-dark-menu/css/light/plugins.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('layouts/modern-dark-menu/css/dark/plugins.css') }}" rel="stylesheet" type="text/css" />
     <!-- END GLOBAL MANDATORY STYLES -->
 
     <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM STYLES -->
@@ -87,7 +87,7 @@
     <script src="{{ asset('src/plugins/src/perfect-scrollbar/perfect-scrollbar.min.js') }}"></script>
     <script src="{{ asset('src/plugins/src/mousetrap/mousetrap.min.js') }}"></script>
     <script src="{{ asset('src/plugins/src/waves/waves.min.js') }}"></script>
-    <script src="{{ asset('layouts/collapsible-menu/app.js') }}"></script>
+    <script src="{{ asset('layouts/modern-dark-menu/app.js') }}"></script>
     <!-- END GLOBAL MANDATORY STYLES -->
 
     <!-- BEGIN PAGE LEVEL SCRIPTS -->

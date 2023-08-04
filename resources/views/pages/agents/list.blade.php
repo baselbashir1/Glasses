@@ -61,7 +61,7 @@
                                     </tr>
                                 @endforeach
                             @else
-                                No Products Avaliables
+                                No Agents Avaliables
                             @endunless
                         </tbody>
                     </table>

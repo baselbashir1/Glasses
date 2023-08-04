@@ -36,14 +36,14 @@ Route::middleware('auth')->group(function () {
     Route::post('/edit-agent/{agent}', [AgentController::class, 'update']);
     Route::post('/delete-agent/{agent}', [AgentController::class, 'destroy']);
 
-
-    // Route::get('/dossiers', [DossierController::class, 'index']);
-    // Route::get('/dossier/{dossier}/details', [DossierController::class, 'show']);
-    // Route::get('/dossier/add', [DossierController::class, 'create']);
-    // Route::post('/add-dossier', [DossierController::class, 'store']);
-    // Route::get('/dossier/{dossier}/edit', [DossierController::class, 'edit']);
-    // Route::post('/edit-dossier/{dossier}', [DossierController::class, 'update']);
-    // Route::post('/delete-dossier/{dossier}', [DossierController::class, 'destroy']);
+    
+    Route::get('/dossiers', [DossierController::class, 'index']);
+    Route::get('/dossier/{dossier}/details', [DossierController::class, 'show']);
+    Route::get('/dossier/add', [DossierController::class, 'create']);
+    Route::post('/add-dossier', [DossierController::class, 'store']);
+    Route::get('/dossier/{dossier}/edit', [DossierController::class, 'edit']);
+    Route::post('/edit-dossier/{dossier}', [DossierController::class, 'update']);
+    Route::post('/delete-dossier/{dossier}', [DossierController::class, 'destroy']);
 });
 
 Route::get('/dashboard', function () {

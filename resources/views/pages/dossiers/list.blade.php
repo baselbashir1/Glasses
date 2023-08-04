@@ -3,15 +3,22 @@
     <x-slot:pageTitle>Dossiers</x-slot>
 
         <div class="row layout-top-spacing">
+            <div class="col-xl-12 col-lg-6">
+                <a href="/dossier/add" class="btn btn-primary w-100 btn-lg mb-4">
+                    <span class="btn-text-inner">Add Dossier</span>
+                </a>
+            </div>
+        </div>
 
+        <div class="row layout-top-spacing">
             <div class="col-xl-12 col-lg-12 col-sm-12  layout-spacing">
                 <div class="widget-content widget-content-area br-8">
                     <table id="ecommerce-list" class="table dt-table-hover" style="width:100%">
                         <thead>
                             <tr>
                                 <th class="checkbox-column"></th>
-                                <th>User</th>
-                                <th>Phone</th>
+                                <th>Agent Name</th>
+                                <th>Phone Number</th>
                                 <th class="no-content text-center">Action</th>
                             </tr>
                         </thead>
@@ -20,8 +27,8 @@
                                 @foreach ($dossiers as $dossier)
                                     <tr>
                                         <td>{{ $dossier->id }}</td>
-                                        <td>{{ $dossier->user->name }}</td>
-                                        <td>{{ $dossier->phone }}</td>
+                                        <td>{{ $dossier->agent->name }}</td>
+                                        <td>{{ $dossier->agent->phone }}</td>
 
                                         <td class="text-center">
                                             <div class="dropdown">
@@ -53,14 +60,11 @@
                                     </tr>
                                 @endforeach
                             @else
-                                No Products Avaliables
+                                No Dossiers Avaliables
                             @endunless
                         </tbody>
                     </table>
                 </div>
             </div>
-
         </div>
-
-
 </x-app>

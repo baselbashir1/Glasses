@@ -12,4 +12,9 @@ class Dossier extends Model
     use HasFactory;
 
     protected $fillable = ['agent_id'];
+
+    public function agent(): BelongsTo
+    {
+        return $this->belongsTo(Agent::class);
+    }
 }
