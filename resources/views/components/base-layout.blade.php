@@ -7,8 +7,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
     <title>{{ $pageTitle }}</title>
     <link rel="icon" type="image/x-icon" href="{{ asset('src/assets/img/favicon.ico') }}" />
+
     @vite(['public/layouts/modern-dark-menu/css/dark/loader.css'])
     @vite(['public/layouts/modern-dark-menu/loader.js'])
+
     <!-- BEGIN GLOBAL MANDATORY STYLES -->
     <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700" rel="stylesheet">
     @vite(['public/src/bootstrap/css/bootstrap.min.css'])
@@ -24,7 +26,6 @@
     @vite(['public/src/plugins/css/light/editors/quill/quill.snow.css'])
     @vite(['public/src/plugins/css/light/tagify/custom-tagify.css'])
     @vite(['public/src/plugins/css/light/filepond/custom-filepond.css'])
-
     @vite(['public/src/assets/css/dark/forms/switches.css'])
     @vite(['public/src/plugins/css/dark/editors/quill/quill.snow.css'])
     @vite(['public/src/plugins/css/dark/tagify/custom-tagify.css'])
@@ -102,10 +103,9 @@
     @vite(['publicsrc/plugins/src/filepond/FilePondPluginImageResize.min.js'])
     @vite(['publicsrc/plugins/src/filepond/FilePondPluginImageTransform.min.js'])
     @vite(['publicsrc/plugins/src/filepond/filepondPluginFileValidateSize.min.js'])
-
     @vite(['publicsrc/plugins/src/tagify/tagify.min.j'])
-
     @vite(['publicsrc/assets/js/apps/blog-create.js'])
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <!-- END PAGE LEVEL SCRIPTS -->
 </body>
 

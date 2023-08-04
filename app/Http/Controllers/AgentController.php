@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\AgentRequest;
 use App\Models\Agent;
 use Illuminate\Http\Request;
+use App\Models\AgentCategory;
+use App\Http\Requests\AgentRequest;
 
 class AgentController extends Controller
 {
@@ -16,7 +17,8 @@ class AgentController extends Controller
 
     public function create()
     {
-        return view('pages.agents.add');
+        $agentCategories = AgentCategory::all();
+        return view('pages.agents.add', ['agentCategories' => $agentCategories]);
     }
 
     public function store(AgentRequest $request)
@@ -34,7 +36,8 @@ class AgentController extends Controller
 
     public function edit(Agent $agent)
     {
-        return view('pages.agents.edit', ['agent' => $agent]);
+        $agentCategories = AgentCategory::all();
+        return view('pages.agents.edit', ['agent' => $agent, 'agentCategories' => $agentCategories]);
     }
 
     public function update(AgentRequest $request, Agent $agent)

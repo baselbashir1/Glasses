@@ -16,7 +16,18 @@
                                 <p class="mt-2">{{ $message }}</p>
                             @enderror
                         </div>
-                        <div class="row mb-4">
+                        {{-- start checkbox --}}
+                        <div class="row mb-4" id="keep">
+                            <div class="col-sm-12">
+                                <label for="phone">Agent Phone</label>
+                                <input type="text" name="phone" class="form-control" value="{{ $agent->phone }}"
+                                    disabled>
+                            </div>
+                            @error('phone')
+                                <p class="mt-2">{{ $message }}</p>
+                            @enderror
+                        </div>
+                        <div class="row mb-4" id="change" style="display: none">
                             <div class="col-sm-12">
                                 <label for="phone">Agent Phone</label>
                                 <input type="text" name="phone" class="form-control" value="{{ $agent->phone }}">
@@ -27,12 +38,22 @@
                         </div>
                         <div class="row mb-4">
                             <div class="col-sm-12">
+                                <label for="check">Change Number</label>
+                                <input type="checkbox" name="check" onchange="showHide(this.checked)">
+                            </div>
+                        </div>
+                        {{-- end checkbox --}}
+                        <div class="row mb-4">
+                            <div class="col-sm-12">
                                 <label for="category">Agent Category</label>
                                 <select name="category" class="form-control">
-                                    <option selected disabled>{{ $agent->agentCategory->category }}</option>
-                                    <?php $agentCategories = \App\Models\AgentCategory::all(); ?>
                                     @foreach ($agentCategories as $agentCategory)
-                                        <option value="{{ $agentCategory->id }}">{{ $agentCategory->category }}</option>
+                                        @if ($agent->agentCategory->id == $agentCategory->id)
+                                            <option value="{{ $agent->agentCategory->id }}" selected hidden>
+                                                {{ $agent->agentCategory->category }}</option>
+                                        @endif
+                                        <option value="{{ $agentCategory->id }}">{{ $agentCategory->category }}
+                                        </option>
                                     @endforeach
                                 </select>
                             </div>
@@ -52,4 +73,17 @@
             </form>
         </div>
         <!--  END CUSTOM SCRIPTS FILE  -->
+
+        <script>
+            function showHide(checked) {
+                if (checked == true) {
+                    $("#keep").hide();
+                    $("#change").show();
+                } else {
+                    $("#keep").show();
+                    $("#change").hide();
+                }
+            }
+        </script>
+
 </x-base-layout>

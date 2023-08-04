@@ -8,7 +8,6 @@ export default defineConfig({
                 'resources/css/app.css',
                 'resources/js/app.js',
 
-
                 'public/layouts/modern-dark-menu/css/dark/loader.css',
                 'public/src/bootstrap/css/bootstrap.min.css',
                 'public/layouts/modern-dark-menu/css/light/plugins.css',
@@ -27,16 +26,12 @@ export default defineConfig({
                 'public/src/assets/css/light/apps/blog-create.css',
                 'public/src/assets/css/dark/apps/blog-create.css',
 
-
-
                 'public/layouts/modern-dark-menu/loader.js',
-
                 'public/src/bootstrap/js/bootstrap.bundle.min.js',
                 'public/src/plugins/src/perfect-scrollbar/perfect-scrollbar.min.js',
                 'public/src/plugins/src/mousetrap/mousetrap.min.js',
                 'public/src/plugins/src/waves/waves.min.js',
                 'public/layouts/modern-dark-menu/app.js',
-            
                 'public/src/plugins/src/editors/quill/quill.js',
                 'public/src/plugins/src/filepond/filepond.min.js',
                 'public/src/plugins/src/filepond/FilePondPluginFileValidateType.min.js',
@@ -46,11 +41,8 @@ export default defineConfig({
                 'public/src/plugins/src/filepond/FilePondPluginImageResize.min.js',
                 'public/src/plugins/src/filepond/FilePondPluginImageTransform.min.js',
                 'public/src/plugins/src/filepond/filepondPluginFileValidateSize.min.js',
-
                 'public/src/plugins/src/tagify/tagify.min.js',
-
                 'public/src/assets/js/apps/blog-create.js',
-
             ],
             refresh: true,
         }),

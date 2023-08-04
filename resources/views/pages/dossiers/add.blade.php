@@ -43,6 +43,6 @@
             </form>
         </div>
 
-
+        <script></script>
         <!--  END CUSTOM SCRIPTS FILE  -->
 </x-base-layout>

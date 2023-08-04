@@ -30,7 +30,6 @@
                                 <label for="category">Agent Category</label>
                                 <select name="category" class="form-control">
                                     <option selected disabled>Choose Category</option>
-                                    <?php $agentCategories = \App\Models\AgentCategory::all(); ?>
                                     @foreach ($agentCategories as $agentCategory)
                                         <option value="{{ $agentCategory->id }}">{{ $agentCategory->category }}</option>
                                     @endforeach
@@ -51,7 +50,6 @@
                 </div>
             </form>
         </div>
-
 
         <!--  END CUSTOM SCRIPTS FILE  -->
 </x-base-layout>

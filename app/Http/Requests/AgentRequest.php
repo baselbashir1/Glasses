@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class AgentRequest extends FormRequest
 {
@@ -21,9 +22,10 @@ class AgentRequest extends FormRequest
      */
     public function rules(): array
     {
+        $id = $this->route('agent');
         return [
             'name' => 'required',
-            'phone' => ['required', 'unique:agents,phone'],
+            'phone' => ['required', Rule::unique('agents', 'phone')->ignore($id, 'id')],
             'category' => 'required'
         ];
     }
