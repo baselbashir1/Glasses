@@ -27,11 +27,9 @@
                             </div>
                         </div>
                         <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 mt-4">
-                            {{-- <div class="widget-content widget-content-area ecommerce-create-section"> --}}
                             <div class="col-sm-12">
                                 <button type="submit" class="btn btn-success w-100">Update Dossier</button>
                             </div>
-                            {{-- </div> --}}
                         </div>
                     </div>
                 </div>
