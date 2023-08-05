@@ -1,132 +1,191 @@
 <x-base-layout>
+    <x-slot:pageTitle>Invoice Details</x-slot>
 
-    <x-slot:pageTitle>Product Details</x-slot>
+        <div class="middle-content container-xxl p-0">
+            <div class="row invoice layout-top-spacing layout-spacing">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                    <div class="doc-container">
+                        <div class="row">
+                            <div class="col-xl-9">
+                                <div class="invoice-container">
+                                    <div class="invoice-inbox">
+                                        <div id="ct" class="">
+                                            <div class="invoice-00001">
+                                                <div class="content-section">
+                                                    <div class="inv--head-section inv--detail-section">
+                                                        <div class="row">
+                                                            <div class="col-sm-6 col-12 mr-auto">
+                                                                <div class="d-flex">
+                                                                    <img class="company-logo"
+                                                                        src="{{ Vite::asset('public/src/assets/images/dossier.png') }}"
+                                                                        alt="company">
+                                                                    <h3 class="in-heading align-self-center">
+                                                                        {{ $invoice->dossier->agent->phone }}
+                                                                    </h3>
+                                                                </div>
+                                                                <p class="inv-street-addr mt-3 mb-3">
+                                                                    {{ $invoice->agent->name }}</p>
+                                                                <p class="inv-email-address">
+                                                                    {{ $invoice->agent->agentCategory->category }}</p>
+                                                            </div>
 
-        <div class="row layout-top-spacing">
-            <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-4">
-                <div class="widget-content widget-content-area br-8">
-                    <div class="row justify-content-center">
-                        <div class="col-xxl-5 col-xl-6 col-lg-7 col-md-7 col-sm-9 col-12 pe-3">
-                            <!-- Swiper -->
-                            <div id="thumbnail-slider" class="splide">
-                                <div class="splide__track">
-                                    <img alt="ecommerce" src="{{ asset('src/assets/img/product-3.jpg') }}"
-                                        style="width: 50%; height: 50%">
+                                                            <div class="col-sm-6 text-sm-end">
+                                                                <p class="inv-list-number mt-sm-3 pb-sm-2 mt-4"><span
+                                                                        class="inv-title">#Invoice : </span>
+                                                                    <span class="inv-number">{{ $invoice->id }}</span>
+                                                                </p>
+                                                                <p class="inv-created-date mt-sm-5 mt-3"><span
+                                                                        class="inv-title">Created Date : </span>
+                                                                    <span
+                                                                        class="inv-date">{{ $invoice->created_at }}</span>
+                                                                </p>
+                                                                <p class="inv-due-date"><span
+                                                                        class="inv-title">Purchased Date : </span> <span
+                                                                        class="inv-date">{{ $invoice->purchased_at }}</span>
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="inv--product-table-section">
+                                                        <div class="table-responsive">
+                                                            <table class="table">
+                                                                <thead class="">
+                                                                    <tr>
+                                                                        <th scope="col">S.No</th>
+                                                                        <th scope="col">Product Name</th>
+                                                                        <th scope="col">Product Type</th>
+                                                                        <th class="text-end" scope="col">Product
+                                                                            Price</th>
+                                                                        <th class="text-end" scope="col">QTY
+                                                                        </th>
+                                                                        <th class="text-end" scope="col">Payment
+                                                                            Status</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td>1</td>
+                                                                        <td>{{ $invoice->product->brand }}</td>
+                                                                        <td>{{ $invoice->product->productType->type }}
+                                                                        </td>
+                                                                        <td class="text-end">
+                                                                            ${{ $invoice->product->price }}</td>
+                                                                        <td class="text-end">
+                                                                            1</td>
+                                                                        <td class="text-end">
+                                                                            @if ($invoice->paymentStatus->id == 1)
+                                                                                <div class="btn btn-success"
+                                                                                    style="pointer-events: none; border-radius: 100px">
+                                                                                    {{ $invoice->paymentStatus->status }}
+                                                                                </div>
+                                                                            @elseif ($invoice->paymentStatus->id == 2)
+                                                                                <div class="btn btn-warning"
+                                                                                    style="pointer-events: none; border-radius: 100px">
+                                                                                    {{ $invoice->paymentStatus->status }}
+                                                                                </div>
+                                                                            @else
+                                                                                <div class="btn btn-danger"
+                                                                                    style="pointer-events: none; border-radius: 100px">
+                                                                                    {{ $invoice->paymentStatus->status }}
+                                                                                </div>
+                                                                            @endif
+                                                                        </td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="inv--total-amounts">
+
+                                                        <div class="row mt-4">
+                                                            <div class="col-sm-5 col-12 order-sm-0 order-1">
+                                                            </div>
+                                                            <div class="col-sm-7 col-12 order-sm-1 order-0">
+                                                                <div class="text-sm-end">
+                                                                    <div class="row">
+                                                                        <div class="col-sm-8 col-7">
+                                                                            <p class="">Total Price :</p>
+                                                                        </div>
+                                                                        <div class="col-sm-4 col-5">
+                                                                            <p class="">
+                                                                                ${{ $invoice->product->price }}</p>
+                                                                        </div>
+                                                                        <div class="col-sm-8 col-7">
+                                                                            <p class="">Paid Amount :</p>
+                                                                        </div>
+                                                                        <div class="col-sm-4 col-5">
+                                                                            <p class="">
+                                                                                ${{ $invoice->paid_amount }}</p>
+                                                                        </div>
+                                                                        <div class="col-sm-8 col-7">
+                                                                            <p class=" discount-rate">Remaining Amount :
+                                                                            </p>
+                                                                        </div>
+                                                                        <div class="col-sm-4 col-5">
+                                                                            <p class="">
+                                                                                ${{ $invoice->remaining_amount }}</p>
+                                                                        </div>
+                                                                        <div class="col-sm-8 col-7 mt-4">
+                                                                            <p class=" discount-rate">Product Receieved
+                                                                                :
+                                                                            </p>
+                                                                        </div>
+                                                                        <div class="col-sm-4 col-5">
+                                                                            <p class="">
+                                                                                @if ($invoice->product_received == 1)
+                                                                                    <div class="btn btn-success"
+                                                                                        style="pointer-events: none; border-radius: 100px">
+                                                                                        Yes</div>
+                                                                                @else
+                                                                                    <div class="btn btn-danger"
+                                                                                        style="pointer-events: none; border-radius: 100px">
+                                                                                        No</div>
+                                                                                @endif
+                                                                            </p>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="inv--note">
+                                                        <div class="row mt-4">
+                                                            <div class="col-sm-12 col-12 order-sm-0 order-1">
+                                                                <p>Note: Thank you for doing Business with us.</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <div class="col-xxl-4 col-xl-5 col-lg-12 col-md-12 col-12 mt-xl-0 mt-5 align-self-center">
-
-                            <div class="product-details-content">
-
-                                <span class="badge badge-light-danger mb-3">40% Sale off</span>
-
-                                <h3 class="product-title mb-0">{{ $product->brand }}</h3>
-
-                                <div class="review mb-4">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                        stroke-linecap="round" stroke-linejoin="round" class="feather feather-star">
-                                        <polygon
-                                            points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
-                                        </polygon>
-                                    </svg>
-                                    <span class="rating-score">4.88 <span class="rating-count">(200
-                                            Reviews)</span></span>
-                                </div>
-
-                                <div class="row">
-
-                                    <div class="col-md-9 col-sm-9 col-9">
-
-                                        <div class="pricing">
-
-                                            <span class="discounted-price">${{ $product->price }}</span>
-
+                            <div class="col-xl-3">
+                                <div class="invoice-actions-btn">
+                                    <div class="invoice-action-btn">
+                                        <div class="row">
+                                            <div class="col-xl-12 col-md-3 col-sm-6">
+                                                <a href="javascript:void(0);" class="btn btn-primary btn-send">Send
+                                                    Invoice</a>
+                                            </div>
+                                            <div class="col-xl-12 col-md-3 col-sm-6">
+                                                <a href="javascript:void(0);"
+                                                    class="btn btn-secondary btn-print  action-print">Print</a>
+                                            </div>
+                                            <div class="col-xl-12 col-md-3 col-sm-6">
+                                                <a href="javascript:void(0);"
+                                                    class="btn btn-success btn-download">Download</a>
+                                            </div>
+                                            <div class="col-xl-12 col-md-3 col-sm-6">
+                                                <a href="./app-invoice-edit.html" class="btn btn-dark btn-edit">Edit</a>
+                                            </div>
                                         </div>
-
-                                    </div>
-                                    <div class="col-md-3 col-sm-3 col-3 text-end">
-                                        <div class="product-share">
-                                            <button class="btn btn-light-success btn-icon btn-rounded">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                    viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                                    class="feather feather-share-2">
-                                                    <circle cx="18" cy="5" r="3"></circle>
-                                                    <circle cx="6" cy="12" r="3"></circle>
-                                                    <circle cx="18" cy="19" r="3">
-                                                    </circle>
-                                                    <line x1="8.59" y1="13.51" x2="15.42" y2="17.49">
-                                                    </line>
-                                                    <line x1="15.41" y1="6.51" x2="8.59" y2="10.49">
-                                                    </line>
-                                                </svg>
-                                            </button>
-                                        </div>
-                                    </div>
-
-                                </div>
-
-                                <hr class="mb-4">
-
-                                <div class="row color-swatch mb-4">
-                                    <div class="col-xl-3 col-lg-6 col-sm-6 align-self-center">Color</div>
-                                    <div class="col-xl-9 col-lg-6 col-sm-6">
-                                        {{ $product->color }}
-                                    </div>
-                                </div>
-
-                                <div class="row size-selector mb-4">
-                                    <div class="col-xl-9 col-lg-6 col-sm-6 align-self-center">Size</div>
-                                    <div class="col-xl-3 col-lg-6 col-sm-6 align-self-center">
-                                        <select class="form-select form-control-sm" aria-label="Default select example">
-                                            <option value="S">S</option>
-                                            <option value="M">M</option>
-                                            <option value="L" selected>L</option>
-                                            <option value="XL">XL</option>
-                                            <option value="2XL">2XL</option>
-                                        </select>
-                                        <a href="javascript:void(0);" class="product-helpers text-end d-block mt-2">Size
-                                            Chart</a>
-                                    </div>
-                                </div>
-
-                                <div class="row quantity-selector mb-4">
-                                    <div class="col-xl-6 col-lg-6 col-sm-6 mt-sm-3">Quantity</div>
-                                    <div class="col-xl-6 col-lg-6 col-sm-6">
-                                        <input id="demo1" type="text" value="1" name="demo1">
-                                        <p class="text-danger product-helpers text-end mt-2">Low Stock</p>
-                                    </div>
-                                </div>
-
-                                <hr class="mb-5 mt-4">
-
-                                <div class="action-button text-center">
-
-                                    <div class="row">
-
-                                        <div class="col-xxl-7 col-xl-7 col-sm-6 mb-sm-0 mb-3">
-                                            <button class="btn btn-primary w-100 btn-lg"><svg
-                                                    xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                    viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                                    class="feather feather-shopping-cart">
-                                                    <circle cx="9" cy="21" r="1">
-                                                    </circle>
-                                                    <circle cx="20" cy="21" r="1">
-                                                    </circle>
-                                                    <path
-                                                        d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6">
-                                                    </path>
-                                                </svg> <span class="btn-text-inner">Add To Cart</span></button>
-                                        </div>
-
-                                        <div class="col-xxl-5 col-xl-5 col-sm-6">
-                                            <button class="btn btn-success w-100 btn-lg">Buy Now</button>
-                                        </div>
-
                                     </div>
                                 </div>
                             </div>

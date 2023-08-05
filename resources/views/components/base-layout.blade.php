@@ -30,6 +30,8 @@
     @vite(['public/src/plugins/css/dark/editors/quill/quill.snow.css'])
     @vite(['public/src/plugins/css/dark/tagify/custom-tagify.css'])
     @vite(['public/src/plugins/css/dark/filepond/custom-filepond.css'])
+    @vite(['public/src/assets/css/light/apps/invoice-preview.css'])
+    @vite(['public/src/assets/css/dark/apps/invoice-preview.css'])
     <!-- END PAGE LEVEL PLUGINS/CUSTOM STYLES -->
 
     <!--  BEGIN CUSTOM STYLE FILE  -->
@@ -96,15 +98,17 @@
     <!-- BEGIN PAGE LEVEL SCRIPTS -->
     @vite(['public/src/plugins/src/editors/quill/quill.js'])
     @vite(['public/src/plugins/src/filepond/filepond.min.js'])
-    @vite(['publicsrc/plugins/src/filepond/FilePondPluginFileValidateType.min.js'])
-    @vite(['publicsrc/plugins/src/filepond/FilePondPluginImageExifOrientation.min.js'])
-    @vite(['publicsrc/plugins/src/filepond/FilePondPluginImagePreview.min.js'])
-    @vite(['publicsrc/plugins/src/filepond/FilePondPluginImageCrop.min.js'])
-    @vite(['publicsrc/plugins/src/filepond/FilePondPluginImageResize.min.js'])
-    @vite(['publicsrc/plugins/src/filepond/FilePondPluginImageTransform.min.js'])
-    @vite(['publicsrc/plugins/src/filepond/filepondPluginFileValidateSize.min.js'])
-    @vite(['publicsrc/plugins/src/tagify/tagify.min.j'])
-    @vite(['publicsrc/assets/js/apps/blog-create.js'])
+    @vite(['public/src/plugins/src/filepond/FilePondPluginFileValidateType.min.js'])
+    @vite(['public/src/plugins/src/filepond/FilePondPluginImageExifOrientation.min.js'])
+    @vite(['public/src/plugins/src/filepond/FilePondPluginImagePreview.min.js'])
+    @vite(['public/src/plugins/src/filepond/FilePondPluginImageCrop.min.js'])
+    @vite(['public/src/plugins/src/filepond/FilePondPluginImageResize.min.js'])
+    @vite(['public/src/plugins/src/filepond/FilePondPluginImageTransform.min.js'])
+    @vite(['public/src/plugins/src/filepond/filepondPluginFileValidateSize.min.js'])
+    @vite(['public/src/plugins/src/tagify/tagify.min.j'])
+    @vite(['public/src/assets/js/apps/blog-create.js'])
+    @vite(['public/src/assets/js/apps/invoice-preview.js'])
+
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <!-- END PAGE LEVEL SCRIPTS -->
 </body>

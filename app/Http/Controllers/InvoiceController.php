@@ -20,8 +20,9 @@ class InvoiceController extends Controller
         return view('pages.invoices.list', ['invoices' => $invoices]);
     }
 
-    public function show()
+    public function show(Invoice $invoice)
     {
+        return view('pages.invoices.detail', ['invoice' => $invoice]);
     }
 
     public function create()

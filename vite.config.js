@@ -25,6 +25,8 @@ export default defineConfig({
                 'public/src/plugins/css/dark/filepond/custom-filepond.css',
                 'public/src/assets/css/light/apps/blog-create.css',
                 'public/src/assets/css/dark/apps/blog-create.css',
+                'public/src/assets/css/light/apps/invoice-preview.css',
+                'public/src/assets/css/dark/apps/invoice-preview.css',
 
                 'public/layouts/modern-dark-menu/loader.js',
                 'public/src/bootstrap/js/bootstrap.bundle.min.js',
@@ -43,6 +45,7 @@ export default defineConfig({
                 'public/src/plugins/src/filepond/filepondPluginFileValidateSize.min.js',
                 'public/src/plugins/src/tagify/tagify.min.js',
                 'public/src/assets/js/apps/blog-create.js',
+                'public/src/assets/js/apps/invoice-preview.js'
 
             ],
             refresh: true,
