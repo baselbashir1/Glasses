@@ -24,9 +24,9 @@
                         <div class="row mb-4">
                             <div class="col-sm-12">
                                 <label for="phone">Phone Number</label>
-                                {{-- <input type="text" class="form-control" placeholder="Show Phone Number Here"
-                                    id="phoneNumber"> --}}
-                                <div id="phoneNumber" class="form-control">Phone Number</div>
+                                <input type="text" name="phone" class="form-control" value="Phone Number"
+                                    id="phoneNumber">
+                                {{-- <div id="phoneNumber" class="form-control">Phone Number</div> --}}
                             </div>
                             @error('phone')
                                 <p class="mt-2">{{ $message }}</p>
@@ -53,8 +53,8 @@
                     fetch(`/get-phone-number/${selectedId}`)
                         .then(response => response.text())
                         .then(phone => {
-                            phoneNumber.innerHTML = '<div>' + phone + '</div>';
-                            // phoneNumber.value = phone;
+                            // phoneNumber.innerHTML = '<div>' + phone + '</div>';
+                            phoneNumber.value = phone;
                         })
                         .catch(error => console.error(error));
                 });

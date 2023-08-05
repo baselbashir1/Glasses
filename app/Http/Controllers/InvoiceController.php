@@ -103,7 +103,7 @@ class InvoiceController extends Controller
         $dossier = Dossier::findOrFail($id);
         return response()->json([
             'id' => $dossier->id,
-            'phone' => $dossier->agent->phone
+            'phone' => $dossier->phone
         ]);
     }
 

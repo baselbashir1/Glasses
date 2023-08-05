@@ -11,20 +11,22 @@
                         <div class="row mb-4">
                             <div class="col-sm-12">
                                 <label for="phone">Agent Name</label>
-                                <div class="form-control w-50">{{ $dossier->agent->name }}</div>
+                                <div class="form-control w-50">
+                                    {{-- {{ $dossier->agent->name }} --}}
+                                </div>
                             </div>
                         </div>
                         <div class="row mb-4">
                             <div class="col-sm-12">
                                 <label for="phone">Phone Number</label>
-                                <div class="form-control w-50">{{ $dossier->agent->phone }}</div>
+                                <div class="form-control w-50">{{ $dossier->phone }}</div>
                             </div>
                         </div>
                         <div class="row mb-4">
                             <div class="col-sm-12">
                                 <label for="phone">Phone Number</label>
                                 <input type="checkbox">
-                                <div class="form-control w-50">{{ $dossier->agent->phone }}</div>
+                                <div class="form-control w-50">{{ $dossier->phone }}</div>
                             </div>
                         </div>
                         <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 mt-4">

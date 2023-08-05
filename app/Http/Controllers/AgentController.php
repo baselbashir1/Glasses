@@ -6,6 +6,8 @@ use App\Models\Agent;
 use Illuminate\Http\Request;
 use App\Models\AgentCategory;
 use App\Http\Requests\AgentRequest;
+use App\Models\Dossier;
+use App\Models\Invoice;
 
 class AgentController extends Controller
 {
@@ -44,10 +46,16 @@ class AgentController extends Controller
     {
         $formFields = $request->validated();
 
+        $dossier = Dossier::where('phone', $agent->phone)->first();
+
         $agent->update([
             'name' => $formFields['name'],
             'phone' => $formFields['phone'],
             'agent_category' => $formFields['category']
+        ]);
+
+        $dossier->update([
+            'phone' => $formFields['phone']
         ]);
 
         return redirect('/agents');
@@ -55,7 +63,13 @@ class AgentController extends Controller
 
     public function destroy(Agent $agent)
     {
+        $dossier = Dossier::where('phone', $agent->phone)->first();
+        $invoice = Invoice::where('agent_id', $agent->id)->first();
+
         $agent->delete();
+        $dossier->delete();
+        $invoice->delete();
+
         return redirect('/agents');
     }
 }

@@ -6,15 +6,16 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Dossier extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['agent_id'];
+    protected $fillable = ['phone'];
 
-    public function agent(): BelongsTo
-    {
-        return $this->belongsTo(Agent::class);
-    }
+    // public function agent(): BelongsTo
+    // {
+    //     return $this->belongsTo(Agent::class);
+    // }
 }

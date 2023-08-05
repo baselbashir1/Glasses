@@ -30,8 +30,13 @@ class DossierController extends Controller
     {
         $formFields = $request->validated();
 
-        Dossier::create([
-            'agent_id' => $formFields['agent']
+        $dossier =  Dossier::create([
+            'phone' => $formFields['phone']
+        ]);
+
+        $agent = Agent::where('phone', $dossier->phone)->first();
+        $agent->update([
+            'dossier_id' => $dossier->id
         ]);
 
         return redirect('/dossiers');

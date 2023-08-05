@@ -41,7 +41,7 @@
                                 <select name="dossier" class="form-control">
                                     <option selected disabled>Choose Dossier</option>
                                     @foreach ($dossiers as $dossier)
-                                        <option value="{{ $dossier->id }}">{{ $dossier->agent->phone }}</option>
+                                        <option value="{{ $dossier->id }}">{{ $dossier->phone }}</option>
                                     @endforeach
                                 </select>
                             </div>

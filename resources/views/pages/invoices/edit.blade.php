@@ -34,7 +34,7 @@
                         <div class="row mb-4">
                             <select name="dossier" class="form-control m-1" style="width: 45%">
                                 <option value="{{ $invoice->dossier->id }}" selected>
-                                    {{ $invoice->dossier->agent->phone }}</option>
+                                    {{ $invoice->dossier->phone }}</option>
                             </select>
                             {{-- <div class="form-control m-1" style="width: 45%">{{ $invoice->dossier_id }}</div> --}}
                             <select name="product" class="form-control m-1" id="product"

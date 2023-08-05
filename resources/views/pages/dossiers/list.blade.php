@@ -17,7 +17,7 @@
                         <thead>
                             <tr>
                                 <th class="checkbox-column"></th>
-                                <th>Agent Name</th>
+                                {{-- <th>Agent Name</th> --}}
                                 <th>Phone Number</th>
                                 <th class="no-content text-center">Action</th>
                             </tr>
@@ -27,9 +27,8 @@
                                 @foreach ($dossiers as $dossier)
                                     <tr>
                                         <td>{{ $dossier->id }}</td>
-                                        <td>{{ $dossier->agent->name }}</td>
-                                        <td>{{ $dossier->agent->phone }}</td>
-
+                                        {{-- <td>{{ $dossier->agent->name }}</td> --}}
+                                        <td>{{ $dossier->phone }}</td>
                                         <td class="text-center">
                                             <div class="dropdown">
                                                 <a class="dropdown-toggle" href="#" role="button"

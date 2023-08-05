@@ -21,7 +21,7 @@
                                                                         src="{{ Vite::asset('public/src/assets/images/dossier.png') }}"
                                                                         alt="company">
                                                                     <h3 class="in-heading align-self-center">
-                                                                        {{ $invoice->dossier->agent->phone }}
+                                                                        {{ $invoice->dossier->phone }}
                                                                     </h3>
                                                                 </div>
                                                                 <p class="inv-street-addr mt-3 mb-3">
@@ -56,8 +56,8 @@
                                                                         <th scope="col">Product Type</th>
                                                                         <th class="text-end" scope="col">Product
                                                                             Price</th>
-                                                                        <th class="text-end" scope="col">QTY
-                                                                        </th>
+                                                                        {{-- <th class="text-end" scope="col">QTY
+                                                                        </th> --}}
                                                                         <th class="text-end" scope="col">Payment
                                                                             Status</th>
                                                                     </tr>
@@ -70,8 +70,8 @@
                                                                         </td>
                                                                         <td class="text-end">
                                                                             ${{ $invoice->product->price }}</td>
-                                                                        <td class="text-end">
-                                                                            1</td>
+                                                                        {{-- <td class="text-end">
+                                                                            1</td> --}}
                                                                         <td class="text-end">
                                                                             @if ($invoice->paymentStatus->id == 1)
                                                                                 <div class="btn btn-success"

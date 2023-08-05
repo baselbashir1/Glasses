@@ -14,7 +14,8 @@ return new class extends Migration
     {
         Schema::create('dossiers', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(Agent::class, 'agent_id');
+            // $table->foreignIdFor(Agent::class, 'agent_id');
+            $table->string('phone');
             $table->timestamps();
         });
     }
