@@ -18,10 +18,10 @@
                         <thead>
                             <tr>
                                 <th class="checkbox-column"></th>
-                                <th>Product Brand</th>
+                                {{-- <th>Product Brand</th> --}}
                                 <th>Product Type</th>
                                 <th>Agent Name</th>
-                                <th>Agent Category</th>
+                                {{-- <th>Agent Category</th> --}}
                                 <th>Product Price</th>
                                 <th>Paid Amount</th>
                                 <th>Remaining Amount</th>
@@ -37,10 +37,10 @@
                                 @foreach ($invoices as $invoice)
                                     <tr>
                                         <td>{{ $invoice->id }}</td>
-                                        <td>{{ $invoice->product->brand }}</td>
+                                        {{-- <td>{{ $invoice->product->brand }}</td> --}}
                                         <td>{{ $invoice->product->productType->type }}</td>
                                         <td>{{ $invoice->agent->name }}</td>
-                                        <td>{{ $invoice->agent->agentCategory->category }}</td>
+                                        {{-- <td>{{ $invoice->agent->agentCategory->category }}</td> --}}
                                         <td>{{ $invoice->product->price }}</td>
                                         <td>{{ $invoice->paid_amount }}</td>
                                         <td>{{ $invoice->remaining_amount }}</td>

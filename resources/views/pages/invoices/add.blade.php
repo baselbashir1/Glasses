@@ -155,9 +155,9 @@
             document.addEventListener('DOMContentLoaded', function() {
                 const agent = document.getElementById('agent');
                 const product = document.getElementById('product');
-                const productPriceInput = document.getElementById('product_price');
+                const productPrice = document.getElementById('product_price');
 
-                agent.addEventListener('change', function() {
+                function updateAgentSelected() {
                     const selectedAgentId = agent.value;
 
                     fetch(`/get-agent-category/${selectedAgentId}`)
@@ -179,9 +179,9 @@
                                 id + '">' + phone + '</option>');
                         })
                         .catch(error => console.error(error));
-                });
+                }
 
-                product.addEventListener('change', function() {
+                function updateProductSelected() {
                     const selectedProductId = product.value;
 
                     fetch(`/get-product-type/${selectedProductId}`)
@@ -196,10 +196,19 @@
                     fetch(`/get-product-price/${selectedProductId}`)
                         .then(response => response.text())
                         .then(price => {
-                            productPriceInput.value = price;
+                            productPrice.value = price;
+                            const paidAmountInput = document.getElementById('paid_amount');
+                            const remainingAmount = document.getElementById('remaining_amount');
+                            let product_price = parseFloat(productPrice.value);
+                            let paid_amount = parseFloat(paidAmountInput.value);
+                            let result = product_price - paid_amount;
+                            remainingAmount.value = result;
                         })
                         .catch(error => console.error(error));
-                });
+                }
+
+                agent.addEventListener('change', updateAgentSelected);
+                product.addEventListener('change', updateProductSelected);
             });
         </script>
 

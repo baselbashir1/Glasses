@@ -147,16 +147,17 @@
         <script>
             document.addEventListener('DOMContentLoaded', function() {
                 const product = document.getElementById('product');
-                const productType = document.getElementById('product_type');
                 const productPrice = document.getElementById('product_price');
 
-                product.addEventListener('change', function() {
+                function updateProductSelected() {
                     const selectedProductId = product.value;
 
                     fetch(`/get-product-type/${selectedProductId}`)
                         .then(response => response.text())
                         .then(type => {
-                            productType.innerHTML = '<div>' + type + '</div>';
+                            $('select[name="product_type"]').empty();
+                            $('select[name="product_type"]')
+                                .append('<option value="' + type + '">' + type + '</option>');
                         })
                         .catch(error => console.error(error));
 
@@ -164,9 +165,17 @@
                         .then(response => response.text())
                         .then(price => {
                             productPrice.value = price;
+                            const paidAmountInput = document.getElementById('paid_amount');
+                            const remainingAmount = document.getElementById('remaining_amount');
+                            let product_price = parseFloat(productPrice.value);
+                            let paid_amount = parseFloat(paidAmountInput.value);
+                            let result = product_price - paid_amount;
+                            remainingAmount.value = result;
                         })
                         .catch(error => console.error(error));
-                });
+                }
+
+                product.addEventListener('change', updateProductSelected);
             });
         </script>
 
