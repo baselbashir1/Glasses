@@ -66,6 +66,8 @@ Route::middleware('auth')->group(function () {
     Route::post('/delete-invoice/{invoice}', [InvoiceController::class, 'destroy']);
     Route::get('/get-agent-category/{id}', [InvoiceController::class, 'getAgentCategory']);
     Route::get('/get-dossier-phone-number/{id}', [InvoiceController::class, 'getDossierPhoneNumber']);
+    Route::get('/get-product-type/{id}', [InvoiceController::class, 'getProductType']);
+    Route::get('/get-product-price/{id}', [InvoiceController::class, 'getProductPrice']);
 });
 
 Route::get('/dashboard', function () {

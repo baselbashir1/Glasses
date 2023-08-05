@@ -8,6 +8,7 @@ use App\Models\AgentCategory;
 use App\Models\Dossier;
 use App\Models\Invoice;
 use App\Models\PaymentStatus;
+use App\Models\Product;
 use App\Models\ProductType;
 use Illuminate\Http\Request;
 
@@ -30,12 +31,14 @@ class InvoiceController extends Controller
         $paymentStatuses = PaymentStatus::all();
         $agents = Agent::all();
         $dossiers = Dossier::all();
+        $products = Product::all();
         return view('pages.invoices.add', [
             'productTypes' => $productTypes,
             'agentCategories' => $agentCategories,
             'paymentStatuses' => $paymentStatuses,
             'agents' => $agents,
-            'dossiers' => $dossiers
+            'dossiers' => $dossiers,
+            'products' => $products
         ]);
     }
 
@@ -44,18 +47,29 @@ class InvoiceController extends Controller
         $formFields = $request->validated();
 
         Invoice::create([
-            'product_type' => $formFields['product_type'],
-            'agent_category' => $formFields['agent_category'],
-            'product_price' => $formFields['product_price'],
+            'product_id' => $formFields['product'],
             'paid_amount' => $formFields['paid_amount'],
             'remaining_amount' => $formFields['remaining_amount'],
-            'product_received' => 1,
+            'product_received' => $formFields['product_received'],
             'payment_status' => $formFields['payment_status'],
             'agent_id' => $formFields['agent'],
             'dossier_id' => $formFields['dossier'],
             'purchased_at' => $formFields['purchased_date']
         ]);
 
+        return redirect('/invoices');
+    }
+
+    public function edit(Invoice $invoice)
+    {
+        $paymentStatuses = PaymentStatus::all();
+        $products = Product::all();
+        return view('pages.invoices.edit', ['invoice' => $invoice, 'paymentStatuses' => $paymentStatuses, 'products' => $products]);
+    }
+
+    public function destroy(Invoice $invoice)
+    {
+        $invoice->delete();
         return redirect('/invoices');
     }
 
@@ -69,5 +83,17 @@ class InvoiceController extends Controller
     {
         $agent = Agent::findOrFail($id);
         return (string) $agent->phone;
+    }
+
+    public function getProductType($id)
+    {
+        $product = Product::findOrFail($id);
+        return (string) $product->productType->type;
+    }
+
+    public function getProductPrice($id)
+    {
+        $product = Product::findOrFail($id);
+        return (string) $product->price;
     }
 }

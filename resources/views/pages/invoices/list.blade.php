@@ -24,8 +24,8 @@
                                 <th>Product Price</th>
                                 <th>Paid Amount</th>
                                 <th>Remaining Amount</th>
-                                <th>Product Received</th>
                                 <th>Payment Status</th>
+                                <th>Product Received</th>
                                 <th>Purchase Date</th>
                                 <th class="no-content text-center">Action</th>
                             </tr>
@@ -35,13 +35,36 @@
                                 @foreach ($invoices as $invoice)
                                     <tr>
                                         <td>{{ $invoice->id }}</td>
-                                        <td>{{ $invoice->product_type }}</td>
-                                        <td>{{ $invoice->agent_category }}</td>
-                                        <td>{{ $invoice->product_price }}</td>
+                                        <td>{{ $invoice->product->productType->type }}</td>
+                                        <td>{{ $invoice->agent->name }}</td>
+                                        <td>{{ $invoice->agent->agentCategory->category }}</td>
+                                        <td>{{ $invoice->product->price }}</td>
                                         <td>{{ $invoice->paid_amount }}</td>
                                         <td>{{ $invoice->remaining_amount }}</td>
-                                        <td>{{ $invoice->product_received }}</td>
-                                        <td>{{ $invoice->payment_status }}</td>
+                                        <td>
+                                            @if ($invoice->paymentStatus->id == 1)
+                                                <div class="btn btn-success"
+                                                    style="pointer-events: none; border-radius: 100px">
+                                                    {{ $invoice->paymentStatus->status }}</div>
+                                            @elseif ($invoice->paymentStatus->id == 2)
+                                                <div class="btn btn-warning"
+                                                    style="pointer-events: none; border-radius: 100px">
+                                                    {{ $invoice->paymentStatus->status }}</div>
+                                            @else
+                                                <div class="btn btn-danger"
+                                                    style="pointer-events: none; border-radius: 100px">
+                                                    {{ $invoice->paymentStatus->status }}</div>
+                                            @endif
+                                        </td>
+                                        <td>
+                                            @if ($invoice->product_received == 1)
+                                                <div class="btn btn-success"
+                                                    style="pointer-events: none; border-radius: 100px">Yes</div>
+                                            @else
+                                                <div class="btn btn-danger"
+                                                    style="pointer-events: none; border-radius: 100px">No</div>
+                                            @endif
+                                        </td>
                                         <td>{{ $invoice->purchased_at }}</td>
                                         <td class="text-center">
                                             <div class="dropdown">

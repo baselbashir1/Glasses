@@ -3,7 +3,7 @@
     <x-slot:pageTitle>Add Invoice</x-slot>
 
         <div class="row mb-4 layout-spacing layout-top-spacing">
-            <form method="POST" action="/add-product" enctype="multipart/form-data">
+            <form method="POST" action="/add-invoice">
                 @csrf
                 <div class="col-xxl-9 col-xl-12 col-lg-12 col-md-12 col-sm-12">
                     <div class="widget-content widget-content-area ecommerce-create-section">
@@ -51,6 +51,20 @@
                         </div>
                         <div class="row mb-4">
                             <div class="col-sm-12">
+                                <label for="product">Product</label>
+                                <select name="product" class="form-control" id="product">
+                                    <option selected disabled>Choose Product</option>
+                                    @foreach ($products as $product)
+                                        <option value="{{ $product->id }}">{{ $product->brand }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            @error('product')
+                                <p class="mt-2">{{ $message }}</p>
+                            @enderror
+                        </div>
+                        <div class="row mb-4">
+                            <div class="col-sm-12">
                                 <label for="product_type">Product Type</label>
                                 <select name="product_type" class="form-control">
                                     <option selected disabled>Choose Type</option>
@@ -77,7 +91,7 @@
                             <div class="col-sm-12">
                                 <label for="paid_amount">Paid Amount</label>
                                 <input type="number" name="paid_amount" class="form-control" id="paid_amount"
-                                    onchange="myFunction()" placeholder="Paid Amount">
+                                    placeholder="Paid Amount">
                             </div>
                             @error('paid_amount')
                                 <p class="mt-2">{{ $message }}</p>
@@ -120,8 +134,8 @@
                         <div class="row mb-4">
                             <div class="col-sm-12">
                                 <label for="product_received">Product</label>
-                                Received <input type="radio" name="product_received" id="received">
-                                Not Received <input type="radio" name="product_received" id="not_received">
+                                Received <input type="radio" name="product_received" value="1">
+                                Not Received <input type="radio" name="product_received" value="0">
                             </div>
                             @error('product_received')
                                 <p class="mt-2">{{ $message }}</p>
@@ -140,11 +154,13 @@
         <script>
             document.addEventListener('DOMContentLoaded', function() {
                 const agent = document.getElementById('agent');
+                const product = document.getElementById('product');
+                const productPriceInput = document.getElementById('product_price');
 
                 agent.addEventListener('change', function() {
-                    const selectedId = agent.value;
+                    const selectedAgentId = agent.value;
 
-                    fetch(`/get-agent-category/${selectedId}`)
+                    fetch(`/get-agent-category/${selectedAgentId}`)
                         .then(response => response.text())
                         .then(category => {
                             $('select[name="agent_category"]').empty();
@@ -153,12 +169,32 @@
                         })
                         .catch(error => console.error(error));
 
-                    fetch(`/get-dossier-phone-number/${selectedId}`)
+                    fetch(`/get-dossier-phone-number/${selectedAgentId}`)
                         .then(response => response.text())
                         .then(phone => {
                             $('select[name="dossier"]').empty();
                             $('select[name="dossier"]').append('<option value="' +
                                 phone + '">' + phone + '</option>');
+                        })
+                        .catch(error => console.error(error));
+                });
+
+                product.addEventListener('change', function() {
+                    const selectedProductId = product.value;
+
+                    fetch(`/get-product-type/${selectedProductId}`)
+                        .then(response => response.text())
+                        .then(type => {
+                            $('select[name="product_type"]').empty();
+                            $('select[name="product_type"]').append('<option value="' +
+                                type + '">' + type + '</option>');
+                        })
+                        .catch(error => console.error(error));
+
+                    fetch(`/get-product-price/${selectedProductId}`)
+                        .then(response => response.text())
+                        .then(price => {
+                            productPriceInput.value = price;
                         })
                         .catch(error => console.error(error));
                 });
