@@ -10,7 +10,7 @@
                         <div class="row mb-4">
                             <div class="col-sm-12">
                                 <label for="agent">Agent</label>
-                                <select name="agent" class="form-control" id="agentCategory">
+                                <select name="agent" class="form-control" id="agent">
                                     <option selected disabled>Choose Agent</option>
                                     @foreach ($agents as $agnet)
                                         <option value="{{ $agnet->id }}">{{ $agnet->name }}</option>
@@ -44,11 +44,11 @@
 
         <script>
             document.addEventListener('DOMContentLoaded', function() {
-                const agentCategory = document.getElementById('agentCategory');
+                const agent = document.getElementById('agent');
                 const phoneNumber = document.getElementById('phoneNumber');
 
-                agentCategory.addEventListener('change', function() {
-                    const selectedId = agentCategory.value;
+                agent.addEventListener('change', function() {
+                    const selectedId = agent.value;
 
                     fetch(`/get-phone-number/${selectedId}`)
                         .then(response => response.text())

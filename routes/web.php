@@ -3,6 +3,7 @@
 use App\Http\Controllers\AgentController;
 use App\Http\Controllers\DossierController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
@@ -55,6 +56,16 @@ Route::middleware('auth')->group(function () {
     Route::get('/user/{user}/edit', [UserController::class, 'edit']);
     Route::post('/edit-user/{user}', [UserController::class, 'update']);
     Route::post('/delete-user/{user}', [UserController::class, 'destroy']);
+
+    Route::get('/invoices', [InvoiceController::class, 'index']);
+    Route::get('/invoice/{invoice}/details', [InvoiceController::class, 'show']);
+    Route::get('/invoice/add', [InvoiceController::class, 'create']);
+    Route::post('/add-invoice', [InvoiceController::class, 'store']);
+    Route::get('/invoice/{invoice}/edit', [InvoiceController::class, 'edit']);
+    Route::post('/edit-invoice/{invoice}', [InvoiceController::class, 'update']);
+    Route::post('/delete-invoice/{invoice}', [InvoiceController::class, 'destroy']);
+    Route::get('/get-agent-category/{id}', [InvoiceController::class, 'getAgentCategory']);
+    Route::get('/get-dossier-phone-number/{id}', [InvoiceController::class, 'getDossierPhoneNumber']);
 });
 
 Route::get('/dashboard', function () {
