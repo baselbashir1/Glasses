@@ -3,6 +3,7 @@
     <x-slot:pageTitle>Edit Dossier</x-slot>
 
         <div class="row mb-4 layout-spacing layout-top-spacing">
+            <h1>NOT COMPLETED</h1>
             <form method="POST" action="/edit-dossier/{{ $dossier->id }}">
                 @csrf
                 <div class="col-xxl-9 col-xl-12 col-lg-12 col-md-12 col-sm-12">

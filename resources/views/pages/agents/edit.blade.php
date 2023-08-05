@@ -39,7 +39,7 @@
                         <div class="row mb-4">
                             <div class="col-sm-12">
                                 <label for="check">Change Number</label>
-                                <input type="checkbox" name="check" onchange="showHide(this.checked)">
+                                <input type="checkbox" name="check" id="changeNumber">
                             </div>
                         </div>
                         {{-- end checkbox --}}
@@ -70,18 +70,25 @@
                 </div>
             </form>
         </div>
-        <!--  END CUSTOM SCRIPTS FILE  -->
 
         <script>
-            function showHide(checked) {
-                if (checked == true) {
-                    $("#keep").hide();
-                    $("#change").show();
-                } else {
-                    $("#keep").show();
-                    $("#change").hide();
+            document.addEventListener('DOMContentLoaded', function() {
+                const changeNumber = document.getElementById('changeNumber');
+                const keepDiv = document.getElementById('keep');
+                const changeDiv = document.getElementById('change');
+
+                function updateChangeNumber() {
+                    if (changeNumber.checked) {
+                        keepDiv.style.display = 'none';
+                        changeDiv.style.display = 'block';
+                    } else {
+                        keepDiv.style.display = 'block';
+                        changeDiv.style.display = 'none';
+                    }
                 }
-            }
+
+                changeNumber.addEventListener('change', updateChangeNumber);
+            });
         </script>
 
 </x-base-layout>

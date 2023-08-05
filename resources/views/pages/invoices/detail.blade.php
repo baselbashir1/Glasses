@@ -1,4 +1,5 @@
 <x-base-layout>
+
     <x-slot:pageTitle>Invoice Details</x-slot>
 
         <div class="middle-content container-xxl p-0">
@@ -28,7 +29,6 @@
                                                                 <p class="inv-email-address">
                                                                     {{ $invoice->agent->agentCategory->category }}</p>
                                                             </div>
-
                                                             <div class="col-sm-6 text-sm-end">
                                                                 <p class="inv-list-number mt-sm-3 pb-sm-2 mt-4"><span
                                                                         class="inv-title">#Invoice : </span>
@@ -46,7 +46,6 @@
                                                             </div>
                                                         </div>
                                                     </div>
-
                                                     <div class="inv--product-table-section">
                                                         <div class="table-responsive">
                                                             <table class="table">
@@ -96,9 +95,7 @@
                                                             </table>
                                                         </div>
                                                     </div>
-
                                                     <div class="inv--total-amounts">
-
                                                         <div class="row mt-4">
                                                             <div class="col-sm-5 col-12 order-sm-0 order-1">
                                                             </div>
@@ -150,7 +147,6 @@
                                                             </div>
                                                         </div>
                                                     </div>
-
                                                     <div class="inv--note">
                                                         <div class="row mt-4">
                                                             <div class="col-sm-12 col-12 order-sm-0 order-1">
@@ -158,33 +154,31 @@
                                                             </div>
                                                         </div>
                                                     </div>
-
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-
                             <div class="col-xl-3">
                                 <div class="invoice-actions-btn">
                                     <div class="invoice-action-btn">
-                                        <div class="row">
+                                        {{-- <div class="row">
                                             <div class="col-xl-12 col-md-3 col-sm-6">
                                                 <a href="javascript:void(0);" class="btn btn-primary btn-send">Send
                                                     Invoice</a>
-                                            </div>
-                                            <div class="col-xl-12 col-md-3 col-sm-6">
-                                                <a href="javascript:void(0);"
-                                                    class="btn btn-secondary btn-print  action-print">Print</a>
-                                            </div>
-                                            <div class="col-xl-12 col-md-3 col-sm-6">
+                                            </div> --}}
+                                        <div class="col-xl-12 col-md-3 col-sm-6">
+                                            <a href="javascript:void(0);"
+                                                class="btn btn-secondary btn-print  action-print">Print</a>
+                                        </div>
+                                        {{-- <div class="col-xl-12 col-md-3 col-sm-6">
                                                 <a href="javascript:void(0);"
                                                     class="btn btn-success btn-download">Download</a>
-                                            </div>
-                                            <div class="col-xl-12 col-md-3 col-sm-6">
-                                                <a href="./app-invoice-edit.html" class="btn btn-dark btn-edit">Edit</a>
-                                            </div>
+                                            </div> --}}
+                                        <div class="col-xl-12 col-md-3 col-sm-6">
+                                            <a href="/invoice/{{ $invoice->id }}/edit"
+                                                class="btn btn-dark btn-edit">Edit</a>
                                         </div>
                                     </div>
                                 </div>
