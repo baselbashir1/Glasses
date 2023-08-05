@@ -18,6 +18,7 @@
                         <thead>
                             <tr>
                                 <th class="checkbox-column"></th>
+                                <th>Product Brand</th>
                                 <th>Product Type</th>
                                 <th>Agent Name</th>
                                 <th>Agent Category</th>
@@ -26,6 +27,7 @@
                                 <th>Remaining Amount</th>
                                 <th>Payment Status</th>
                                 <th>Product Received</th>
+                                <th>Dossier Number</th>
                                 <th>Purchase Date</th>
                                 <th class="no-content text-center">Action</th>
                             </tr>
@@ -35,6 +37,7 @@
                                 @foreach ($invoices as $invoice)
                                     <tr>
                                         <td>{{ $invoice->id }}</td>
+                                        <td>{{ $invoice->product->brand }}</td>
                                         <td>{{ $invoice->product->productType->type }}</td>
                                         <td>{{ $invoice->agent->name }}</td>
                                         <td>{{ $invoice->agent->agentCategory->category }}</td>
@@ -65,9 +68,10 @@
                                                     style="pointer-events: none; border-radius: 100px">No</div>
                                             @endif
                                         </td>
+                                        <td>{{ $invoice->dossier->agent->phone }}</td>
                                         <td>{{ $invoice->purchased_at }}</td>
                                         <td class="text-center">
-                                            <div class="dropdown">
+                                            <div class="dropdown    ">
                                                 <a class="dropdown-toggle" href="#" role="button"
                                                     id="dropdownMenuLink1" data-bs-toggle="dropdown" aria-haspopup="true"
                                                     aria-expanded="true">

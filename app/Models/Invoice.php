@@ -23,6 +23,11 @@ class Invoice extends Model
         return $this->belongsTo(Agent::class);
     }
 
+    public function dossier(): BelongsTo
+    {
+        return $this->belongsTo(Dossier::class);
+    }
+
     public function paymentStatus(): HasOne
     {
         return $this->hasOne(PaymentStatus::class, 'id', 'payment_status');

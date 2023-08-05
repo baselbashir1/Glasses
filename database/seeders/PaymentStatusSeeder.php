@@ -15,7 +15,7 @@ class PaymentStatusSeeder extends Seeder
     {
         $statuses = [
             ['status' => 'Paid', 'created_at' => now(), 'updated_at' => now()],
-            ['status' => 'Partially Paid', 'created_at' => now(), 'updated_at' => now()],
+            ['status' => 'PartiallyPaid', 'created_at' => now(), 'updated_at' => now()],
             ['status' => 'UnPaid', 'created_at' => now(), 'updated_at' => now()]
         ];
 

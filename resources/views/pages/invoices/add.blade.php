@@ -170,11 +170,13 @@
                         .catch(error => console.error(error));
 
                     fetch(`/get-dossier-phone-number/${selectedAgentId}`)
-                        .then(response => response.text())
-                        .then(phone => {
+                        .then(response => response.json())
+                        .then(data => {
+                            const id = data.id;
+                            const phone = data.phone;
                             $('select[name="dossier"]').empty();
                             $('select[name="dossier"]').append('<option value="' +
-                                phone + '">' + phone + '</option>');
+                                id + '">' + phone + '</option>');
                         })
                         .catch(error => console.error(error));
                 });

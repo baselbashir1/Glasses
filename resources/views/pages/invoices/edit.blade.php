@@ -3,30 +3,49 @@
     <x-slot:pageTitle>Edit Invoice</x-slot>
 
         <div class="row mb-4 layout-spacing layout-top-spacing">
-            <form method="POST" action="/add-invoice">
+            <form method="POST" action="/edit-invoice/{{ $invoice->id }}">
                 @csrf
                 <div class="col-xxl-9 col-xl-12 col-lg-12 col-md-12 col-sm-12">
                     <div class="widget-content widget-content-area ecommerce-create-section">
                         <div class="row">
                             <label for="agent" class="ml-1 mr-1" style="width: 45%">Agent Name</label>
-                            <label for="agent_category" class="ml-1 mr-1" style="width: 45%">Agent Category</label>
+                            <label for="agent_category" class="ml-1 mr-1" style="width: 45%">Agent
+                                Category</label>
                         </div>
                         <div class="row mb-4">
-                            <div class="form-control m-1" style="width: 45%">{{ $invoice->agent->name }}</div>
-                            <div class="form-control m-1" style="width: 45%">
-                                {{ $invoice->agent->agentCategory->category }}</div>
+                            <select name="agent" class="form-control m-1" id="agent" style="width: 45%">
+                                <option value="{{ $invoice->agent->id }}" selected>{{ $invoice->agent->name }}</option>
+                                {{-- @foreach ($agents as $agnet)
+                                    <option value="{{ $agnet->id }}">{{ $agnet->name }}</option>
+                                @endforeach --}}
+                            </select>
+                            {{-- <div class="form-control m-1" style="width: 45%">{{ $invoice->agent->name }}</div> --}}
+                            {{-- <div class="form-control m-1" style="width: 45%">
+                                {{ $invoice->agent->agentCategory->category }}</div> --}}
+                            <select name="agent_category" class="form-control m-1" style="width: 45%">
+                                <option value="{{ $invoice->agent->agentCategory->id }}" selected>
+                                    {{ $invoice->agent->agentCategory->category }}</option>
+                            </select>
                         </div>
                         <div class="row">
                             <label for="dossier" class="ml-1 mr-1" style="width: 45%">Dossier Number</label>
                             <label for="product" class="ml-1 mr-1" style="width: 45%">Product</label>
                         </div>
                         <div class="row mb-4">
-                            <div class="form-control m-1" style="width: 45%">{{ $invoice->product->brand }}</div>
+                            <select name="dossier" class="form-control m-1" style="width: 45%">
+                                <option value="{{ $invoice->dossier->id }}" selected>
+                                    {{ $invoice->dossier->agent->phone }}</option>
+                            </select>
+                            {{-- <div class="form-control m-1" style="width: 45%">{{ $invoice->dossier_id }}</div> --}}
                             <select name="product" class="form-control m-1" id="product"
                                 style="width: 45%; border-width: 3px; border-color:lightseagreen">
-                                <option selected disabled>Choose Product</option>
                                 @foreach ($products as $product)
-                                    <option value="{{ $product->id }}">{{ $product->brand }}</option>
+                                    @if ($invoice->product->id == $product->id)
+                                        <option value="{{ $invoice->product->id }}" selected hidden>
+                                            {{ $invoice->product->brand }}</option>
+                                    @endif
+                                    <option value="{{ $product->id }}">{{ $product->brand }}
+                                    </option>
                                 @endforeach
                             </select>
                             @error('product')
@@ -38,9 +57,16 @@
                             <label for="product_price" class="ml-1 mr-1" style="width: 45%">Product Price</label>
                         </div>
                         <div class="row mb-4">
-                            <div class="form-control m-1" style="width: 45%" id="product_type">
+                            <select name="product_type" class="form-control m-1" style="width: 45%" id="product_type">
+                                <option value="{{ $invoice->product->productType->id }}" selected>
+                                    {{ $invoice->product->productType->type }}</option>
+                                {{-- @foreach ($productTypes as $productType)
+                                    <option value="{{ $productType->id }}">{{ $productType->type }}</option>
+                                @endforeach --}}
+                            </select>
+                            {{-- <div class="form-control m-1" style="width: 45%" id="product_type">
                                 {{ $invoice->product->productType->type }}
-                            </div>
+                            </div> --}}
                             <input type="text" name="product_price" class="form-control m-1" id="product_price"
                                 value="{{ $invoice->product->price }}" style="width: 45%; pointer-events: none;">
                         </div>
@@ -68,8 +94,16 @@
                         <div class="row mb-4">
                             <select name="payment_status" class="form-control m-1"
                                 style="width: 45%; border-width: 3px; border-color:lightseagreen">
-                                <option selected disabled>Choose Status</option>
+                                {{-- <option selected disabled>Choose Status</option>
                                 @foreach ($paymentStatuses as $paymentStatus)
+                                    <option value="{{ $paymentStatus->id }}">{{ $paymentStatus->status }}
+                                    </option>
+                                @endforeach --}}
+                                @foreach ($paymentStatuses as $paymentStatus)
+                                    @if ($invoice->paymentStatus->id == $paymentStatus->id)
+                                        <option value="{{ $invoice->paymentStatus->id }}" selected hidden>
+                                            {{ $invoice->paymentStatus->status }}</option>
+                                    @endif
                                     <option value="{{ $paymentStatus->id }}">{{ $paymentStatus->status }}
                                     </option>
                                 @endforeach
@@ -78,6 +112,7 @@
                                 <p class="mt-2">{{ $message }}</p>
                             @enderror
                             <input type="date" name="purchased_date" class="form-control m-1"
+                                value="{{ $invoice->purchased_at }}"
                                 style="width: 45%; border-width: 3px; border-color:lightseagreen">
                             @error('purchased_date')
                                 <p class="mt-2">{{ $message }}</p>
@@ -86,8 +121,14 @@
                         <div class="row mb-4">
                             <div class="col-sm-12">
                                 <label for="product_received">Product</label>
-                                Received <input type="radio" name="product_received" value="1">
-                                Not Received <input type="radio" name="product_received" value="0">
+                                @if ($invoice->product_received == 1)
+                                    Received <input type="radio" name="product_received" value="1" checked>
+                                    Not Received <input type="radio" name="product_received" value="0">
+                                @else
+                                    Received <input type="radio" name="product_received" value="1">
+                                    Not Received <input type="radio" name="product_received" value="0"
+                                        checked>
+                                @endif
                             </div>
                             @error('product_received')
                                 <p class="mt-2">{{ $message }}</p>
