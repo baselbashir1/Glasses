@@ -47,7 +47,7 @@ class InvoiceController extends Controller
     {
         $formFields = $request->validated();
 
-        Invoice::create([
+        $invoice = Invoice::create([
             'product_id' => $formFields['product'],
             'paid_amount' => $formFields['paid_amount'],
             'remaining_amount' => $formFields['remaining_amount'],
@@ -56,6 +56,11 @@ class InvoiceController extends Controller
             'agent_id' => $formFields['agent'],
             'dossier_id' => $formFields['dossier'],
             'purchased_at' => $formFields['purchased_date']
+        ]);
+
+        $agent = Agent::where('phone', $invoice->dossier->phone)->first();
+        $agent->update([
+            'dossier_id' => $invoice->dossier->id
         ]);
 
         return redirect('/invoices');

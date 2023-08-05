@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\DossierRequest;
 use App\Models\Agent;
 use App\Models\Dossier;
+use App\Models\Invoice;
 use Illuminate\Http\Request;
+use App\Http\Requests\DossierRequest;
 
 class DossierController extends Controller
 {
@@ -17,7 +18,9 @@ class DossierController extends Controller
 
     public function show(Dossier $dossier)
     {
-        return view('pages.dossiers.detail', ['dossier' => $dossier]);
+        $agents = Agent::where('dossier_id', $dossier->id)->get();
+        $invoices = Invoice::where('dossier_id', $dossier->id)->get();
+        return view('pages.dossiers.detail', ['dossier' => $dossier, 'agents' => $agents, 'invoices' => $invoices]);
     }
 
     public function create()
