@@ -58,10 +58,12 @@ class ProductController extends Controller
     public function edit(Product $product)
     {
         $productTypes = ProductType::all();
-        return view('pages.products.edit', ['product' => $product, 'productTypes' => $productTypes]);
+        $lensesGrades = LensesGrade::all();
+        $lensesGrade = LensesGrade::where('product_id', $product->id)->first();
+        return view('pages.products.edit', ['product' => $product, 'productTypes' => $productTypes, 'lensesGrades' => $lensesGrades, 'lensesGrade' => $lensesGrade]);
     }
 
-    public function update(ProductRequest $request, Product $product)
+    public function update(ProductRequest $request, Product $product, LensesGrade $lensesGrade)
     {
         $formFields = $request->validated();
 
@@ -76,6 +78,18 @@ class ProductController extends Controller
             'color' => $formFields['color'],
             'price' => $formFields['price']
         ]);
+
+        if (isset($formFields['lenses_grade']) && isset($formFields['lenses_description'])) {
+            $lensesGrade->update([
+                'product_id' => $product->id,
+                'grade' => $formFields['lenses_grade'],
+                'description' => $formFields['lenses_description']
+            ]);
+        }
+
+        if ($product->id == $lensesGrade->product_id && $product->product_type != 3) {
+            $lensesGrade->delete();
+        }
 
         return redirect('/products');
     }

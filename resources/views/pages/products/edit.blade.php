@@ -3,7 +3,8 @@
     <x-slot:pageTitle>Edit Product</x-slot>
 
         <div class="row mb-4 layout-spacing layout-top-spacing">
-            <form method="POST" action="/edit-product/{{ $product->id }}" enctype="multipart/form-data">
+            <form method="POST" action="/edit-product/{{ $product->id }}/{{ $lensesGrade->id }}"
+                enctype="multipart/form-data">
                 @csrf
                 <div class="col-xxl-9 col-xl-12 col-lg-12 col-md-12 col-sm-12">
                     <div class="widget-content widget-content-area ecommerce-create-section">
@@ -16,11 +17,10 @@
                                 <p class="mt-2">{{ $message }}</p>
                             @enderror
                         </div>
-
                         <div class="row mb-4">
                             <div class="col-sm-12">
                                 <label for="type">Type</label>
-                                <select name="type" class="form-control">
+                                <select name="type" class="form-control" id="productType">
                                     <option value="{{ $product->productType->id }}" selected hidden>
                                         {{ $product->productType->type }}</option>
                                     @foreach ($productTypes as $productType)
@@ -32,6 +32,30 @@
                                 <p class="mt-2">{{ $message }}</p>
                             @enderror
                         </div>
+                        @foreach ($lensesGrades as $lensesGrade)
+                            @if ($product->id == $lensesGrade->product_id)
+                                <div class="row mb-4" id="lenses_grade">
+                                    <div class="col-sm-12">
+                                        <label for="lenses_grade">Lenses Grade</label>
+                                        <input type="text" name="lenses_grade" class="form-control"
+                                            value="{{ $lensesGrade->grade }}">
+                                    </div>
+                                    @error('lenses_grade')
+                                        <p class="mt-2">{{ $message }}</p>
+                                    @enderror
+                                </div>
+                                <div class="row mb-4" id="lenses_description">
+                                    <div class="col-sm-12">
+                                        <label for="lenses_description">Lenses Description</label>
+                                        <textarea name="lenses_description" class="form-control" cols="30" rows="10">{{ $lensesGrade->description }}</textarea>
+                                    </div>
+                                    @error('lenses_description')
+                                        <p class="mt-2">{{ $message }}</p>
+                                    @enderror
+                                </div>
+                            @endif
+                        @endforeach
+
                         <div class="row mb-4">
                             <div class="col-sm-12">
                                 <div class="row">
@@ -43,7 +67,8 @@
                                 </div>
                             </div>
                             <div class="container mt-2 mb-2">
-                                <input type="file" name="image" class="form-control" value="{{ $product->image }}">
+                                <input type="file" name="image" class="form-control"
+                                    value="{{ $product->image }}">
                             </div>
                             @error('image')
                                 <p class="mt-2">{{ $message }}</p>
@@ -100,6 +125,27 @@
             </form>
         </div>
 
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const productType = document.getElementById('productType');
+                const lensesGrade = document.getElementById('lenses_grade');
+                const lensesDescription = document.getElementById('lenses_description');
+
+                function updateSelected() {
+                    const selectedOption = productType.value;
+
+                    lensesGrade.style.display = 'none';
+                    lensesDescription.style.display = 'none';
+
+                    if (selectedOption === '3') {
+                        lensesGrade.style.display = 'block';
+                        lensesDescription.style.display = 'block';
+                    }
+                }
+
+                productType.addEventListener('change', updateSelected);
+            });
+        </script>
 
         <!--  END CUSTOM SCRIPTS FILE  -->
 </x-base-layout>

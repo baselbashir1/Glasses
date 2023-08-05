@@ -115,7 +115,7 @@
                 const lensesGrade = document.getElementById('lenses_grade');
                 const lensesDescription = document.getElementById('lenses_description');
 
-                productType.addEventListener('change', function() {
+                function updateSelected() {
                     const selectedOption = productType.value;
 
                     lensesGrade.style.display = 'none';
@@ -125,7 +125,9 @@
                         lensesGrade.style.display = 'block';
                         lensesDescription.style.display = 'block';
                     }
-                });
+                }
+
+                productType.addEventListener('change', updateSelected);
             });
         </script>
 
