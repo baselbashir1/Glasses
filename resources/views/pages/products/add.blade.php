@@ -16,11 +16,10 @@
                                 <p class="mt-2">{{ $message }}</p>
                             @enderror
                         </div>
-
                         <div class="row mb-4">
                             <div class="col-sm-12">
                                 <label for="type">Type</label>
-                                <select name="type" class="form-control">
+                                <select name="type" class="form-control" id="productType">
                                     <option selected disabled>Choose Type</option>
                                     @foreach ($productTypes as $productType)
                                         <option value="{{ $productType->id }}">{{ $productType->type }}</option>
@@ -28,6 +27,25 @@
                                 </select>
                             </div>
                             @error('type')
+                                <p class="mt-2">{{ $message }}</p>
+                            @enderror
+                        </div>
+                        <div class="row mb-4" id="lenses_grade" style="display: none">
+                            <div class="col-sm-12">
+                                <label for="lenses_grade">Lenses Grade</label>
+                                <input type="text" name="lenses_grade" class="form-control"
+                                    placeholder="Lenses Grade">
+                            </div>
+                            @error('lenses_grade')
+                                <p class="mt-2">{{ $message }}</p>
+                            @enderror
+                        </div>
+                        <div class="row mb-4" id="lenses_description" style="display: none">
+                            <div class="col-sm-12">
+                                <label for="lenses_description">Lenses Grade</label>
+                                <textarea name="lenses_description" class="form-control" cols="30" rows="10">Lenses Description</textarea>
+                            </div>
+                            @error('lenses_description')
                                 <p class="mt-2">{{ $message }}</p>
                             @enderror
                         </div>
@@ -90,6 +108,26 @@
                 </div>
             </form>
         </div>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const productType = document.getElementById('productType');
+                const lensesGrade = document.getElementById('lenses_grade');
+                const lensesDescription = document.getElementById('lenses_description');
+
+                productType.addEventListener('change', function() {
+                    const selectedOption = productType.value;
+
+                    lensesGrade.style.display = 'none';
+                    lensesDescription.style.display = 'none';
+
+                    if (selectedOption === '3') {
+                        lensesGrade.style.display = 'block';
+                        lensesDescription.style.display = 'block';
+                    }
+                });
+            });
+        </script>
 
 
         <!--  END CUSTOM SCRIPTS FILE  -->

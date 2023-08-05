@@ -20,9 +20,6 @@ return new class extends Migration
         Schema::create('invoices', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(Product::class, 'product_id');
-            // $table->foreignIdFor(ProductType::class, 'product_type');
-            // $table->foreignIdFor(AgentCategory::class, 'agent_category');
-            // $table->decimal('product_price', 10, 2);
             $table->decimal('paid_amount', 10, 2);
             $table->decimal('remaining_amount', 10, 2);
             $table->boolean('product_received')->nullable();

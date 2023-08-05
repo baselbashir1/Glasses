@@ -26,7 +26,10 @@ class ProductRequest extends FormRequest
             'type' => 'required',
             'image' => ['nullable', 'image'],
             'color' => ['nullable', 'string'],
-            'price' => ['required', 'numeric']
+            'price' => ['required', 'numeric'],
+
+            'lenses_grade' => 'nullable',
+            'lenses_description' => 'nullable'
         ];
     }
 }

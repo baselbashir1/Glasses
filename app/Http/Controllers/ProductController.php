@@ -6,6 +6,7 @@ use App\Models\Product;
 use App\Models\ProductType;
 use Illuminate\Http\Request;
 use App\Http\Requests\ProductRequest;
+use App\Models\LensesGrade;
 
 class ProductController extends Controller
 {
@@ -17,7 +18,8 @@ class ProductController extends Controller
 
     public function show(Product $product)
     {
-        return view('pages.products.detail', ['product' => $product]);
+        $lensesGrades = LensesGrade::all();
+        return view('pages.products.detail', ['product' => $product, 'lensesGrades' => $lensesGrades]);
     }
 
     public function create()
@@ -34,13 +36,21 @@ class ProductController extends Controller
             $formFields['image'] = $request->file('image')->store('images', 'public');
         }
 
-        Product::create([
+        $product = Product::create([
             'brand' => $formFields['brand'],
             'product_type' => $formFields['type'],
             'image' => isset($formFields['image']) ? $formFields['image'] : null,
             'color' => $formFields['color'],
             'price' => $formFields['price']
         ]);
+
+        if (isset($formFields['lenses_grade']) && isset($formFields['lenses_description'])) {
+            LensesGrade::create([
+                'product_id' => $product->id,
+                'grade' => $formFields['lenses_grade'],
+                'description' => $formFields['lenses_description']
+            ]);
+        }
 
         return redirect('/products');
     }
