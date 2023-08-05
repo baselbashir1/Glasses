@@ -96,6 +96,8 @@ class ProductController extends Controller
 
     public function destroy(Product $product)
     {
+        $lensesGrade = LensesGrade::where('product_id', $product->id);
+        $lensesGrade->delete();
         $product->delete();
         return redirect('/products');
     }

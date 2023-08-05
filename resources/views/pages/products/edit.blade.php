@@ -3,7 +3,7 @@
     <x-slot:pageTitle>Edit Product</x-slot>
 
         <div class="row mb-4 layout-spacing layout-top-spacing">
-            <form method="POST" action="/edit-product/{{ $product->id }}/{{ $lensesGrade->id }}"
+            <form method="POST" action="/edit-product/{{ $product->id }}/{{ $lensesGrade?->id }}"
                 enctype="multipart/form-data">
                 @csrf
                 <div class="col-xxl-9 col-xl-12 col-lg-12 col-md-12 col-sm-12">
