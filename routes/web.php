@@ -23,7 +23,6 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth')->group(function () {
     Route::get('/', [HomeController::class, 'index']);
     Route::get('/get-agent-category/{id}', [HomeController::class, 'getAgentCategory']);
-    // Route::get('/get-dossier-phone-number/{id}', [HomeController::class, 'getDossierPhoneNumber']);
     Route::get('/get-product-type/{id}', [HomeController::class, 'getProductType']);
     Route::get('/get-product-price/{id}', [HomeController::class, 'getProductPrice']);
 

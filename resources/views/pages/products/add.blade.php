@@ -42,7 +42,7 @@
                         </div>
                         <div class="row mb-4" id="lenses_description" style="display: none">
                             <div class="col-sm-12">
-                                <label for="lenses_description">Lenses Grade</label>
+                                <label for="lenses_description">Lenses Description</label>
                                 <textarea name="lenses_description" class="form-control" cols="30" rows="10">Lenses Description</textarea>
                             </div>
                             @error('lenses_description')
@@ -108,6 +108,4 @@
             });
         </script>
 
-
-        <!--  END CUSTOM SCRIPTS FILE  -->
 </x-base-layout>

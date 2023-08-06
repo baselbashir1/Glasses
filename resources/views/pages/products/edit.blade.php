@@ -23,7 +23,7 @@
                             <div class="col-sm-12">
                                 <label for="type">Type</label>
                                 <select name="type" class="form-control" id="productType">
-                                    <option value="{{ $product->productType->id }}" selected hidden>
+                                    <option value="{{ $product->productType->id }}" selected>
                                         {{ $product->productType->type }}</option>
                                     @foreach ($productTypes as $productType)
                                         <option value="{{ $productType->id }}">{{ $productType->type }}</option>
@@ -34,30 +34,27 @@
                                 <p class="mt-2">{{ $message }}</p>
                             @enderror
                         </div>
-                        @foreach ($lensesGrades as $lensesGrade)
-                            @if ($product->id == $lensesGrade->product_id)
-                                <div class="row mb-4" id="lenses_grade">
-                                    <div class="col-sm-12">
-                                        <label for="lenses_grade">Lenses Grade</label>
-                                        <input type="text" name="lenses_grade" class="form-control"
-                                            value="{{ $lensesGrade->grade }}">
-                                    </div>
-                                    @error('lenses_grade')
-                                        <p class="mt-2">{{ $message }}</p>
-                                    @enderror
-                                </div>
-                                <div class="row mb-4" id="lenses_description">
-                                    <div class="col-sm-12">
-                                        <label for="lenses_description">Lenses Description</label>
-                                        <textarea name="lenses_description" class="form-control" cols="30" rows="10">{{ $lensesGrade->description }}</textarea>
-                                    </div>
-                                    @error('lenses_description')
-                                        <p class="mt-2">{{ $message }}</p>
-                                    @enderror
-                                </div>
-                            @endif
-                        @endforeach
-
+                        {{-- @if ($product->productType->id == 3) --}}
+                        <div class="row mb-4" id="lenses_grade" style="display: none">
+                            <div class="col-sm-12">
+                                <label for="lenses_grade">Lenses Grade</label>
+                                <input type="text" name="lenses_grade" class="form-control"
+                                    value="{{ $lensesGrade?->grade }}">
+                            </div>
+                            @error('lenses_grade')
+                                <p class="mt-2">{{ $message }}</p>
+                            @enderror
+                        </div>
+                        <div class="row mb-4" id="lenses_description" style="display: none">
+                            <div class="col-sm-12">
+                                <label for="lenses_description">Lenses Description</label>
+                                <textarea name="lenses_description" class="form-control" cols="30" rows="10">{{ $lensesGrade?->description }}</textarea>
+                            </div>
+                            @error('lenses_description')
+                                <p class="mt-2">{{ $message }}</p>
+                            @enderror
+                        </div>
+                        {{-- @endif --}}
                         <div class="row mb-4">
                             <div class="col-sm-12">
                                 <div class="row">
@@ -128,5 +125,4 @@
             });
         </script>
 
-        <!--  END CUSTOM SCRIPTS FILE  -->
 </x-base-layout>

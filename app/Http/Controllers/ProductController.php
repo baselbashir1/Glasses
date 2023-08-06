@@ -80,11 +80,19 @@ class ProductController extends Controller
         ]);
 
         if (isset($formFields['lenses_grade']) && isset($formFields['lenses_description'])) {
-            $lensesGrade->update([
-                'product_id' => $product->id,
-                'grade' => $formFields['lenses_grade'],
-                'description' => $formFields['lenses_description']
-            ]);
+            if ($lensesGrade) {
+                $lensesGrade->update([
+                    'product_id' => $product->id,
+                    'grade' => $formFields['lenses_grade'],
+                    'description' => $formFields['lenses_description']
+                ]);
+            } else {
+                LensesGrade::create([
+                    'product_id' => $product->id,
+                    'grade' => $formFields['lenses_grade'],
+                    'description' => $formFields['lenses_description']
+                ]);
+            }
         }
 
         if ($product->id == $lensesGrade->product_id && $product->product_type != 3) {
