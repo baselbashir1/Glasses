@@ -65,6 +65,11 @@ class DossierController extends Controller
 
     public function destroy(Dossier $dossier)
     {
+        $invoice = Invoice::where('dossier_id', $dossier->id)->first();
+        $agent = Agent::where('dossier_id', $dossier->id)->first();
+
+        $invoice->delete();
+        $agent->delete();
         $dossier->delete();
 
         return redirect('/dossiers');

@@ -31,14 +31,14 @@
             @unless (count((array) $dossiers) == 0)
                 @foreach ($dossiers as $dossier)
                     <div class="col-xxl-2 col-xl-3 col-lg-3 col-md-4 col-sm-6 mb-4">
-                        <a class="card style-6" href="/app/ecommerce/detail">
-                            <span class="badge badge-primary">{{ $dossier->agent->name }}</span>
+                        <a class="card style-6" href="/dossier/{{ $dossier->id }}/details">
+                            {{-- <span class="badge badge-primary">{{ $dossier->agent->name }}</span> --}}
                             <img src="{{ Vite::asset('public/src/assets/images/dossier.png') }}" class="card-img-top"
                                 alt="...">
                             <div class="card-footer">
                                 <div class="row">
                                     <div class="col-12 mb-4">
-                                        <b>{{ $dossier->agent->phone }}</b>
+                                        <b>{{ $dossier->phone }}</b>
                                     </div>
                                     <div class="col-3">
                                         <div class="badge--group">

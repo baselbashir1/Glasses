@@ -58,7 +58,7 @@ class InvoiceController extends Controller
             'purchased_at' => $formFields['purchased_date']
         ]);
 
-        $agent = Agent::where('phone', $invoice->dossier->phone)->first();
+        $agent = Agent::where('id', $invoice->agent_id)->first();
         $agent->update([
             'dossier_id' => $invoice->dossier->id
         ]);
