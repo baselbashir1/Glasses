@@ -25,55 +25,49 @@ class InvoiceController extends Controller
         return view('pages.invoices.detail', ['invoice' => $invoice]);
     }
 
-    public function create()
+    public function create(Dossier $dossier)
     {
         $productTypes = ProductType::all();
         $agentCategories = AgentCategory::all();
         $paymentStatuses = PaymentStatus::all();
         $agents = Agent::all();
-        $dossiers = Dossier::all();
         $products = Product::all();
         return view('pages.invoices.add', [
             'productTypes' => $productTypes,
             'agentCategories' => $agentCategories,
             'paymentStatuses' => $paymentStatuses,
             'agents' => $agents,
-            'dossiers' => $dossiers,
-            'products' => $products
+            'products' => $products,
+            'dossier' => $dossier
         ]);
     }
 
-    public function store(InvoiceRequest $request)
+    public function store(InvoiceRequest $request, Dossier $dossier)
     {
         $formFields = $request->validated();
 
-        $invoice = Invoice::create([
+        Invoice::create([
             'product_id' => $formFields['product'],
             'paid_amount' => $formFields['paid_amount'],
             'remaining_amount' => $formFields['remaining_amount'],
             'product_received' => $formFields['product_received'],
             'payment_status' => $formFields['payment_status'],
             'agent_id' => $formFields['agent'],
-            'dossier_id' => $formFields['dossier'],
+            'dossier_id' => $dossier->id,
             'purchased_at' => $formFields['purchased_date']
         ]);
 
-        $agent = Agent::where('id', $invoice->agent_id)->first();
-        $agent->update([
-            'dossier_id' => $invoice->dossier->id
-        ]);
-
-        return redirect('/invoices');
+        return redirect('/dossier/' . $dossier->id . '/details');
     }
 
-    public function edit(Invoice $invoice)
+    public function edit(Dossier $dossier, Invoice $invoice)
     {
         $paymentStatuses = PaymentStatus::all();
         $products = Product::all();
-        return view('pages.invoices.edit', ['invoice' => $invoice, 'paymentStatuses' => $paymentStatuses, 'products' => $products]);
+        return view('pages.invoices.edit', ['invoice' => $invoice, 'dossier' => $dossier, 'paymentStatuses' => $paymentStatuses, 'products' => $products]);
     }
 
-    public function update(InvoiceRequest $request, Invoice $invoice)
+    public function update(InvoiceRequest $request, Dossier $dossier, Invoice $invoice)
     {
         $formFields = $request->validated();
 
@@ -84,43 +78,16 @@ class InvoiceController extends Controller
             'product_received' => $formFields['product_received'],
             'payment_status' => $formFields['payment_status'],
             'agent_id' => $formFields['agent'],
-            'dossier_id' => $formFields['dossier'],
+            'dossier_id' => $dossier->id,
             'purchased_at' => $formFields['purchased_date']
         ]);
 
-        return redirect('/invoices');
+        return redirect('/dossier/' . $dossier->id . '/details');
     }
 
-    public function destroy(Invoice $invoice)
+    public function destroy(Dossier $dossier, Invoice $invoice)
     {
         $invoice->delete();
-        return redirect('/invoices');
-    }
-
-    public function getAgentCategory($id)
-    {
-        $agent = Agent::findOrFail($id);
-        return (string) $agent->agentCategory->category;
-    }
-
-    public function getDossierPhoneNumber($id)
-    {
-        $dossier = Dossier::findOrFail($id);
-        return response()->json([
-            'id' => $dossier->id,
-            'phone' => $dossier->phone
-        ]);
-    }
-
-    public function getProductType($id)
-    {
-        $product = Product::findOrFail($id);
-        return (string) $product->productType->type;
-    }
-
-    public function getProductPrice($id)
-    {
-        $product = Product::findOrFail($id);
-        return (string) $product->price;
+        return redirect('/dossiers');
     }
 }

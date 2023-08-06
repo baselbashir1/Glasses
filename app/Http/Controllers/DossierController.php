@@ -7,6 +7,7 @@ use App\Models\Dossier;
 use App\Models\Invoice;
 use Illuminate\Http\Request;
 use App\Http\Requests\DossierRequest;
+use App\Http\Requests\InvoiceRequest;
 
 class DossierController extends Controller
 {
@@ -18,28 +19,21 @@ class DossierController extends Controller
 
     public function show(Dossier $dossier)
     {
-        $agents = Agent::where('dossier_id', $dossier->id)->get();
         $invoices = Invoice::where('dossier_id', $dossier->id)->get();
-        return view('pages.dossiers.detail', ['dossier' => $dossier, 'agents' => $agents, 'invoices' => $invoices]);
+        return view('pages.dossiers.detail', ['dossier' => $dossier, 'invoices' => $invoices]);
     }
 
     public function create()
     {
-        $agents = Agent::all();
-        return view('pages.dossiers.add', ['agents' => $agents]);
+        return view('pages.dossiers.add');
     }
 
     public function store(DossierRequest $request)
     {
         $formFields = $request->validated();
 
-        $dossier =  Dossier::create([
+        Dossier::create([
             'phone' => $formFields['phone']
-        ]);
-
-        $agent = Agent::where('phone', $dossier->phone)->first();
-        $agent->update([
-            'dossier_id' => $dossier->id
         ]);
 
         return redirect('/dossiers');
@@ -51,25 +45,20 @@ class DossierController extends Controller
         return view('pages.dossiers.edit', ['dossier' => $dossier, 'agents' => $agents]);
     }
 
-    // public function update(DossierRequest $request, Dossier $dossier)
-    // {
-    //     $formFields = $request->validated();
+    public function update(DossierRequest $request, Dossier $dossier)
+    {
+        $formFields = $request->validated();
 
-    //     $dossier->update([
-    //         'user_id' => $formFields['user'],
-    //         'phone' => $formFields['phone']
-    //     ]);
+        $dossier->update([
+            'phone' => $formFields['phone']
+        ]);
 
-    //     return redirect('/dossiers');
-    // }
+        return redirect('/dossiers');
+    }
 
     public function destroy(Dossier $dossier)
     {
-        $invoice = Invoice::where('dossier_id', $dossier->id)->first();
-        $agent = Agent::where('dossier_id', $dossier->id)->first();
-
-        $invoice->delete();
-        $agent->delete();
+        $dossier->invoices()->delete();
         $dossier->delete();
 
         return redirect('/dossiers');

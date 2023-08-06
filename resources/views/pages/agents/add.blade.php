@@ -16,7 +16,7 @@
                                 <p class="mt-2">{{ $message }}</p>
                             @enderror
                         </div>
-                        <div class="row mb-4">
+                        {{-- <div class="row mb-4">
                             <div class="col-sm-12">
                                 <label for="phone">Agent Phone</label>
                                 <input type="text" name="phone" class="form-control" placeholder="Agent Phone">
@@ -24,7 +24,7 @@
                             @error('phone')
                                 <p class="mt-2">{{ $message }}</p>
                             @enderror
-                        </div>
+                        </div> --}}
                         <div class="row mb-4">
                             <div class="col-sm-12">
                                 <label for="category">Agent Category</label>

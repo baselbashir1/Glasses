@@ -56,8 +56,6 @@
                                                                         <th scope="col">Product Type</th>
                                                                         <th class="text-end" scope="col">Product
                                                                             Price</th>
-                                                                        {{-- <th class="text-end" scope="col">QTY
-                                                                        </th> --}}
                                                                         <th class="text-end" scope="col">Payment
                                                                             Status</th>
                                                                     </tr>
@@ -70,13 +68,11 @@
                                                                         </td>
                                                                         <td class="text-end">
                                                                             ${{ $invoice->product->price }}</td>
-                                                                        {{-- <td class="text-end">
-                                                                            1</td> --}}
                                                                         <td class="text-end">
                                                                             @if ($invoice->paymentStatus->id == 1)
                                                                                 <div class="btn btn-success"
                                                                                     style="pointer-events: none; border-radius: 100px">
-                                                                                    {{ $invoice->paymentStatus->status }}
+
                                                                                 </div>
                                                                             @elseif ($invoice->paymentStatus->id == 2)
                                                                                 <div class="btn btn-warning"
@@ -177,8 +173,7 @@
                                                     class="btn btn-success btn-download">Download</a>
                                             </div> --}}
                                         <div class="col-xl-12 col-md-3 col-sm-6">
-                                            <a href="/invoice/{{ $invoice->id }}/edit"
-                                                class="btn btn-dark btn-edit">Edit</a>
+                                            <a href="#" class="btn btn-dark btn-edit">Edit</a>
                                         </div>
                                     </div>
                                 </div>

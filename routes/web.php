@@ -22,6 +22,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth')->group(function () {
     Route::get('/', [HomeController::class, 'index']);
+    Route::get('/get-agent-category/{id}', [HomeController::class, 'getAgentCategory']);
+    // Route::get('/get-dossier-phone-number/{id}', [HomeController::class, 'getDossierPhoneNumber']);
+    Route::get('/get-product-type/{id}', [HomeController::class, 'getProductType']);
+    Route::get('/get-product-price/{id}', [HomeController::class, 'getProductPrice']);
 
     Route::get('/products', [ProductController::class, 'index']);
     Route::get('/product/{product}/details', [ProductController::class, 'show']);
@@ -39,7 +43,6 @@ Route::middleware('auth')->group(function () {
     Route::post('/edit-agent/{agent}', [AgentController::class, 'update']);
     Route::post('/delete-agent/{agent}', [AgentController::class, 'destroy']);
 
-
     Route::get('/dossiers', [DossierController::class, 'index']);
     Route::get('/dossier/{dossier}/details', [DossierController::class, 'show']);
     Route::get('/dossier/add', [DossierController::class, 'create']);
@@ -47,7 +50,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/dossier/{dossier}/edit', [DossierController::class, 'edit']);
     Route::post('/edit-dossier/{dossier}', [DossierController::class, 'update']);
     Route::post('/delete-dossier/{dossier}', [DossierController::class, 'destroy']);
-    Route::get('/get-phone-number/{id}', [DossierController::class, 'getPhoneNumber']);
 
     Route::get('/users', [UserController::class, 'index']);
     Route::get('/user/{user}/details', [UserController::class, 'show']);
@@ -59,15 +61,11 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/invoices', [InvoiceController::class, 'index']);
     Route::get('/invoice/{invoice}/details', [InvoiceController::class, 'show']);
-    Route::get('/invoice/add', [InvoiceController::class, 'create']);
-    Route::post('/add-invoice', [InvoiceController::class, 'store']);
-    Route::get('/invoice/{invoice}/edit', [InvoiceController::class, 'edit']);
-    Route::post('/edit-invoice/{invoice}', [InvoiceController::class, 'update']);
-    Route::post('/delete-invoice/{invoice}', [InvoiceController::class, 'destroy']);
-    Route::get('/get-agent-category/{id}', [InvoiceController::class, 'getAgentCategory']);
-    Route::get('/get-dossier-phone-number/{id}', [InvoiceController::class, 'getDossierPhoneNumber']);
-    Route::get('/get-product-type/{id}', [InvoiceController::class, 'getProductType']);
-    Route::get('/get-product-price/{id}', [InvoiceController::class, 'getProductPrice']);
+    Route::get('/dossier/{dossier}/invoice/add', [InvoiceController::class, 'create']);
+    Route::post('/dossier/{dossier}/add-invoice', [InvoiceController::class, 'store']);
+    Route::get('/dossier/{dossier}/invoice/{invoice}/edit', [InvoiceController::class, 'edit']);
+    Route::post('/dossier/{dossier}/edit-invoice/{invoice}', [InvoiceController::class, 'update']);
+    Route::post('/dossier/{dossier}/delete-invoice/{invoice}', [InvoiceController::class, 'destroy']);
 });
 
 Route::get('/dashboard', function () {

@@ -14,8 +14,8 @@ class Dossier extends Model
 
     protected $fillable = ['phone'];
 
-    // public function agent(): BelongsTo
-    // {
-    //     return $this->belongsTo(Agent::class);
-    // }
+    public function invoices(): HasMany
+    {
+        return $this->hasMany(Invoice::class);
+    }
 }

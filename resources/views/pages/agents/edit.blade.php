@@ -17,7 +17,7 @@
                             @enderror
                         </div>
                         {{-- start checkbox --}}
-                        <div class="row mb-4" id="keep">
+                        {{-- <div class="row mb-4" id="keep">
                             <div class="col-sm-12">
                                 <label for="phone">Agent Phone</label>
                                 <input type="text" name="phone" class="form-control" value="{{ $agent->phone }}"
@@ -26,8 +26,8 @@
                             @error('phone')
                                 <p class="mt-2">{{ $message }}</p>
                             @enderror
-                        </div>
-                        <div class="row mb-4" id="change" style="display: none">
+                        </div> --}}
+                        {{-- <div class="row mb-4" id="change" style="display: none">
                             <div class="col-sm-12">
                                 <label for="phone">Agent Phone</label>
                                 <input type="text" name="phone" class="form-control" value="{{ $agent->phone }}">
@@ -35,13 +35,13 @@
                             @error('phone')
                                 <p class="mt-2">{{ $message }}</p>
                             @enderror
-                        </div>
-                        <div class="row mb-4">
+                        </div> --}}
+                        {{-- <div class="row mb-4">
                             <div class="col-sm-12">
                                 <label for="check">Change Number</label>
                                 <input type="checkbox" name="check" id="changeNumber">
                             </div>
-                        </div>
+                        </div> --}}
                         {{-- end checkbox --}}
                         <div class="row mb-4">
                             <div class="col-sm-12">
@@ -71,7 +71,7 @@
             </form>
         </div>
 
-        <script>
+        {{-- <script>
             document.addEventListener('DOMContentLoaded', function() {
                 const changeNumber = document.getElementById('changeNumber');
                 const keepDiv = document.getElementById('keep');
@@ -89,6 +89,6 @@
 
                 changeNumber.addEventListener('change', updateChangeNumber);
             });
-        </script>
+        </script> --}}
 
 </x-base-layout>

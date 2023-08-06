@@ -7,7 +7,7 @@
                 @csrf
                 <div class="col-xxl-9 col-xl-12 col-lg-12 col-md-12 col-sm-12">
                     <div class="widget-content widget-content-area ecommerce-create-section">
-                        <div class="row mb-4">
+                        {{-- <div class="row mb-4">
                             <div class="col-sm-12">
                                 <label for="agent">Agent</label>
                                 <select name="agent" class="form-control" id="agent">
@@ -20,11 +20,11 @@
                             @error('agent')
                                 <p class="mt-2">{{ $message }}</p>
                             @enderror
-                        </div>
+                        </div> --}}
                         <div class="row mb-4">
                             <div class="col-sm-12">
                                 <label for="phone">Phone Number</label>
-                                <input type="text" name="phone" class="form-control" value="Phone Number"
+                                <input type="text" name="phone" class="form-control" placeholder="Phone Number"
                                     id="phoneNumber">
                                 {{-- <div id="phoneNumber" class="form-control">Phone Number</div> --}}
                             </div>
@@ -42,7 +42,7 @@
             </form>
         </div>
 
-        <script>
+        {{-- <script>
             document.addEventListener('DOMContentLoaded', function() {
                 const agent = document.getElementById('agent');
                 const phoneNumber = document.getElementById('phoneNumber');
@@ -59,7 +59,7 @@
                         .catch(error => console.error(error));
                 });
             });
-        </script>
+        </script> --}}
 
         <!--  END CUSTOM SCRIPTS FILE  -->
 </x-base-layout>

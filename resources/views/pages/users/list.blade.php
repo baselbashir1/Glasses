@@ -65,7 +65,8 @@
                                                     <a class="dropdown-item" href="/user/{{ $user->id }}/edit">Edit</a>
                                                     <form action="/delete-user/{{ $user->id }}" method="POST">
                                                         @csrf
-                                                        <button type="submit">Delete</button>
+                                                        <button class="dropdown-item" type="submit"
+                                                            style="font-size: 13px">Delete</button>
                                                     </form>
                                                 </div>
                                             </div>

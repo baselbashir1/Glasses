@@ -22,7 +22,6 @@ class DossierRequest extends FormRequest
     public function rules(): array
     {
         return [
-            // 'agent' => ['required', 'unique:dossiers,agent_id'],
             'phone' => ['required', 'unique:dossiers,phone']
         ];
     }

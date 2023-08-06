@@ -25,7 +25,6 @@ class AgentRequest extends FormRequest
         $id = $this->route('agent');
         return [
             'name' => 'required',
-            'phone' => ['required', Rule::unique('agents', 'phone')->ignore($id, 'id')],
             'category' => 'required'
         ];
     }

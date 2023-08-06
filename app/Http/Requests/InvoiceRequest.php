@@ -28,7 +28,6 @@ class InvoiceRequest extends FormRequest
             'product_received' => 'nullable',
             'payment_status' => 'required',
             'agent' => 'required',
-            'dossier' => 'required',
             'purchased_date' => 'required'
         ];
     }

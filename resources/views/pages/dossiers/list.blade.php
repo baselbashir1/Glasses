@@ -17,27 +17,29 @@
                         <thead>
                             <tr>
                                 <th class="checkbox-column"></th>
-                                {{-- <th>Agent Name</th> --}}
                                 <th>Phone Number</th>
+                                <th>Creation Date</th>
+                                <th>#Invoices</th>
                                 <th class="no-content text-center">Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @unless ((array) count($dossiers) == 0)
+                            @if (count($dossiers))
                                 @foreach ($dossiers as $dossier)
                                     <tr>
                                         <td>{{ $dossier->id }}</td>
-                                        {{-- <td>{{ $dossier->agent->name }}</td> --}}
                                         <td>{{ $dossier->phone }}</td>
+                                        <td>{{ $dossier->created_at }}</td>
+                                        <td>{{ count($dossier->invoices) }}</td>
                                         <td class="text-center">
                                             <div class="dropdown">
                                                 <a class="dropdown-toggle" href="#" role="button"
-                                                    id="dropdownMenuLink1" data-bs-toggle="dropdown" aria-haspopup="true"
-                                                    aria-expanded="true">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                        viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                                        class="feather feather-more-horizontal">
+                                                    id="dropdownMenuLink1" data-bs-toggle="dropdown"
+                                                    aria-haspopup="true" aria-expanded="true">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                                        height="24" viewBox="0 0 24 24" fill="none"
+                                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                        stroke-linejoin="round" class="feather feather-more-horizontal">
                                                         <circle cx="12" cy="12" r="1"></circle>
                                                         <circle cx="19" cy="12" r="1"></circle>
                                                         <circle cx="5" cy="12" r="1"></circle>
@@ -46,13 +48,15 @@
 
                                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuLink1">
                                                     <a class="dropdown-item"
-                                                        href="/dossier/{{ $dossier->id }}/details">View</a>
-                                                    <a class="dropdown-item" href="#">Add agent</a>
+                                                        href="/dossier/{{ $dossier->id }}/details">View Invoices</a>
+                                                    <a class="dropdown-item"
+                                                        href="/dossier/{{ $dossier->id }}/invoice/add">Add Invoice</a>
                                                     <a class="dropdown-item"
                                                         href="/dossier/{{ $dossier->id }}/edit">Edit</a>
                                                     <form action="/delete-dossier/{{ $dossier->id }}" method="POST">
                                                         @csrf
-                                                        <button type="submit">Delete</button>
+                                                        <button class="dropdown-item" type="submit"
+                                                            style="font-size: 13px">Delete</button>
                                                     </form>
                                                 </div>
                                             </div>
@@ -60,8 +64,10 @@
                                     </tr>
                                 @endforeach
                             @else
-                                No Dossiers Avaliables
-                            @endunless
+                                <div class="mb-4 text-center">
+                                    <h4>No Dossiers Availables</h4>
+                                </div>
+                            @endif
                         </tbody>
                     </table>
                 </div>

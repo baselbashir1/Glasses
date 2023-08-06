@@ -25,7 +25,7 @@
         <div class="shadow-bottom"></div>
         <ul class="list-unstyled menu-categories" id="accordionExample">
             <li class="menu">
-                <a href="#dashboard" data-bs-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                <a href="/" class="dropdown-toggle">
                     <div class="">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                             fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -35,22 +35,7 @@
                         </svg>
                         <span>Dashboard</span>
                     </div>
-                    <div>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                            stroke-linejoin="round" class="feather feather-chevron-right">
-                            <polyline points="9 18 15 12 9 6"></polyline>
-                        </svg>
-                    </div>
                 </a>
-                <ul class="collapse submenu list-unstyled" id="dashboard" data-bs-parent="#accordionExample">
-                    <li>
-                        <a href="./index.html"> Analytics </a>
-                    </li>
-                    <li>
-                        <a href="./index2.html"> Sales </a>
-                    </li>
-                </ul>
             </li>
 
             <li class="menu menu-heading">
@@ -62,51 +47,15 @@
             </li>
 
             <li class="menu">
-                <a href="/dossiers" aria-expanded="false" class="dropdown-toggle">
-                    <div class="">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                            stroke-linejoin="round" class="feather feather-calendar">
-                            <rect x="3" y="4" width="18" height="18" rx="2"
-                                ry="2">
-                            </rect>
-                            <line x1="16" y1="2" x2="16" y2="6"></line>
-                            <line x1="8" y1="2" x2="8" y2="6"></line>
-                            <line x1="3" y1="10" x2="21" y2="10"></line>
-                        </svg>
-                        <span>Dossiers</span>
-                    </div>
-                </a>
-            </li>
-
-            <li class="menu">
-                <a href="/agents" aria-expanded="false" class="dropdown-toggle">
-                    <div class="">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                            stroke-linejoin="round" class="feather feather-calendar">
-                            <rect x="3" y="4" width="18" height="18" rx="2"
-                                ry="2">
-                            </rect>
-                            <line x1="16" y1="2" x2="16" y2="6"></line>
-                            <line x1="8" y1="2" x2="8" y2="6"></line>
-                            <line x1="3" y1="10" x2="21" y2="10"></line>
-                        </svg>
-                        <span>Agents</span>
-                    </div>
-                </a>
-            </li>
-
-            <li class="menu">
                 <a href="#invoice" data-bs-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                     <div class="">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                             fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                            stroke-linejoin="round" class="feather feather-dollar-sign">
-                            <line x1="12" y1="1" x2="12" y2="23"></line>
-                            <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                            stroke-linejoin="round" class="feather feather-file">
+                            <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path>
+                            <polyline points="13 2 13 9 20 9"></polyline>
                         </svg>
-                        <span>Invoices</span>
+                        <span>Dossiers</span>
                     </div>
                     <div>
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -118,10 +67,41 @@
                 </a>
                 <ul class="collapse submenu list-unstyled" id="invoice" data-bs-parent="#accordionExample">
                     <li>
-                        <a href="/invoices"> List </a>
+                        <a href="/dossiers"> List </a>
                     </li>
                     <li>
-                        <a href="/invoice/add"> Create </a>
+                        <a href="/dossier/add"> Create </a>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="menu">
+                <a href="#agent" data-bs-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                    <div class="">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" class="feather feather-users">
+                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="9" cy="7" r="4"></circle>
+                            <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                        </svg>
+                        <span>Agents</span>
+                    </div>
+                    <div>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" class="feather feather-chevron-right">
+                            <polyline points="9 18 15 12 9 6"></polyline>
+                        </svg>
+                    </div>
+                </a>
+                <ul class="collapse submenu list-unstyled" id="agent" data-bs-parent="#accordionExample">
+                    <li>
+                        <a href="/agents"> List </a>
+                    </li>
+                    <li>
+                        <a href="/agent/add"> Create </a>
                     </li>
                 </ul>
             </li>
