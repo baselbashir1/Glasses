@@ -1,53 +1,47 @@
 <x-base-layout>
 
-    <x-slot:pageTitle>Add Agent</x-slot>
+    <x-slot:pageTitle>Add Role</x-slot>
 
-        <div class="row mb-4 layout-spacing layout-top-spacing">
-            <form method="POST" action="/add-agent">
-                @csrf
-                <div class="col-xxl-9 col-xl-12 col-lg-12 col-md-12 col-sm-12">
-                    <div class="widget-content widget-content-area ecommerce-create-section">
-                        <div class="row mb-4">
-                            <div class="col-sm-12">
-                                <label for="name">Agent Name</label>
-                                <input type="text" name="name" class="form-control" placeholder="Agent Name">
+        <form action="/add-role" method="POST">
+            @csrf
+            <div class="row mt-4">
+                <div class="col-md-12">
+                    <div class="card mg-b-20">
+                        <div class="card-body">
+                            <div class="main-content-label mg-b-5 mb-4">
+                                <div class="col-xs-7 col-sm-7 col-md-7">
+                                    <div class="form-group">
+                                        <label>Permission Name:</label>
+                                        <input type="text" name="name" class="form-control">
+                                    </div>
+                                </div>
                             </div>
-                            @error('name')
-                                <p class="mt-2">{{ $message }}</p>
-                            @enderror
-                        </div>
-                        {{-- <div class="row mb-4">
-                            <div class="col-sm-12">
-                                <label for="phone">Agent Phone</label>
-                                <input type="text" name="phone" class="form-control" placeholder="Agent Phone">
-                            </div>
-                            @error('phone')
-                                <p class="mt-2">{{ $message }}</p>
-                            @enderror
-                        </div> --}}
-                        <div class="row mb-4">
-                            <div class="col-sm-12">
-                                <label for="category">Agent Category</label>
-                                <select name="category" class="form-control">
-                                    <option selected disabled>Choose Category</option>
-                                    @foreach ($agentCategories as $agentCategory)
-                                        <option value="{{ $agentCategory->id }}">{{ $agentCategory->category }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                            @error('category')
-                                <p class="mt-2">{{ $message }}</p>
-                            @enderror
-                        </div>
-                        <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 mt-4">
-                            <div class="col-sm-12">
-                                <button type="submit" class="btn btn-success w-100">Add Agent</button>
+                            <div class="row">
+                                <div class="col-lg-4 mt-4">
+                                    <div id="treeview1">
+                                        <label class="mb-3">Choose Permissions:</label>
+                                        <ul>
+                                            @foreach ($permissions as $permission)
+                                                <li>
+                                                    <label style="font-size: 16px;">
+                                                        <input type="checkbox" name="permission[]"
+                                                            value="{{ $permission->id }}" class="name">
+                                                        {{ $permission->name }}
+                                                    </label>
+                                                </li>
+                                            @endforeach
+                                        </ul>
+
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-12 text-center">
+                                    <button type="submit" class="btn btn-main-primary">Confirm</button>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </form>
-        </div>
+            </div>
+        </form>
 
-        <!--  END CUSTOM SCRIPTS FILE  -->
 </x-base-layout>

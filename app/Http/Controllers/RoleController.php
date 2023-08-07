@@ -11,10 +11,10 @@ class RoleController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('permission:role-list|role-create|role-edit|role-delete', ['only' => ['index', 'store']]);
-        $this->middleware('permission:role-create', ['only' => ['create', 'store']]);
-        $this->middleware('permission:role-edit', ['only' => ['edit', 'update']]);
-        $this->middleware('permission:role-delete', ['only' => ['destroy']]);
+        // $this->middleware('permission:roles', ['only' => ['index']]);
+        // $this->middleware('permission:add role', ['only' => ['create', 'store']]);
+        // $this->middleware('permission:edit role', ['only' => ['edit', 'update']]);
+        // $this->middleware('permission:delete role', ['only' => ['destroy']]);
     }
 
     public function index()
@@ -34,7 +34,7 @@ class RoleController extends Controller
     public function create()
     {
         $permissions = Permission::all();
-        return view('pages.roles.add', ['permission' => $permissions]);
+        return view('pages.roles.add', ['permissions' => $permissions]);
     }
 
     public function store(Request $request)
@@ -58,5 +58,26 @@ class RoleController extends Controller
             ->all();
 
         return view('pages.roles.edit', ['role' => $role, 'permissions' => $permissions, 'rolePermissions' => $rolePermissions]);
+    }
+
+    public function update(Request $request, Role $role)
+    {
+        $this->validate($request, [
+            'name' => 'required',
+            'permission' => 'required',
+        ]);
+
+        $role->name = $request->input('name');
+        $role->save();
+        $role->syncPermissions($request->input('permission'));
+
+        return redirect('/roles');
+    }
+
+    public function destroy(Role $role)
+    {
+        $role->delete();
+
+        return redirect('/roles');
     }
 }

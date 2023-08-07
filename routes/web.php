@@ -6,6 +6,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -65,6 +66,14 @@ Route::middleware('auth')->group(function () {
     Route::get('/dossier/{dossier}/invoice/{invoice}/edit', [InvoiceController::class, 'edit']);
     Route::post('/dossier/{dossier}/edit-invoice/{invoice}', [InvoiceController::class, 'update']);
     Route::post('/dossier/{dossier}/delete-invoice/{invoice}', [InvoiceController::class, 'destroy']);
+
+    Route::get('/roles', [RoleController::class, 'index']);
+    Route::get('/role/{role}/details', [RoleController::class, 'show']);
+    Route::get('/role/add', [RoleController::class, 'create']);
+    Route::post('/add-role', [RoleController::class, 'store']);
+    Route::get('/role/{role}/edit', [RoleController::class, 'edit']);
+    Route::post('/edit-role/{role}', [RoleController::class, 'update']);
+    Route::post('/delete-role/{role}', [RoleController::class, 'destroy']);
 });
 
 Route::get('/dashboard', function () {

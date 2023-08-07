@@ -1,94 +1,44 @@
 <x-base-layout>
 
-    <x-slot:pageTitle>Edit Agent</x-slot>
+    <x-slot:pageTitle>Edit Role</x-slot>
 
-        <div class="row mb-4 layout-spacing layout-top-spacing">
-            <form method="POST" action="/edit-agent/{{ $agent->id }}">
-                @csrf
-                <div class="col-xxl-9 col-xl-12 col-lg-12 col-md-12 col-sm-12">
-                    <div class="widget-content widget-content-area ecommerce-create-section">
-                        <div class="row mb-4">
-                            <div class="col-sm-12">
-                                <label for="name">Agent Name</label>
-                                <input type="text" name="name" class="form-control" value="{{ $agent->name }}">
+        {!! Form::model($role, ['method' => 'PATCH', 'route' => ['roles.update', $role->id]]) !!}
+        <!-- row -->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card mg-b-20">
+                    <div class="card-body">
+                        <div class="main-content-label mg-b-5">
+                            <div class="form-group">
+                                <p>اسم الصلاحية :</p>
+                                {!! Form::text('name', null, ['placeholder' => 'Name', 'class' => 'form-control']) !!}
                             </div>
-                            @error('name')
-                                <p class="mt-2">{{ $message }}</p>
-                            @enderror
                         </div>
-                        {{-- start checkbox --}}
-                        {{-- <div class="row mb-4" id="keep">
-                            <div class="col-sm-12">
-                                <label for="phone">Agent Phone</label>
-                                <input type="text" name="phone" class="form-control" value="{{ $agent->phone }}"
-                                    disabled>
+                        <div class="row">
+                            <!-- col -->
+                            <div class="col-lg-4">
+                                <ul id="treeview1">
+                                    <li><a href="#">الصلاحيات</a>
+                                        <ul>
+                                            <li>
+                                                @foreach ($permission as $per)
+                                                    <label>{{ Form::checkbox('permission[]', $per->id, in_array($per->id, $rolePermissions) ? true : false, ['class' => 'name']) }}
+                                                        {{ $per->name }}</label>
+                                                    <br />
+                                                @endforeach
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
                             </div>
-                            @error('phone')
-                                <p class="mt-2">{{ $message }}</p>
-                            @enderror
-                        </div> --}}
-                        {{-- <div class="row mb-4" id="change" style="display: none">
-                            <div class="col-sm-12">
-                                <label for="phone">Agent Phone</label>
-                                <input type="text" name="phone" class="form-control" value="{{ $agent->phone }}">
+                            <div class="col-xs-12 col-sm-12 col-md-12 text-center">
+                                <button type="submit" class="btn btn-main-primary">تحديث</button>
                             </div>
-                            @error('phone')
-                                <p class="mt-2">{{ $message }}</p>
-                            @enderror
-                        </div> --}}
-                        {{-- <div class="row mb-4">
-                            <div class="col-sm-12">
-                                <label for="check">Change Number</label>
-                                <input type="checkbox" name="check" id="changeNumber">
-                            </div>
-                        </div> --}}
-                        {{-- end checkbox --}}
-                        <div class="row mb-4">
-                            <div class="col-sm-12">
-                                <label for="category">Agent Category</label>
-                                <select name="category" class="form-control">
-                                    @foreach ($agentCategories as $agentCategory)
-                                        @if ($agent->agentCategory->id == $agentCategory->id)
-                                            <option value="{{ $agent->agentCategory->id }}" selected hidden>
-                                                {{ $agent->agentCategory->category }}</option>
-                                        @endif
-                                        <option value="{{ $agentCategory->id }}">{{ $agentCategory->category }}
-                                        </option>
-                                    @endforeach
-                                </select>
-                            </div>
-                            @error('category')
-                                <p class="mt-2">{{ $message }}</p>
-                            @enderror
-                        </div>
-                        <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 mt-4">
-                            <div class="col-sm-12">
-                                <button type="submit" class="btn btn-success w-100">Update Agent</button>
-                            </div>
+                            <!-- /col -->
                         </div>
                     </div>
                 </div>
-            </form>
+            </div>
         </div>
-
-        {{-- <script>
-            document.addEventListener('DOMContentLoaded', function() {
-                const changeNumber = document.getElementById('changeNumber');
-                const keepDiv = document.getElementById('keep');
-                const changeDiv = document.getElementById('change');
-
-                function updateChangeNumber() {
-                    if (changeNumber.checked) {
-                        keepDiv.style.display = 'none';
-                        changeDiv.style.display = 'block';
-                    } else {
-                        keepDiv.style.display = 'block';
-                        changeDiv.style.display = 'none';
-                    }
-                }
-
-                changeNumber.addEventListener('change', updateChangeNumber);
-            });
-        </script> --}}
 
 </x-base-layout>
