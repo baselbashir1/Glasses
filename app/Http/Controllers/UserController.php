@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\UserRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Http\Requests\UserRequest;
+use Illuminate\Support\Facades\DB;
+use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
@@ -21,7 +23,8 @@ class UserController extends Controller
 
     public function create()
     {
-        return view('pages.users.add');
+        $roles = Role::pluck('name', 'name')->all();
+        return view('pages.users.add', ['roles' => $roles]);
     }
 
     public function store(UserRequest $request)
@@ -32,20 +35,23 @@ class UserController extends Controller
             $formFields['image'] = $request->file('image')->store('images', 'public');
         }
 
-        User::create([
+        $user = User::create([
             'name' => $formFields['name'],
             'phone' => $formFields['phone'],
             'email' => $formFields['email'],
             'password' => $formFields['password'],
-            'image' => isset($formFields['image']) ? $formFields['image'] : null
+            'image' => isset($formFields['image']) ? $formFields['image'] : null,
         ]);
+        $user->assignRole($request->input('roles'));
 
         return redirect('/users');
     }
 
     public function edit(User $user)
     {
-        return view('pages.users.edit', ['user' => $user]);
+        $roles = Role::pluck('name', 'name')->all();
+        $userRole = $user->roles->pluck('name', 'name')->all();
+        return view('pages.users.edit', ['user' => $user, 'roles' => $roles, 'userRole' => $userRole]);
     }
 
     public function update(UserRequest $request, User $user)
@@ -63,6 +69,9 @@ class UserController extends Controller
             'password' => $formFields['password'],
             'image' => isset($formFields['image']) ? $formFields['image'] : $user->image
         ]);
+
+        DB::table('model_has_roles')->where('model_id', $user->id)->delete();
+        $user->assignRole($request->input('roles'));
 
         return redirect('/users');
     }

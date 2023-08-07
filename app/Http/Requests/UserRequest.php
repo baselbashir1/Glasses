@@ -28,7 +28,8 @@ class UserRequest extends FormRequest
             'email' => ['required', 'string', 'email'],
             'phone' => Rule::unique('users', 'phone')->ignore($id, 'id'),
             'password' => ['required', 'string'],
-            'image' => 'nullable'
+            'image' => 'nullable',
+            // 'roles' => 'required'
         ];
     }
 }
