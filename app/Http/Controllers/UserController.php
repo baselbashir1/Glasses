@@ -10,6 +10,14 @@ use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
+    public function __construct()
+    {
+        // $this->middleware('permission:users', ['only' => ['index']]);
+        $this->middleware('permission:add user', ['only' => ['create', 'store']]);
+        // $this->middleware('permission:edit user', ['only' => ['edit', 'update']]);
+        // $this->middleware('permission:delete user', ['only' => ['destroy']]);
+    }
+
     public function index()
     {
         $users = User::all();
@@ -24,6 +32,7 @@ class UserController extends Controller
     public function create()
     {
         $roles = Role::pluck('name', 'name')->all();
+        // $roles = Role::all();
         return view('pages.users.add', ['roles' => $roles]);
     }
 
@@ -37,12 +46,12 @@ class UserController extends Controller
 
         $user = User::create([
             'name' => $formFields['name'],
-            'phone' => $formFields['phone'],
             'email' => $formFields['email'],
             'password' => $formFields['password'],
             'image' => isset($formFields['image']) ? $formFields['image'] : null,
+            'roles' => $formFields['roles']
         ]);
-        $user->assignRole($request->input('roles'));
+        $user->assignRole($formFields['roles']);
 
         return redirect('/users');
     }
@@ -64,14 +73,15 @@ class UserController extends Controller
 
         $user->update([
             'name' => $formFields['name'],
-            'phone' => $formFields['phone'],
             'email' => $formFields['email'],
             'password' => $formFields['password'],
-            'image' => isset($formFields['image']) ? $formFields['image'] : $user->image
+            'image' => isset($formFields['image']) ? $formFields['image'] : $user->image,
+            'roles' => $formFields['roles']
         ]);
 
         DB::table('model_has_roles')->where('model_id', $user->id)->delete();
-        $user->assignRole($request->input('roles'));
+        // $user->assignRole($request->input('roles'));
+        $user->assignRole($formFields['roles']);
 
         return redirect('/users');
     }

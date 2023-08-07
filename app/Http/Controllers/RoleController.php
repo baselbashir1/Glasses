@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\RoleRequest;
 use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
@@ -37,14 +38,14 @@ class RoleController extends Controller
         return view('pages.roles.add', ['permissions' => $permissions]);
     }
 
-    public function store(Request $request)
+    public function store(RoleRequest $request)
     {
-        $this->validate($request, [
-            'name' => 'required|unique:roles,name',
-            'permission' => 'required',
+        $formFields = $request->validated();
+
+        $role = Role::create([
+            'name' => $formFields['name']
         ]);
-        $role = Role::create(['name' => $request->input('name')]);
-        $role->syncPermissions($request->input('permission'));
+        $role->syncPermissions($formFields['permission']);
 
         return redirect('/roles');
     }
@@ -60,16 +61,14 @@ class RoleController extends Controller
         return view('pages.roles.edit', ['role' => $role, 'permissions' => $permissions, 'rolePermissions' => $rolePermissions]);
     }
 
-    public function update(Request $request, Role $role)
+    public function update(RoleRequest $request, Role $role)
     {
-        $this->validate($request, [
-            'name' => 'required',
-            'permission' => 'required',
-        ]);
+        $formFields = $request->validated();
 
-        $role->name = $request->input('name');
-        $role->save();
-        $role->syncPermissions($request->input('permission'));
+        $role->update([
+            'name' => $formFields['name']
+        ]);
+        $role->syncPermissions($formFields['permission']);
 
         return redirect('/roles');
     }

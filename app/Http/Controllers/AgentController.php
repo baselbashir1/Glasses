@@ -11,6 +11,14 @@ use App\Models\Invoice;
 
 class AgentController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:agents', ['only' => ['index']]);
+        $this->middleware('permission:add agent', ['only' => ['create', 'store']]);
+        $this->middleware('permission:edit agent', ['only' => ['edit', 'update']]);
+        $this->middleware('permission:delete agent', ['only' => ['destroy']]);
+    }
+
     public function index()
     {
         $agents = Agent::all();

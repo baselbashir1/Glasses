@@ -11,6 +11,11 @@ use App\Http\Requests\InvoiceRequest;
 
 class DossierController extends Controller
 {
+    function __construct()
+    {
+        $this->middleware('permission:dossiers', ['only' => ['index']]);
+    }
+
     public function index()
     {
         $dossiers = Dossier::all();

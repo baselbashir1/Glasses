@@ -23,6 +23,7 @@
                                 <th>Email</th>
                                 <th>Password</th>
                                 <th>Picture</th>
+                                {{-- <th>Roles</th> --}}
                                 <th class="no-content text-center">Action</th>
                             </tr>
                         </thead>
@@ -44,6 +45,13 @@
                                                 </div>
                                             </div>
                                         </td>
+                                        {{-- <td>
+                                            @if (!empty($user->getRoleNames()))
+                                                @foreach ($user->getRoleNames() as $role)
+                                                    <label class="badge badge-success">{{ $role }}</label>
+                                                @endforeach
+                                            @endif
+                                        </td> --}}
                                         <td class="text-center">
                                             <div class="dropdown">
                                                 <a class="dropdown-toggle" href="#" role="button"

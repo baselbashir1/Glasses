@@ -14,6 +14,14 @@ use Illuminate\Http\Request;
 
 class InvoiceController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:invoices', ['only' => ['index']]);
+        $this->middleware('permission:add invoice', ['only' => ['create', 'store']]);
+        $this->middleware('permission:edit invoice', ['only' => ['edit', 'update']]);
+        $this->middleware('permission:delete invoice', ['only' => ['destroy']]);
+    }
+
     public function index()
     {
         $invoices = Invoice::all();

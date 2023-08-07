@@ -33,7 +33,11 @@ class PermissionSeeder extends Seeder
             'roles',
             'add role',
             'edit role',
-            'delete role'
+            'delete role',
+            'invoices',
+            'add invoice',
+            'edit invoice',
+            'delete invoice'
         ];
 
         foreach ($permissions as $permission) {

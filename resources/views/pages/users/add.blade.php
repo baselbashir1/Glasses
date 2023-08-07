@@ -9,14 +9,14 @@
                     <div class="widget-content widget-content-area ecommerce-create-section">
                         <div class="row mb-4">
                             <div class="col-sm-12">
-                                <label for="brand">Name</label>
+                                <label for="name">Name</label>
                                 <input type="text" name="name" class="form-control" placeholder="User Name">
                             </div>
                             @error('name')
                                 <p class="mt-2">{{ $message }}</p>
                             @enderror
                         </div>
-                        <div class="row mb-4">
+                        {{-- <div class="row mb-4">
                             <div class="col-sm-12">
                                 <label for="phone">Phone Number</label>
                                 <input type="text" name="phone" class="form-control" placeholder="Phone Number">
@@ -24,7 +24,7 @@
                             @error('phone')
                                 <p class="mt-2">{{ $message }}</p>
                             @enderror
-                        </div>
+                        </div> --}}
                         <div class="row mb-4">
                             <div class="col-sm-12">
                                 <label for="email">Email Address</label>
@@ -49,6 +49,29 @@
                                 <input type="file" name="image" class="form-control">
                             </div>
                             @error('image')
+                                <p class="mt-2">{{ $message }}</p>
+                            @enderror
+                        </div>
+                        <div class="row mb-4">
+                            <div class="col-sm-12">
+                                <label class="form-label">ROLES</label>
+                                {!! Form::select('roles[]', $roles, [], ['class' => 'form-control', 'multiple']) !!}
+                                {{-- <select name="roles[]" class="form-control" multiple>
+                                    @foreach ($roles as $role)
+                                        <option value="{{ $role->id }}">{{ $role->name }}</option>
+                                    @endforeach
+                                </select> --}}
+                                {{-- @foreach ($roles as $role)
+                                    <li>
+                                        <label style="font-size: 16px;">
+                                            <input type="checkbox" name="roles[]" value="{{ $role->id }}"
+                                                class="name">
+                                            {{ $role->name }}
+                                        </label>
+                                    </li>
+                                @endforeach --}}
+                            </div>
+                            @error('roles')
                                 <p class="mt-2">{{ $message }}</p>
                             @enderror
                         </div>
