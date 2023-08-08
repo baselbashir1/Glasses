@@ -46,13 +46,17 @@
                                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuLink1">
                                                     <a class="dropdown-item"
                                                         href="/role/{{ $role->id }}/details">View</a>
-                                                    <a class="dropdown-item"
-                                                        href="/role/{{ $role->id }}/edit">Edit</a>
-                                                    <form action="/delete-role/{{ $role->id }}" method="POST">
-                                                        @csrf
-                                                        <button class="dropdown-item" type="submit"
-                                                            style="font-size: 13px">Delete</button>
-                                                    </form>
+                                                    @can('edit role')
+                                                        <a class="dropdown-item"
+                                                            href="/role/{{ $role->id }}/edit">Edit</a>
+                                                    @endcan
+                                                    @can('delete role')
+                                                        <form action="/delete-role/{{ $role->id }}" method="POST">
+                                                            @csrf
+                                                            <button class="dropdown-item" type="submit"
+                                                                style="font-size: 13px">Delete</button>
+                                                        </form>
+                                                    @endcan
                                                 </div>
                                             </div>
                                         </td>

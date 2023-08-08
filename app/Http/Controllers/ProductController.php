@@ -17,6 +17,7 @@ class ProductController extends Controller
         $this->middleware('permission:edit product', ['only' => ['edit', 'update']]);
         $this->middleware('permission:delete product', ['only' => ['destroy']]);
     }
+
     public function index()
     {
         $products = Product::all();

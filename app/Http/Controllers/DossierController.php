@@ -11,9 +11,12 @@ use App\Http\Requests\InvoiceRequest;
 
 class DossierController extends Controller
 {
-    function __construct()
+    public function __construct()
     {
         $this->middleware('permission:dossiers', ['only' => ['index']]);
+        $this->middleware('permission:add dossier', ['only' => ['create', 'store']]);
+        $this->middleware('permission:edit dossier', ['only' => ['edit', 'update']]);
+        $this->middleware('permission:delete dossier', ['only' => ['destroy']]);
     }
 
     public function index()

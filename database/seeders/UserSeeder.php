@@ -18,8 +18,7 @@ class UserSeeder extends Seeder
             'email' => 'baselbashir@gmail.com',
             'email_verified_at' => now(),
             'password' => bcrypt('12345678'),
-            // 'roles' => ['owner'],
-            'created_at' => now()
+            'role' => 'user'
         ])->assignRole('user');
     }
 }

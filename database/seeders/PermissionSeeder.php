@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
@@ -40,8 +42,13 @@ class PermissionSeeder extends Seeder
             'delete invoice'
         ];
 
+        // $role = Role::where('name', 'admin')->first();
         foreach ($permissions as $permission) {
-            Permission::create(['name' => $permission]);
+            $permission = Permission::create(['name' => $permission]);
+            // DB::table('role_has_permissions')->create([
+            //     'role_id' => $role->id,
+            //     'permission_id' => $permission->id
+            // ]);
         }
     }
 }

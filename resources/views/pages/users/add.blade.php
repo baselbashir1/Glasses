@@ -16,15 +16,6 @@
                                 <p class="mt-2">{{ $message }}</p>
                             @enderror
                         </div>
-                        {{-- <div class="row mb-4">
-                            <div class="col-sm-12">
-                                <label for="phone">Phone Number</label>
-                                <input type="text" name="phone" class="form-control" placeholder="Phone Number">
-                            </div>
-                            @error('phone')
-                                <p class="mt-2">{{ $message }}</p>
-                            @enderror
-                        </div> --}}
                         <div class="row mb-4">
                             <div class="col-sm-12">
                                 <label for="email">Email Address</label>
@@ -54,22 +45,13 @@
                         </div>
                         <div class="row mb-4">
                             <div class="col-sm-12">
-                                <label class="form-label">ROLES</label>
-                                {!! Form::select('roles[]', $roles, [], ['class' => 'form-control', 'multiple']) !!}
-                                {{-- <select name="roles[]" class="form-control" multiple>
+                                <label class="form-label">Role</label>
+                                <select name="role" class="form-control">
+                                    <option selected disabled>Choose Role</option>
                                     @foreach ($roles as $role)
-                                        <option value="{{ $role->id }}">{{ $role->name }}</option>
+                                        <option value="{{ $role->name }}">{{ $role->name }}</option>
                                     @endforeach
-                                </select> --}}
-                                {{-- @foreach ($roles as $role)
-                                    <li>
-                                        <label style="font-size: 16px;">
-                                            <input type="checkbox" name="roles[]" value="{{ $role->id }}"
-                                                class="name">
-                                            {{ $role->name }}
-                                        </label>
-                                    </li>
-                                @endforeach --}}
+                                </select>
                             </div>
                             @error('roles')
                                 <p class="mt-2">{{ $message }}</p>
@@ -85,6 +67,4 @@
             </form>
         </div>
 
-
-        <!--  END CUSTOM SCRIPTS FILE  -->
 </x-base-layout>

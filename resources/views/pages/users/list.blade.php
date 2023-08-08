@@ -23,7 +23,7 @@
                                 <th>Email</th>
                                 <th>Password</th>
                                 <th>Picture</th>
-                                {{-- <th>Roles</th> --}}
+                                <th>Role</th>
                                 <th class="no-content text-center">Action</th>
                             </tr>
                         </thead>
@@ -45,13 +45,11 @@
                                                 </div>
                                             </div>
                                         </td>
-                                        {{-- <td>
-                                            @if (!empty($user->getRoleNames()))
-                                                @foreach ($user->getRoleNames() as $role)
-                                                    <label class="badge badge-success">{{ $role }}</label>
-                                                @endforeach
-                                            @endif
-                                        </td> --}}
+                                        <td>
+                                            @foreach ($user->roles as $role)
+                                                {{ $role->name }}
+                                            @endforeach
+                                        </td>
                                         <td class="text-center">
                                             <div class="dropdown">
                                                 <a class="dropdown-toggle" href="#" role="button"
@@ -68,8 +66,6 @@
                                                 </a>
 
                                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuLink1">
-                                                    <a class="dropdown-item"
-                                                        href="/user/{{ $user->id }}/details">View</a>
                                                     <a class="dropdown-item" href="/user/{{ $user->id }}/edit">Edit</a>
                                                     <form action="/delete-user/{{ $user->id }}" method="POST">
                                                         @csrf

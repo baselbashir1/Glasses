@@ -18,15 +18,6 @@
                         </div>
                         <div class="row mb-4">
                             <div class="col-sm-12">
-                                <label for="phone">Phone</label>
-                                <input type="text" name="phone" class="form-control" value="{{ $user->phone }}">
-                            </div>
-                            @error('phone')
-                                <p class="mt-2">{{ $message }}</p>
-                            @enderror
-                        </div>
-                        <div class="row mb-4">
-                            <div class="col-sm-12">
                                 <label for="email">Email Address</label>
                                 <input type="email" name="email" class="form-control" value="{{ $user->email }}">
                             </div>
@@ -61,17 +52,18 @@
                                 <p class="mt-2">{{ $message }}</p>
                             @enderror
                         </div>
-                        {{-- <div class="row mb-4">
-                            <div class="col-sm-12">
-                                <label for="image">Picture</label>
-                                <img src="{{ Vite::asset('public/storage/' . $user->image) }}"
-                                    alt="{{ $user->image }}">
-                                <input type="file" name="image" class="form-control" value="{{ $user->image }}">
-                            </div>
-                            @error('image')
-                                <p class="mt-2">{{ $message }}</p>
-                            @enderror
-                        </div> --}}
+                        <div class="col-sm-12">
+                            <label class="form-label">Role</label>
+                            <select name="role" class="form-control">
+                                <option selected disabled>{{ $user->role }}</option>
+                                @foreach ($roles as $role)
+                                    <option value="{{ $role->name }}">{{ $role->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        @error('roles')
+                            <p class="mt-2">{{ $message }}</p>
+                        @enderror
                         <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 mt-4">
                             <div class="col-sm-12">
                                 <button type="submit" class="btn btn-success w-100">Update User</button>
@@ -82,6 +74,4 @@
             </form>
         </div>
 
-
-        <!--  END CUSTOM SCRIPTS FILE  -->
 </x-base-layout>

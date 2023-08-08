@@ -14,8 +14,8 @@ class UserController extends Controller
     {
         $this->middleware('permission:users', ['only' => ['index']]);
         $this->middleware('permission:add user', ['only' => ['create', 'store']]);
-        // $this->middleware('permission:edit user', ['only' => ['edit', 'update']]);
-        // $this->middleware('permission:delete user', ['only' => ['destroy']]);
+        $this->middleware('permission:edit user', ['only' => ['edit', 'update']]);
+        $this->middleware('permission:delete user', ['only' => ['destroy']]);
     }
 
     public function index()
@@ -24,15 +24,9 @@ class UserController extends Controller
         return view('pages.users.list', ['users' => $users]);
     }
 
-    public function show(User $user)
-    {
-        return view('pages.users.detail', ['user' => $user]);
-    }
-
     public function create()
     {
-        $roles = Role::pluck('name', 'name')->all();
-        // $roles = Role::all();
+        $roles = Role::all();
         return view('pages.users.add', ['roles' => $roles]);
     }
 
@@ -49,18 +43,17 @@ class UserController extends Controller
             'email' => $formFields['email'],
             'password' => $formFields['password'],
             'image' => isset($formFields['image']) ? $formFields['image'] : null,
-            'roles' => $formFields['roles']
+            'role' => $formFields['role']
         ]);
-        $user->assignRole($formFields['roles']);
+        $user->assignRole($formFields['role']);
 
         return redirect('/users');
     }
 
     public function edit(User $user)
     {
-        $roles = Role::pluck('name', 'name')->all();
-        $userRole = $user->roles->pluck('name', 'name')->all();
-        return view('pages.users.edit', ['user' => $user, 'roles' => $roles, 'userRole' => $userRole]);
+        $roles = Role::all();
+        return view('pages.users.edit', ['user' => $user, 'roles' => $roles]);
     }
 
     public function update(UserRequest $request, User $user)
@@ -76,12 +69,11 @@ class UserController extends Controller
             'email' => $formFields['email'],
             'password' => $formFields['password'],
             'image' => isset($formFields['image']) ? $formFields['image'] : $user->image,
-            'roles' => $formFields['roles']
+            'role' => $formFields['role']
         ]);
 
         DB::table('model_has_roles')->where('model_id', $user->id)->delete();
-        // $user->assignRole($request->input('roles'));
-        $user->assignRole($formFields['roles']);
+        $user->assignRole($formFields['role']);
 
         return redirect('/users');
     }
