@@ -159,22 +159,15 @@
                             <div class="col-xl-3">
                                 <div class="invoice-actions-btn">
                                     <div class="invoice-action-btn">
-                                        {{-- <div class="row">
-                                            <div class="col-xl-12 col-md-3 col-sm-6">
-                                                <a href="javascript:void(0);" class="btn btn-primary btn-send">Send
-                                                    Invoice</a>
-                                            </div> --}}
                                         <div class="col-xl-12 col-md-3 col-sm-6">
                                             <a href="javascript:void(0);"
                                                 class="btn btn-secondary btn-print  action-print">Print</a>
                                         </div>
-                                        {{-- <div class="col-xl-12 col-md-3 col-sm-6">
-                                                <a href="javascript:void(0);"
-                                                    class="btn btn-success btn-download">Download</a>
-                                            </div> --}}
-                                        <div class="col-xl-12 col-md-3 col-sm-6">
-                                            <a href="#" class="btn btn-dark btn-edit">Edit</a>
-                                        </div>
+                                        @can('edit invoice')
+                                            <div class="col-xl-12 col-md-3 col-sm-6">
+                                                <a href="#" class="btn btn-dark btn-edit">Edit</a>
+                                            </div>
+                                        @endcan
                                     </div>
                                 </div>
                             </div>

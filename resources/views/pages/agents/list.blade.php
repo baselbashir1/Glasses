@@ -2,13 +2,15 @@
 
     <x-slot:pageTitle>Agents</x-slot>
 
-        <div class="row layout-top-spacing">
-            <div class="col-xl-12 col-lg-6">
-                <a href="/agent/add" class="btn btn-primary w-100 btn-lg mb-4">
-                    <span class="btn-text-inner">Add Agent</span>
-                </a>
+        @can('add agent')
+            <div class="row layout-top-spacing">
+                <div class="col-xl-12 col-lg-6">
+                    <a href="/agent/add" class="btn btn-primary w-100 btn-lg mb-4">
+                        <span class="btn-text-inner">Add Agent</span>
+                    </a>
+                </div>
             </div>
-        </div>
+        @endcan
 
         <div class="row layout-top-spacing">
             <div class="col-xl-12 col-lg-12 col-sm-12  layout-spacing">
@@ -18,7 +20,6 @@
                             <tr>
                                 <th class="checkbox-column"></th>
                                 <th>Agent Name</th>
-                                {{-- <th>Agent Phone</th> --}}
                                 <th>Agent Category</th>
                                 <th>Creation Date</th>
                                 <th class="no-content text-center">Action</th>
@@ -30,7 +31,6 @@
                                     <tr>
                                         <td>{{ $agent->id }}</td>
                                         <td>{{ $agent->name }}</td>
-                                        {{-- <td>{{ $agent->phone }}</td> --}}
                                         <td>{{ $agent->agentCategory->category }}</td>
                                         <td>{{ $agent->created_at }}</td>
                                         <td class="text-center">
@@ -49,13 +49,17 @@
                                                 </a>
 
                                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuLink1">
-                                                    <a class="dropdown-item"
-                                                        href="/agent/{{ $agent->id }}/edit">Edit</a>
-                                                    <form action="/delete-agent/{{ $agent->id }}" method="POST">
-                                                        @csrf
-                                                        <button class="dropdown-item" type="submit"
-                                                            style="font-size: 13px">Delete</button>
-                                                    </form>
+                                                    @can('edit agent')
+                                                        <a class="dropdown-item"
+                                                            href="/agent/{{ $agent->id }}/edit">Edit</a>
+                                                    @endcan
+                                                    @can('delete agent')
+                                                        <form action="/delete-agent/{{ $agent->id }}" method="POST">
+                                                            @csrf
+                                                            <button class="dropdown-item" type="submit"
+                                                                style="font-size: 13px">Delete</button>
+                                                        </form>
+                                                    @endcan
                                                 </div>
                                             </div>
                                         </td>
@@ -71,6 +75,5 @@
                 </div>
             </div>
         </div>
-
 
 </x-base-layout>

@@ -28,7 +28,7 @@
         </div>
 
         <div class="row">
-            @unless (count((array) $dossiers) == 0)
+            @if (count($dossiers))
                 @foreach ($dossiers as $dossier)
                     <div class="col-xxl-2 col-xl-3 col-lg-3 col-md-4 col-sm-6 mb-4">
                         <a class="card style-6" href="/dossier/{{ $dossier->id }}/details">
@@ -58,7 +58,9 @@
                     </div>
                 @endforeach
             @else
-                <div class="container"></div>
-            @endunless
+                <div class="mb-4 text-center">
+                    <h4>No Dossiers Availables</h4>
+                </div>
+            @endif
         </div>
 </x-base-layout>

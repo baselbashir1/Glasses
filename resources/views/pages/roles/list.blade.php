@@ -2,15 +2,15 @@
 
     <x-slot:pageTitle>Roles</x-slot>
 
-        {{-- @can('w') --}}
-        <div class="row layout-top-spacing">
-            <div class="col-xl-12 col-lg-6">
-                <a href="/role/add" class="btn btn-primary w-100 btn-lg mb-4">
-                    <span class="btn-text-inner">Add Role</span>
-                </a>
+        @can('add role')
+            <div class="row layout-top-spacing">
+                <div class="col-xl-12 col-lg-6">
+                    <a href="/role/add" class="btn btn-primary w-100 btn-lg mb-4">
+                        <span class="btn-text-inner">Add Role</span>
+                    </a>
+                </div>
             </div>
-        </div>
-        {{-- @endcan --}}
+        @endcan
 
         <div class="row layout-top-spacing">
             <div class="col-xl-12 col-lg-12 col-sm-12  layout-spacing">
@@ -44,8 +44,10 @@
                                                     </svg>
                                                 </a>
                                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuLink1">
-                                                    <a class="dropdown-item"
-                                                        href="/role/{{ $role->id }}/details">View</a>
+                                                    @can('view role')
+                                                        <a class="dropdown-item"
+                                                            href="/role/{{ $role->id }}/details">View</a>
+                                                    @endcan
                                                     @can('edit role')
                                                         <a class="dropdown-item"
                                                             href="/role/{{ $role->id }}/edit">Edit</a>

@@ -7,15 +7,12 @@
                 <div class="widget-content widget-content-area br-8">
                     <div class="row justify-content-center">
                         <div class="col-xxl-5 col-xl-6 col-lg-7 col-md-7 col-sm-9 col-12 pe-3">
-                            <!-- Swiper -->
                             <div id="thumbnail-slider" class="splide">
                                 <div class="splide__track">
                                     <img alt="ecommerce" src="{{ Vite::asset('public/storage/' . $product->image) }}"
                                         style="width: 70%; height: 70%; border:2px solid black;">
                                 </div>
                             </div>
-
-
                         </div>
 
                         <div class="col-xxl-4 col-xl-5 col-lg-12 col-md-12 col-12 mt-xl-0 mt-5 align-self-center">
@@ -55,7 +52,6 @@
                                         {{ $product->color }}
                                     </div>
                                 </div>
-
                                 @if ($product->productType->id == 3)
                                     @foreach ($lensesGrades as $lensesGrade)
                                         @if ($product->id == $lensesGrade->product_id)

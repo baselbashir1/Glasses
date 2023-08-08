@@ -35,20 +35,6 @@
                                 <p class="mt-2">{{ $message }}</p>
                             @enderror
                         </div>
-                        {{-- <div class="row mb-4">
-                            <div class="col-sm-12">
-                                <label for="dossier">Dossier</label>
-                                <select name="dossier" class="form-control">
-                                    <option selected disabled>Choose Dossier</option>
-                                    @foreach ($dossiers as $dossier)
-                                        <option value="{{ $dossier->id }}">{{ $dossier->phone }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                            @error('dossier')
-                                <p class="mt-2">{{ $message }}</p>
-                            @enderror
-                        </div> --}}
                         <div class="row mb-4">
                             <div class="col-sm-12">
                                 <label for="product">Product</label>
@@ -77,27 +63,6 @@
                                 <p class="mt-2">{{ $message }}</p>
                             @enderror
                         </div>
-
-                        {{-- <div class="row mb-4" id="lenses_grade" style="display: none">
-                            <div class="col-sm-12">
-                                <label for="lenses_grade">Lenses Grade</label>
-                                <input type="text" name="lenses_grade" class="form-control"
-                                    placeholder="Lenses Grade">
-                            </div>
-                            @error('lenses_grade')
-                                <p class="mt-2">{{ $message }}</p>
-                            @enderror
-                        </div>
-                        <div class="row mb-4" id="lenses_description" style="display: none">
-                            <div class="col-sm-12">
-                                <label for="lenses_description">Lenses Description</label>
-                                <textarea name="lenses_description" class="form-control" cols="30" rows="10">Lenses Description</textarea>
-                            </div>
-                            @error('lenses_description')
-                                <p class="mt-2">{{ $message }}</p>
-                            @enderror
-                        </div> --}}
-
                         <div class="row mb-4">
                             <div class="col-sm-12">
                                 <label for="product_price">Product Price</label>
@@ -189,17 +154,6 @@
                                 category + '">' + category + '</option>');
                         })
                         .catch(error => console.error(error));
-
-                    fetch(`/get-dossier-phone-number/${selectedAgentId}`)
-                        .then(response => response.json())
-                        .then(data => {
-                            const id = data.id;
-                            const phone = data.phone;
-                            $('select[name="dossier"]').empty();
-                            $('select[name="dossier"]').append('<option value="' +
-                                id + '">' + phone + '</option>');
-                        })
-                        .catch(error => console.error(error));
                 }
 
                 function updateProductSelected() {
@@ -214,14 +168,6 @@
                             $('select[name="product_type"]').empty();
                             $('select[name="product_type"]').append('<option value="' +
                                 type + '">' + type + '</option>');
-
-                            // lensesGrade.style.display = 'none';
-                            // lensesDescription.style.display = 'none';
-
-                            // if (type === '3') {
-                            //     lensesGrade.style.display = 'block';
-                            //     lensesDescription.style.display = 'block';
-                            // }
                         })
                         .catch(error => console.error(error));
 
@@ -241,7 +187,6 @@
 
                 agent.addEventListener('change', updateAgentSelected);
                 product.addEventListener('change', updateProductSelected);
-                // product.addEventListener('click', updateProductSelected);
             });
         </script>
 
@@ -262,27 +207,5 @@
                 paidAmountInput.addEventListener('input', updateRemainingAmount);
             });
         </script>
-
-        {{-- <script>
-            document.addEventListener('DOMContentLoaded', function() {
-                const productType = document.getElementById('productType');
-                const lensesGrade = document.getElementById('lenses_grade');
-                const lensesDescription = document.getElementById('lenses_description');
-
-                function updateSelected() {
-                    const selectedOption = productType.value;
-
-                    lensesGrade.style.display = 'none';
-                    lensesDescription.style.display = 'none';
-
-                    if (selectedOption === '3') {
-                        lensesGrade.style.display = 'block';
-                        lensesDescription.style.display = 'block';
-                    }
-                }
-
-                productType.addEventListener('change', updateSelected);
-            });
-        </script> --}}
 
 </x-base-layout>

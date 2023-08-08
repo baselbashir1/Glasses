@@ -9,7 +9,8 @@
                         <div class="row">
                             <div class="col-lg-4">
                                 <label class="mb-3">Role Name:
-                                    <b style="font-size: 18px">{{ $role->name }}</b></label>
+                                    <b style="font-size: 18px">{{ $role->name }}</b>
+                                </label>
                                 <ul>
                                     @foreach ($rolePermissions as $rolePermission)
                                         <li>{{ $rolePermission->name }}</li>

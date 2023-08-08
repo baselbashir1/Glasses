@@ -2,13 +2,15 @@
 
     <x-slot:pageTitle>Invoices</x-slot>
 
-        <div class="row layout-top-spacing">
-            <div class="col-xl-12 col-lg-6">
-                <a href="/invoice/add" class="btn btn-primary w-100 btn-lg mb-4">
-                    <span class="btn-text-inner">Add Invoice</span>
-                </a>
+        @can('add invoice')
+            <div class="row layout-top-spacing">
+                <div class="col-xl-12 col-lg-6">
+                    <a href="/invoice/add" class="btn btn-primary w-100 btn-lg mb-4">
+                        <span class="btn-text-inner">Add Invoice</span>
+                    </a>
+                </div>
             </div>
-        </div>
+        @endcan
 
         <div class="row layout-top-spacing">
             <div class="col-xl-12 col-lg-12 col-sm-12 layout-spacing">
@@ -74,14 +76,20 @@
                                                     </svg>
                                                 </a>
                                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuLink1">
-                                                    <a class="dropdown-item"
-                                                        href="/invoice/{{ $invoice->id }}/details">View</a>
-                                                    <a class="dropdown-item"
-                                                        href="/invoice/{{ $invoice->id }}/edit">Edit</a>
-                                                    <form action="/delete-invoice/{{ $invoice->id }}" method="POST">
-                                                        @csrf
-                                                        <button type="submit">Delete</button>
-                                                    </form>
+                                                    @can('view invoice')
+                                                        <a class="dropdown-item"
+                                                            href="/invoice/{{ $invoice->id }}/details">View</a>
+                                                    @endcan
+                                                    @can('edit invoice')
+                                                        <a class="dropdown-item"
+                                                            href="/invoice/{{ $invoice->id }}/edit">Edit</a>
+                                                    @endcan
+                                                    @can('delete invoice')
+                                                        <form action="/delete-invoice/{{ $invoice->id }}" method="POST">
+                                                            @csrf
+                                                            <button type="submit">Delete</button>
+                                                        </form>
+                                                    @endcan
                                                 </div>
                                             </div>
                                         </td>
@@ -89,7 +97,7 @@
                                 @endforeach
                             @else
                                 <div class="mb-4 text-center">
-                                    <h4>No Products Availables</h4>
+                                    <h4>No Invoices Availables</h4>
                                 </div>
                             @endif
                         </tbody>

@@ -15,13 +15,7 @@
                         <div class="row mb-4">
                             <select name="agent" class="form-control m-1" id="agent" style="width: 45%">
                                 <option value="{{ $invoice->agent->id }}" selected>{{ $invoice->agent->name }}</option>
-                                {{-- @foreach ($agents as $agnet)
-                                    <option value="{{ $agnet->id }}">{{ $agnet->name }}</option>
-                                @endforeach --}}
                             </select>
-                            {{-- <div class="form-control m-1" style="width: 45%">{{ $invoice->agent->name }}</div> --}}
-                            {{-- <div class="form-control m-1" style="width: 45%">
-                                {{ $invoice->agent->agentCategory->category }}</div> --}}
                             <select name="agent_category" class="form-control m-1" style="width: 45%">
                                 <option value="{{ $invoice->agent->agentCategory->id }}" selected>
                                     {{ $invoice->agent->agentCategory->category }}</option>
@@ -36,7 +30,6 @@
                                 <option value="{{ $invoice->dossier->id }}" selected>
                                     {{ $invoice->dossier->phone }}</option>
                             </select>
-                            {{-- <div class="form-control m-1" style="width: 45%">{{ $invoice->dossier_id }}</div> --}}
                             <select name="product" class="form-control m-1" id="product"
                                 style="width: 45%; border-width: 3px; border-color:lightseagreen">
                                 @foreach ($products as $product)
@@ -60,13 +53,7 @@
                             <select name="product_type" class="form-control m-1" style="width: 45%" id="product_type">
                                 <option value="{{ $invoice->product->productType->id }}" selected>
                                     {{ $invoice->product->productType->type }}</option>
-                                {{-- @foreach ($productTypes as $productType)
-                                    <option value="{{ $productType->id }}">{{ $productType->type }}</option>
-                                @endforeach --}}
                             </select>
-                            {{-- <div class="form-control m-1" style="width: 45%" id="product_type">
-                                {{ $invoice->product->productType->type }}
-                            </div> --}}
                             <input type="text" name="product_price" class="form-control m-1" id="product_price"
                                 value="{{ $invoice->product->price }}" style="width: 45%; pointer-events: none;">
                         </div>
@@ -94,11 +81,6 @@
                         <div class="row mb-4">
                             <select name="payment_status" class="form-control m-1"
                                 style="width: 45%; border-width: 3px; border-color:lightseagreen">
-                                {{-- <option selected disabled>Choose Status</option>
-                                @foreach ($paymentStatuses as $paymentStatus)
-                                    <option value="{{ $paymentStatus->id }}">{{ $paymentStatus->status }}
-                                    </option>
-                                @endforeach --}}
                                 @foreach ($paymentStatuses as $paymentStatus)
                                     @if ($invoice->paymentStatus->id == $paymentStatus->id)
                                         <option value="{{ $invoice->paymentStatus->id }}" selected hidden>
@@ -197,5 +179,4 @@
             });
         </script>
 
-        <!--  END CUSTOM SCRIPTS FILE  -->
 </x-base-layout>

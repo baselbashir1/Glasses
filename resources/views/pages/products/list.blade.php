@@ -2,16 +2,17 @@
 
     <x-slot:pageTitle>Products</x-slot>
 
-        <div class="row layout-top-spacing">
-            <div class="col-xl-12 col-lg-6">
-                <a href="/product/add" class="btn btn-primary w-100 btn-lg mb-4">
-                    <span class="btn-text-inner">Add Product</span>
-                </a>
+        @can('add product')
+            <div class="row layout-top-spacing">
+                <div class="col-xl-12 col-lg-6">
+                    <a href="/product/add" class="btn btn-primary w-100 btn-lg mb-4">
+                        <span class="btn-text-inner">Add Product</span>
+                    </a>
+                </div>
             </div>
-        </div>
+        @endcan
 
         <div class="row layout-top-spacing">
-
             <div class="col-xl-12 col-lg-12 col-sm-12  layout-spacing">
                 <div class="widget-content widget-content-area br-8">
                     <table id="ecommerce-list" class="table dt-table-hover" style="width:100%">
@@ -59,15 +60,21 @@
                                                     </svg>
                                                 </a>
                                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuLink1">
-                                                    <a class="dropdown-item"
-                                                        href="/product/{{ $product->id }}/details">View</a>
-                                                    <a class="dropdown-item"
-                                                        href="/product/{{ $product->id }}/edit">Edit</a>
-                                                    <form action="/delete-product/{{ $product->id }}" method="POST">
-                                                        @csrf
-                                                        <button class="dropdown-item" type="submit"
-                                                            style="font-size: 13px">Delete</button>
-                                                    </form>
+                                                    @can('view product')
+                                                        <a class="dropdown-item"
+                                                            href="/product/{{ $product->id }}/details">View</a>
+                                                    @endcan
+                                                    @can('edit product')
+                                                        <a class="dropdown-item"
+                                                            href="/product/{{ $product->id }}/edit">Edit</a>
+                                                    @endcan
+                                                    @can('delete product')
+                                                        <form action="/delete-product/{{ $product->id }}" method="POST">
+                                                            @csrf
+                                                            <button class="dropdown-item" type="submit"
+                                                                style="font-size: 13px">Delete</button>
+                                                        </form>
+                                                    @endcan
                                                 </div>
                                             </div>
                                         </td>
@@ -82,8 +89,6 @@
                     </table>
                 </div>
             </div>
-
         </div>
-
 
 </x-base-layout>
