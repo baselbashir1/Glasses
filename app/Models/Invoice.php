@@ -11,7 +11,7 @@ class Invoice extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['product_id', 'paid_amount', 'remaining_amount', 'product_received', 'payment_status', 'agent_id', 'dossier_id', 'purchased_at', 'created_at', 'updated_at'];
+    protected $fillable = ['product_id', 'paid_amount', 'remaining_amount', 'product_received', 'payment_status', 'content', 'agent_id', 'dossier_id', 'purchased_at', 'created_at', 'updated_at'];
 
     public function product(): BelongsTo
     {

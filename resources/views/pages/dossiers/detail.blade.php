@@ -179,7 +179,8 @@
                                                             <div class="inv--note">
                                                                 <div class="row mt-4">
                                                                     <div class="col-sm-12 col-12 order-sm-0 order-1">
-                                                                        <p>Note: Thank you for doing Business with us.
+                                                                        <p>Comments:
+                                                                            {{ htmlspecialchars(strip_tags($invoice->content)) }}
                                                                         </p>
                                                                     </div>
                                                                 </div>

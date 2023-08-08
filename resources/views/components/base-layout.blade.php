@@ -110,6 +110,7 @@
     @vite(['public/src/assets/js/apps/invoice-preview.js'])
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    {{-- <script src="https://cdn.tiny.cloud/1/YOUR_API_KEY/tinymce/5/tinymce.min.js"></script> --}}
     <!-- END PAGE LEVEL SCRIPTS -->
 </body>
 

@@ -62,7 +62,8 @@ class InvoiceController extends Controller
             'payment_status' => $formFields['payment_status'],
             'agent_id' => $formFields['agent'],
             'dossier_id' => $dossier->id,
-            'purchased_at' => $formFields['purchased_date']
+            'purchased_at' => isset($formFields['purchased_date']) ? $formFields['purchased_date'] : now(),
+            'content' => $formFields['content']
         ]);
 
         return redirect('/dossier/' . $dossier->id . '/details');
@@ -87,7 +88,8 @@ class InvoiceController extends Controller
             'payment_status' => $formFields['payment_status'],
             'agent_id' => $formFields['agent'],
             'dossier_id' => $dossier->id,
-            'purchased_at' => $formFields['purchased_date']
+            'purchased_at' => isset($formFields['purchased_date']) ? $formFields['purchased_date'] : $invoice->purchased_at,
+            'content' => $formFields['content']
         ]);
 
         return redirect('/dossier/' . $dossier->id . '/details');

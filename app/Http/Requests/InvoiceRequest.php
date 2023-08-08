@@ -28,7 +28,8 @@ class InvoiceRequest extends FormRequest
             'product_received' => 'nullable',
             'payment_status' => 'required',
             'agent' => 'required',
-            'purchased_date' => 'required'
+            'purchased_date' => 'nullable',
+            'content' => 'nullable'
         ];
     }
 }
