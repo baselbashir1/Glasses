@@ -34,8 +34,8 @@
                                 <p class="mt-2">{{ $message }}</p>
                             @enderror
                         </div>
-                        {{-- @if ($product->productType->id == 3) --}}
-                        <div class="row mb-4" id="lenses_grade" style="display: none">
+                        <div class="row mb-4" id="lenses_grade"
+                            @if ($product->productType->id !== 3) style="display: none" @else style="display: block" @endif>
                             <div class="col-sm-12">
                                 <label for="lenses_grade">Lenses Grade</label>
                                 <input type="text" name="lenses_grade" class="form-control"
@@ -45,7 +45,8 @@
                                 <p class="mt-2">{{ $message }}</p>
                             @enderror
                         </div>
-                        <div class="row mb-4" id="lenses_description" style="display: none">
+                        <div class="row mb-4" id="lenses_description"
+                            @if ($product->productType->id !== 3) style="display: none" @else style="display: block" @endif>
                             <div class="col-sm-12">
                                 <label for="lenses_description">Lenses Description</label>
                                 <textarea name="lenses_description" class="form-control" cols="30" rows="10">{{ $lensesGrade?->description }}</textarea>
@@ -54,7 +55,6 @@
                                 <p class="mt-2">{{ $message }}</p>
                             @enderror
                         </div>
-                        {{-- @endif --}}
                         <div class="row mb-4">
                             <div class="col-sm-12">
                                 <div class="row">

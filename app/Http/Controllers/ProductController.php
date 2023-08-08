@@ -88,7 +88,7 @@ class ProductController extends Controller
         ]);
 
         if (isset($formFields['lenses_grade']) && isset($formFields['lenses_description'])) {
-            if ($lensesGrade) {
+            if (!empty($lensesGrade->grade) && !empty($lensesGrade->description)) {
                 $lensesGrade->update([
                     'product_id' => $product->id,
                     'grade' => $formFields['lenses_grade'],
