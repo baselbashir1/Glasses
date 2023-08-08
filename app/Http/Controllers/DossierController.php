@@ -8,6 +8,7 @@ use App\Models\Invoice;
 use Illuminate\Http\Request;
 use App\Http\Requests\DossierRequest;
 use App\Http\Requests\InvoiceRequest;
+use App\Models\LensesGrade;
 
 class DossierController extends Controller
 {
@@ -28,7 +29,8 @@ class DossierController extends Controller
     public function show(Dossier $dossier)
     {
         $invoices = Invoice::where('dossier_id', $dossier->id)->get();
-        return view('pages.dossiers.detail', ['dossier' => $dossier, 'invoices' => $invoices]);
+        $lensesGrades = LensesGrade::all();
+        return view('pages.dossiers.detail', ['dossier' => $dossier, 'invoices' => $invoices, 'lensesGrades' => $lensesGrades]);
     }
 
     public function create()
@@ -68,7 +70,6 @@ class DossierController extends Controller
     {
         $dossier->invoices()->delete();
         $dossier->delete();
-
         return redirect('/dossiers');
     }
 

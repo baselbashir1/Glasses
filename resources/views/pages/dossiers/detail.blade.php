@@ -57,12 +57,15 @@
                                                                     <table class="table">
                                                                         <thead class="">
                                                                             <tr>
-                                                                                <th scope="col">S.No</th>
                                                                                 <th scope="col">Product Name</th>
                                                                                 <th scope="col">Product Type</th>
                                                                                 <th class="text-end" scope="col">
                                                                                     Product
                                                                                     Price</th>
+                                                                                @if ($invoice->product->productType->id == 3)
+                                                                                    <th>Lenses Grade</th>
+                                                                                    <th>Lenses Description</th>
+                                                                                @endif
                                                                                 <th class="text-end" scope="col">
                                                                                     Payment
                                                                                     Status</th>
@@ -70,12 +73,27 @@
                                                                         </thead>
                                                                         <tbody>
                                                                             <tr>
-                                                                                <td>1</td>
                                                                                 <td>{{ $invoice->product->brand }}</td>
                                                                                 <td>{{ $invoice->product->productType->type }}
                                                                                 </td>
                                                                                 <td class="text-end">
                                                                                     ${{ $invoice->product->price }}</td>
+                                                                                @if ($invoice->product->productType->id == 3)
+                                                                                    <td>
+                                                                                        @foreach ($lensesGrades as $lensesGrade)
+                                                                                            @if ($lensesGrade->product_id == $invoice->product->id)
+                                                                                                {{ $lensesGrade->grade }}
+                                                                                            @endif
+                                                                                        @endforeach
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        @foreach ($lensesGrades as $lensesGrade)
+                                                                                            @if ($lensesGrade->product_id == $invoice->product->id)
+                                                                                                {{ $lensesGrade->description }}
+                                                                                            @endif
+                                                                                        @endforeach
+                                                                                    </td>
+                                                                                @endif
                                                                                 <td class="text-end">
                                                                                     @if ($invoice->paymentStatus->id == 1)
                                                                                         <div class="btn btn-success"
