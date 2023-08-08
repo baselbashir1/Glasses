@@ -6,13 +6,14 @@ use Illuminate\Http\Request;
 use App\Http\Requests\RoleRequest;
 use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Role;
+use Illuminate\Support\Facades\Gate;
 use Spatie\Permission\Models\Permission;
 
 class RoleController extends Controller
 {
     public function __construct()
     {
-        // $this->middleware('permission:roles', ['only' => ['index']]);
+        $this->middleware('permission:roles', ['only' => ['index']]);
         // $this->middleware('permission:add role', ['only' => ['create', 'store']]);
         // $this->middleware('permission:edit role', ['only' => ['edit', 'update']]);
         // $this->middleware('permission:delete role', ['only' => ['destroy']]);
@@ -20,6 +21,8 @@ class RoleController extends Controller
 
     public function index()
     {
+        // abort_if(Gate::denies('roles'), 403);
+
         $roles = Role::all();
         return view('pages.roles.list', ['roles' => $roles]);
     }
