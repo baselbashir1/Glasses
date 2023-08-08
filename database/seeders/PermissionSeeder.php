@@ -17,10 +17,12 @@ class PermissionSeeder extends Seeder
     {
         $permissions = [
             'dossiers',
+            'view dossier',
             'add dossier',
             'edit dossier',
             'delete dossier',
             'agents',
+            'view agent',
             'add agent',
             'edit agent',
             'delete agent',
@@ -30,6 +32,7 @@ class PermissionSeeder extends Seeder
             'edit product',
             'delete product',
             'users',
+            'view user',
             'add user',
             'edit user',
             'delete user',
@@ -45,13 +48,10 @@ class PermissionSeeder extends Seeder
             'delete invoice'
         ];
 
-        // $role = Role::where('name', 'admin')->first();
-        foreach ($permissions as $permission) {
-            $permission = Permission::create(['name' => $permission]);
-            // DB::table('role_has_permissions')->create([
-            //     'role_id' => $role->id,
-            //     'permission_id' => $permission->id
-            // ]);
+        $role = Role::where('name', 'admin')->first();
+        foreach ($permissions as $per) {
+            $permission = Permission::create(['name' => $per]);
+            $role->givePermissionTo($permission);
         }
     }
 }
