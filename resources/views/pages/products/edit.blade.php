@@ -13,7 +13,8 @@
                         <div class="row mb-4">
                             <div class="col-sm-12">
                                 <label for="brand_en">Brand En</label>
-                                <input type="text" name="brand_en" class="form-control" value="{{ $product->brand }}">
+                                <input type="text" name="brand_en" class="form-control"
+                                    value="{{ $product->translate('en')->brand }}">
                             </div>
                             @error('brand_en')
                                 <p class="mt-2">{{ $message }}</p>
@@ -87,7 +88,7 @@
                             <div class="col-sm-12">
                                 <label for="color_en">Color En</label>
                                 <input type="text" name="color_en" class="form-control"
-                                    value="{{ $product->color }}">
+                                    value="{{ $product->translate('en')->color }}">
                             </div>
                             @error('color_en')
                                 <p class="mt-2">{{ $message }}</p>
