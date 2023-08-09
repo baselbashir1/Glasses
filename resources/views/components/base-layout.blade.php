@@ -13,6 +13,8 @@
 
     <!-- BEGIN GLOBAL MANDATORY STYLES -->
     <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
     @vite(['public/src/bootstrap/css/bootstrap.min.css'])
     @vite(['public/layouts/modern-dark-menu/css/light/plugins.css'])
     @vite(['public/layouts/modern-dark-menu/css/dark/plugins.css'])
@@ -110,8 +112,8 @@
     @vite(['public/src/assets/js/apps/invoice-preview.js'])
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    {{-- <script src="https://cdn.tiny.cloud/1/YOUR_API_KEY/tinymce/5/tinymce.min.js"></script> --}}
-    <!-- END PAGE LEVEL SCRIPTS -->
+    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+
 </body>
 
 </html>

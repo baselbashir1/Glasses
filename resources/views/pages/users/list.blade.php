@@ -20,7 +20,6 @@
                             <tr>
                                 <th class="checkbox-column"></th>
                                 <th>Name</th>
-                                <th>Phone</th>
                                 <th>Email</th>
                                 <th>Password</th>
                                 <th>Picture</th>
@@ -34,7 +33,6 @@
                                     <tr>
                                         <td>{{ $user->id }}</td>
                                         <td>{{ $user->name }}</td>
-                                        <td>{{ $user->phone }}</td>
                                         <td>{{ $user->email }}</td>
                                         <td>{{ substr($user->password, 0, 15) }}</td>
                                         <td>

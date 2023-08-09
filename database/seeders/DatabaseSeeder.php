@@ -17,8 +17,8 @@ class DatabaseSeeder extends Seeder
             AgentCategorySeeder::class,
             PaymentStatusSeeder::class,
             ProductSeeder::class,
-            PermissionSeeder::class,
             RoleSeeder::class,
+            PermissionSeeder::class,
             UserSeeder::class,
             AdminSeeder::class,
         ]);

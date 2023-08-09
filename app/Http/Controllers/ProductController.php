@@ -7,6 +7,7 @@ use App\Models\ProductType;
 use Illuminate\Http\Request;
 use App\Http\Requests\ProductRequest;
 use App\Models\LensesGrade;
+use App\Models\ProductTranslation;
 
 class ProductController extends Controller
 {
@@ -45,10 +46,16 @@ class ProductController extends Controller
         }
 
         $product = Product::create([
-            'brand' => $formFields['brand'],
+            'en' => [
+                'brand' => $formFields['brand_en'],
+                'color' => $formFields['color_en'],
+            ],
+            'ar' => [
+                'brand' => $formFields['brand_ar'],
+                'color' => $formFields['color_ar'],
+            ],
             'product_type' => $formFields['type'],
             'image' => isset($formFields['image']) ? $formFields['image'] : null,
-            'color' => $formFields['color'],
             'price' => $formFields['price']
         ]);
 
@@ -80,10 +87,16 @@ class ProductController extends Controller
         }
 
         $product->update([
-            'brand' => $formFields['brand'],
+            'en' => [
+                'brand' => $formFields['brand_en'],
+                'color' => $formFields['color_en'],
+            ],
+            'ar' => [
+                'brand' => $formFields['brand_ar'],
+                'color' => $formFields['color_ar'],
+            ],
             'product_type' => $formFields['type'],
             'image' => isset($formFields['image']) ? $formFields['image'] : $product->image,
-            'color' => $formFields['color'],
             'price' => $formFields['price']
         ]);
 
@@ -113,6 +126,8 @@ class ProductController extends Controller
     public function destroy(Product $product)
     {
         $lensesGrade = LensesGrade::where('product_id', $product->id);
+        $productTranslations = ProductTranslation::where('product_id', $product->id);
+        $productTranslations->delete();
         $lensesGrade->delete();
         $product->delete();
         return redirect('/products');

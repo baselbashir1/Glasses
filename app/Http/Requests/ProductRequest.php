@@ -22,12 +22,13 @@ class ProductRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'brand' => ['required', 'string'],
+            'brand_en' => ['required', 'string'],
+            'brand_ar' => ['required', 'string'],
             'type' => 'required',
             'image' => ['nullable', 'image'],
-            'color' => ['nullable', 'string'],
+            'color_en' => ['nullable', 'string'],
+            'color_ar' => ['nullable', 'string'],
             'price' => ['required', 'numeric'],
-
             'lenses_grade' => 'nullable',
             'lenses_description' => 'nullable'
         ];

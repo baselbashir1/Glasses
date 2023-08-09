@@ -15,10 +15,8 @@ return new class extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
-            $table->string('brand');
             $table->foreignIdFor(ProductType::class, 'product_type');
             $table->string('image', 2000)->nullable();
-            $table->string('color')->nullable();
             $table->decimal('price', 10, 2);
             $table->timestamps();
         });

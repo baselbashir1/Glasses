@@ -12,10 +12,20 @@
                     <div class="widget-content widget-content-area ecommerce-create-section">
                         <div class="row mb-4">
                             <div class="col-sm-12">
-                                <label for="brand">Brand</label>
-                                <input type="text" name="brand" class="form-control" value="{{ $product->brand }}">
+                                <label for="brand_en">Brand En</label>
+                                <input type="text" name="brand_en" class="form-control" value="{{ $product->brand }}">
                             </div>
-                            @error('brand')
+                            @error('brand_en')
+                                <p class="mt-2">{{ $message }}</p>
+                            @enderror
+                        </div>
+                        <div class="row mb-4">
+                            <div class="col-sm-12">
+                                <label for="brand_ar">Brand Ar</label>
+                                <input type="text" name="brand_ar" class="form-control"
+                                    value="{{ $product->translate('ar')->brand }}">
+                            </div>
+                            @error('brand_ar')
                                 <p class="mt-2">{{ $message }}</p>
                             @enderror
                         </div>
@@ -75,11 +85,21 @@
                         </div>
                         <div class="row mb-4">
                             <div class="col-sm-12">
-                                <label for="color">Color</label>
-                                <input type="text" name="color" class="form-control"
+                                <label for="color_en">Color En</label>
+                                <input type="text" name="color_en" class="form-control"
                                     value="{{ $product->color }}">
                             </div>
-                            @error('color')
+                            @error('color_en')
+                                <p class="mt-2">{{ $message }}</p>
+                            @enderror
+                        </div>
+                        <div class="row mb-4">
+                            <div class="col-sm-12">
+                                <label for="color_ar">Color Ar</label>
+                                <input type="text" name="color_ar" class="form-control"
+                                    value="{{ $product->translate('ar')->color }}">
+                            </div>
+                            @error('color_ar')
                                 <p class="mt-2">{{ $message }}</p>
                             @enderror
                         </div>
